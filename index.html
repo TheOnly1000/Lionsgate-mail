@@ -3,102 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>S&P Report Email Template Maker</title>
+<title>S&P Report Creator Pro</title>
 
 <style>
+/* =========================================================
+   APP UI STYLES (Modern SaaS Design)
+========================================================= */
+:root {
+    --primary: #172033;
+    --accent: #D4AF37; /* Lionsgate Gold */
+    --accent-hover: #b8952b;
+    --bg-gradient: linear-gradient(135deg, #f6f8fd 0%, #e9edf5 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --danger: #ef4444;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body { background: #eef1f5; color: #172033; font-family: Arial, Helvetica, sans-serif; }
+html, body { margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; }
 
-.app { width: 100%; max-width: 1320px; margin: 0 auto; padding: 32px 22px 60px; }
-.page-header { margin-bottom: 25px; }
-.page-header h1 { margin: 0 0 7px; font-size: 28px; line-height: 36px; font-weight: 700; }
-.page-header p { margin: 0; font-size: 14px; line-height: 22px; color: #6d788a; }
+/* Layout */
+.app { width: 100%; max-width: 1400px; margin: 0 auto; padding: 40px 30px; }
+.header { text-align: center; margin-bottom: 40px; animation: fadeInDown 0.6s ease-out; }
+.header h1 { margin: 0 0 10px; font-size: 36px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+.header p { margin: 0; font-size: 16px; color: var(--text-muted); }
 
-.workspace { display: grid; grid-template-columns: 390px minmax(0, 1fr); gap: 25px; align-items: start; }
-.panel { background: #fff; border-radius: 14px; box-shadow: 0 8px 30px rgba(23, 32, 51, .07); }
-.settings-panel, .preview-panel { padding: 25px; }
-.panel-title { margin: 0 0 20px; font-size: 15px; line-height: 20px; font-weight: 700; }
+.workspace { display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 30px; align-items: start; }
 
-.section-title {
-    margin: 26px 0 15px; padding-bottom: 9px; border-bottom: 1px solid #edf0f4;
-    color: #929baa; font-size: 10px; line-height: 14px; font-weight: 700;
-    letter-spacing: 1.4px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;
+/* Panels */
+.panel {
+    background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.05);
+    padding: 32px; border: 1px solid rgba(255,255,255,0.4);
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.form-group { margin-bottom: 15px; }
-label { display: block; margin-bottom: 7px; color: #536074; font-size: 10px; line-height: 14px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; }
+/* Make Preview Panel Sticky */
+.preview-panel { position: sticky; top: 30px; padding: 0; background: transparent; box-shadow: none; border: none; }
+.preview-container { background: #fff; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); overflow: hidden; min-height: 800px; transition: all 0.4s ease; display: flex; flex-direction: column; }
+.preview-header { background: #f8fafc; padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+.preview-content { padding: 30px; background: #eef1f5; flex-grow: 1; display: flex; align-items: flex-start; justify-content: center; }
 
-input[type="text"], input[type="url"], input[type="email"], input[type="tel"], textarea, select {
-    width: 100%; margin: 0; padding: 11px 12px; border: 1px solid #d9dee7; border-radius: 7px;
-    background: #fff; color: #172033; font-family: Arial, Helvetica, sans-serif; font-size: 13px; outline: none;
-    transition: border-color .15s ease, box-shadow .15s ease;
+/* Forms */
+.section-title { margin: 35px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #f1f5f9; color: var(--primary); font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+input, textarea, select {
+    width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 10px;
+    background: #f8fafc; color: var(--text-main); font-size: 14px; transition: all 0.2s ease;
+    font-family: inherit;
 }
-input[type="text"], input[type="url"], input[type="email"], input[type="tel"], select { height: 43px; }
-textarea { min-height: 82px; resize: vertical; line-height: 19px; }
-input::placeholder, textarea::placeholder { color: #a5adba; }
-input:focus, textarea:focus, select:focus { border-color: #172033; box-shadow: 0 0 0 3px rgba(23, 32, 51, .06); }
+textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); outline: none; }
+select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
 
+/* Buttons */
+.btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+.btn-grid.full { grid-template-columns: 1fr; }
 .button {
-    width: 100%; min-height: 43px; margin-top: 8px; padding: 0 15px; border: 0; border-radius: 7px;
-    background: #172033; color: #fff; font-family: Arial, Helvetica, sans-serif; font-size: 11px;
-    line-height: 16px; font-weight: 700; letter-spacing: .5px; cursor: pointer; transition: background .15s ease, transform .15s ease;
+    width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase;
 }
-.button:hover { background: #293751; }
-.button:active { transform: translateY(1px); }
-.button.gold { background: #e5b94d; color: #172033; }
-.button.gold:hover { background: #d9ad3e; }
-.button.secondary { background: #e9edf3; color: #172033; }
-.button.secondary:hover { background: #dce2ea; }
-.button.danger { background: #fee2e2; color: #991b1b; }
+.button:active { transform: scale(0.98); }
+.button.primary { background: var(--primary); color: #fff; }
+.button.primary:hover { background: #293751; box-shadow: 0 4px 12px rgba(23,32,51,0.2); }
+.button.gold { background: var(--accent); color: #fff; }
+.button.gold:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+.button.secondary { background: #e2e8f0; color: var(--text-main); }
+.button.secondary:hover { background: #cbd5e1; }
+.button.danger { background: #fee2e2; color: var(--danger); }
 .button.danger:hover { background: #fecaca; }
 
-.saved-message { display: none; margin-top: 10px; padding: 10px 12px; border: 1px solid #cce5d2; border-radius: 7px; background: #edf7f0; color: #3b6d48; font-size: 11px; line-height: 16px; }
+.sig-row { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 15px; }
 
-.preview-label { margin-bottom: 12px; color: #929baa; font-size: 10px; line-height: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-.preview-wrapper { min-height: 720px; padding: 30px; border-radius: 10px; transition: background 0.3s ease; }
-.email-card { width: 100%; max-width: 660px; margin: 0 auto; overflow: hidden; border-radius: 14px; transition: background 0.3s ease, box-shadow 0.3s ease; }
+/* Toast Notification */
+#toast {
+    position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+    background: #10b981; color: white; padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 14px; box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+    transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000;
+}
+#toast.show { bottom: 40px; }
 
-.sig-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+/* Animations */
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 950px) { .workspace { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { .app { padding: 20px 10px 40px; } .settings-panel, .preview-panel { padding: 18px; } .preview-wrapper { padding: 10px; } }
+@media (max-width: 1024px) {
+    .workspace { grid-template-columns: 1fr; }
+    .preview-panel { position: relative; top: 0; }
+}
 </style>
 </head>
 <body>
 
 <div class="app">
-    <div class="page-header">
-        <h1>S&amp;P Report Template Maker</h1>
-        <p>Create a professional report email for any movie, title or project with custom themes.</p>
+    <div class="header">
+        <h1>S&P Report Creator Pro</h1>
+        <p>Generate beautiful, universally compatible emails instantly.</p>
     </div>
 
     <div class="workspace">
         <!-- SETTINGS PANEL -->
         <div class="panel settings-panel">
-            <div class="panel-title">Template Details</div>
-            
+            <div class="section-title" style="margin-top: 0;">🎨 Template Style</div>
             <div class="form-group">
-                <label for="templateTheme">Theme / Style Variation</label>
-                <select id="templateTheme" onchange="updatePreview()">
-                    <option value="0">Default (Dark Blue & Gold)</option>
-                    <option value="1">Lionsgate Crimson & Gold</option>
-                    <option value="2">Modern Midnight & Blue</option>
-                    <option value="3">Clean White & Emerald</option>
-                    <option value="4">Silver & Crimson</option>
-                    <option value="5">Deep Purple & Orange</option>
-                    <option value="6">Teal & Coral</option>
-                    <option value="7">Slate & Yellow</option>
-                    <option value="8">High Contrast B&W</option>
-                    <option value="9">Corporate Gray & Blue</option>
+                <label for="templateLayout">Select Layout Structure</label>
+                <select id="templateLayout" onchange="updatePreview()">
+                    <option value="classic">Layout 1: Classic Professional (Clean & Standard)</option>
+                    <option value="dark">Layout 2: Cinematic Dark (Bold & Theatrical)</option>
+                    <option value="minimal">Layout 3: Modern Minimalist (Centered & Elegant)</option>
+                    <option value="vibrant">Layout 4: Gradient Highlight (Pill Buttons & Shadows)</option>
                 </select>
             </div>
 
-            <div class="section-title">Report Information</div>
-
+            <div class="section-title">📝 Project Information</div>
             <div class="form-group">
-                <label for="company">Company / Brand</label>
+                <label for="company">Company / Brand (Header)</label>
                 <input type="text" id="company" value="LIONSGATE">
             </div>
             <div class="form-group">
@@ -106,116 +130,108 @@ input:focus, textarea:focus, select:focus { border-color: #172033; box-shadow: 0
                 <input type="text" id="reportType" value="S&P Report">
             </div>
             <div class="form-group">
-                <label for="projectFull">Project Full Title & ID</label>
+                <label for="projectFull">Project Full Title & ID (e.g. Movie - ID)</label>
                 <input type="text" id="projectFull" value="Conan el bárbaro - 9382098CSP">
             </div>
+            
             <div class="form-group">
-                <label for="driveLink">Project File / Drive Link</label>
-                <input type="url" id="driveLink" placeholder="Paste Drive / Project File link">
+                <label for="driveLink">Project File / Google Drive Link</label>
+                <input type="url" id="driveLink" placeholder="Paste Drive link (auto-converts to direct download)">
             </div>
             <div class="form-group">
                 <label for="sheetLink">Review Sheet Link</label>
                 <input type="url" id="sheetLink" placeholder="Paste Google Sheet link">
             </div>
 
-            <div class="section-title">Action Section</div>
+            <div class="section-title">⚡ Action Required</div>
             <div class="form-group">
                 <label for="actionTitle">Action Heading</label>
                 <input type="text" id="actionTitle" value="Actions">
             </div>
             <div class="form-group">
                 <label for="actionText">Action Description</label>
-                <textarea id="actionText">Kindly review the report.</textarea>
+                <textarea id="actionText">Kindly review the report and update the review sheet with your comments.</textarea>
             </div>
 
-            <div class="section-title">Signature Management</div>
+            <div class="section-title">🖋️ Signature Details</div>
             <div class="form-group">
-                <label for="savedSignaturesDropdown">Load Saved Signature</label>
+                <label for="savedSignaturesDropdown">Load Saved Signature Profile</label>
                 <select id="savedSignaturesDropdown" onchange="loadSelectedSignature()">
-                    <option value="">-- Select a Signature --</option>
+                    <option value="">-- Select or Create New --</option>
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="signatureName">Name</label>
-                <input type="text" id="signatureName" value="Name">
+                <input type="text" id="signatureName" value="John Doe">
             </div>
             <div class="form-group">
                 <label for="signatureRole">Designation</label>
-                <input type="text" id="signatureRole" value="Consultant, Creative">
+                <input type="text" id="signatureRole" value="Creative Consultant">
             </div>
-            <div class="form-group">
-                <label for="signatureMobile">Mobile</label>
-                <input type="tel" id="signatureMobile" placeholder="+91 XXXXX XXXXX">
-            </div>
-            <div class="form-group">
-                <label for="signatureEmail">Email</label>
-                <input type="email" id="signatureEmail" placeholder="name@domain.com">
+            <div class="sig-row">
+                <div class="form-group" style="margin:0;">
+                    <label for="signatureMobile">Mobile</label>
+                    <input type="tel" id="signatureMobile" placeholder="+1 555-0100">
+                </div>
+                <div class="form-group" style="margin:0;">
+                    <label for="signatureEmail">Email</label>
+                    <input type="email" id="signatureEmail" placeholder="name@lionsgate.com">
+                </div>
             </div>
             <div class="form-group">
                 <label for="signatureWebsite">Website</label>
                 <input type="text" id="signatureWebsite" value="www.lionsgate.com">
             </div>
 
-            <div class="sig-row">
-                <input type="text" id="sigProfileName" placeholder="Save As (e.g. Main)">
-                <button type="button" class="button gold" style="margin-top:0;" onclick="saveSignature()">SAVE SIG</button>
+            <div class="sig-row" style="margin-top: 20px; align-items: end;">
+                <div class="form-group" style="margin:0;">
+                    <label for="sigProfileName">Save Signature As</label>
+                    <input type="text" id="sigProfileName" placeholder="e.g. Main Profile">
+                </div>
+                <button type="button" class="button primary" onclick="saveSignature()">SAVE SIG</button>
             </div>
-            <div id="savedMessage" class="saved-message"></div>
 
-            <div class="section-title">Generate</div>
-            <button type="button" class="button" onclick="updatePreview()">REFRESH PREVIEW</button>
-            <button type="button" class="button gold" onclick="copyForEmail()">COPY FOR EMAIL</button>
-            <button type="button" class="button secondary" onclick="copyHTMLSource()">COPY HTML SOURCE</button>
-            <button type="button" class="button secondary" onclick="downloadHTML()">DOWNLOAD HTML</button>
-            <button type="button" class="button danger" onclick="clearProjectDetails()">RESTART (CLEAR DATA)</button>
+            <div class="section-title">🚀 Export & Output</div>
+            <div class="btn-grid">
+                <button type="button" class="button gold" onclick="copyForEmail()">📋 Copy for Email</button>
+                <button type="button" class="button secondary" onclick="copyHTMLSource()">💻 Copy HTML Code</button>
+            </div>
+            <div class="btn-grid">
+                <button type="button" class="button secondary" onclick="downloadHTML()">⬇️ Download File</button>
+                <button type="button" class="button danger" onclick="clearProjectDetails()">🔄 Restart Form</button>
+            </div>
         </div>
 
         <!-- PREVIEW PANEL -->
-        <div class="panel preview-panel">
-            <div class="preview-label">Live HTML Preview (Uses safe email layouts)</div>
-            <div class="preview-wrapper" id="previewWrapperBg">
-                <div id="emailPreviewContainer"></div>
+        <div class="preview-panel">
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span>Live Output Preview</span>
+                    <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px;">Safe for Gmail/Outlook</span>
+                </div>
+                <div class="preview-content" id="previewWrapperBg">
+                    <div id="emailPreviewContainer" style="width: 100%;"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-const AMAGI_LOGO_URL = "https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft#https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png";
+<div id="toast">Action successful!</div>
 
-// 10 Theme Variations
-const themes = [
-    { name: "Default (Dark Blue & Gold)", bg: "#eef1f5", cardBg: "#ffffff", headerBg: "#172033", accent: "#e5b94d", text: "#172033", textMuted: "#697588", link: "#1747c7" },
-    { name: "Lionsgate Crimson & Gold", bg: "#f5f5f5", cardBg: "#ffffff", headerBg: "#7B0000", accent: "#D4AF37", text: "#222222", textMuted: "#555555", link: "#7B0000" },
-    { name: "Modern Midnight & Blue", bg: "#e2e8f0", cardBg: "#ffffff", headerBg: "#0f172a", accent: "#3b82f6", text: "#1e293b", textMuted: "#64748b", link: "#2563eb" },
-    { name: "Clean White & Emerald", bg: "#f0fdf4", cardBg: "#ffffff", headerBg: "#065f46", accent: "#10b981", text: "#1f2937", textMuted: "#4b5563", link: "#059669" },
-    { name: "Silver & Crimson", bg: "#f3f4f6", cardBg: "#ffffff", headerBg: "#4b5563", accent: "#dc2626", text: "#111827", textMuted: "#6b7280", link: "#b91c1c" },
-    { name: "Deep Purple & Orange", bg: "#faf5ff", cardBg: "#ffffff", headerBg: "#4c1d95", accent: "#f97316", text: "#2e1065", textMuted: "#6b21a8", link: "#7c3aed" },
-    { name: "Teal & Coral", bg: "#f0fdfa", cardBg: "#ffffff", headerBg: "#115e59", accent: "#f43f5e", text: "#134e4a", textMuted: "#0f766e", link: "#0d9488" },
-    { name: "Slate & Yellow", bg: "#f8fafc", cardBg: "#ffffff", headerBg: "#334155", accent: "#eab308", text: "#0f172a", textMuted: "#475569", link: "#ca8a04" },
-    { name: "High Contrast B&W", bg: "#e5e5e5", cardBg: "#ffffff", headerBg: "#000000", accent: "#cccccc", text: "#000000", textMuted: "#666666", link: "#000000" },
-    { name: "Corporate Gray & Blue", bg: "#e9ecef", cardBg: "#ffffff", headerBg: "#343a40", accent: "#4dabf7", text: "#212529", textMuted: "#6c757d", link: "#228be6" }
-];
+<script>
+/* =========================================================
+   CORE LOGIC & UTILITIES
+========================================================= */
+const AMAGI_LOGO_URL = "https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft#https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png";
 
 let signatures = {};
 
-function getSafeStorage() {
-    try { return window.localStorage; } catch (e) { return null; }
-}
-
-function getValue(id, fallback = "") {
-    const el = document.getElementById(id);
-    return el ? el.value.trim() || fallback : fallback;
-}
-function escapeHTML(str) {
-    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-}
-function safeURL(url) {
-    if (!url) return "#";
-    if (/^https?:\/\//i.test(url) || url.startsWith("mailto:")) return url;
-    return "https://" + url;
-}
+function getSafeStorage() { try { return window.localStorage; } catch (e) { return null; } }
+function getValue(id, fallback = "") { const el = document.getElementById(id); return el ? el.value.trim() || fallback : fallback; }
+function escapeHTML(str) { return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+function safeURL(url) { if (!url) return "#"; if (/^https?:\/\//i.test(url) || url.startsWith("mailto:")) return url; return "https://" + url; }
 
 function getProjectDownloadLink(url) {
     if (!url) return "#";
@@ -238,12 +254,12 @@ function parseProjectInput(input) {
     return { title, id };
 }
 
-function showMessage(message) {
-    const el = document.getElementById("savedMessage");
-    if (!el) return;
-    el.textContent = message;
-    el.style.display = "block";
-    setTimeout(() => { el.style.display = "none"; }, 3000);
+function showToast(message, isError = false) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.background = isError ? "#ef4444" : "#10b981";
+    toast.classList.add("show");
+    setTimeout(() => { toast.classList.remove("show"); }, 3000);
 }
 
 /* =========================================================
@@ -253,7 +269,7 @@ function initSignatures() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            const saved = storage.getItem("spTemplateSignatures");
+            const saved = storage.getItem("spTemplateSignaturesV2");
             if (saved) signatures = JSON.parse(saved);
         } catch (e) {}
     }
@@ -262,7 +278,7 @@ function initSignatures() {
 
 function populateSignatureDropdown() {
     const dropdown = document.getElementById("savedSignaturesDropdown");
-    dropdown.innerHTML = '<option value="">-- Select a Signature --</option>';
+    dropdown.innerHTML = '<option value="">-- Select or Create New --</option>';
     for (const key in signatures) {
         const opt = document.createElement("option");
         opt.value = key;
@@ -298,193 +314,247 @@ function saveSignature() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            storage.setItem("spTemplateSignatures", JSON.stringify(signatures));
-            showMessage(`Signature "${profileName}" saved!`);
+            storage.setItem("spTemplateSignaturesV2", JSON.stringify(signatures));
+            showToast(`Signature "${profileName}" saved successfully!`);
             populateSignatureDropdown();
             document.getElementById("savedSignaturesDropdown").value = profileName;
-        } catch (e) { showMessage("Error saving locally."); }
+        } catch (e) { showToast("Error saving signature locally.", true); }
     }
 }
 
-/* =========================================================
-   BUILD EMAIL HTML (GMAIL SAFE - NO SVGS)
-========================================================= */
-function getEmailHTML() {
-    const themeIdx = parseInt(document.getElementById("templateTheme").value) || 0;
-    const t = themes[themeIdx];
-    
-    const company = getValue("company", "LIONSGATE");
-    const reportType = getValue("reportType", "S&P Report");
-    const projectFull = getValue("projectFull", "Conan el bárbaro - 9382098CSP");
-    const { title: movie, id: reportId } = parseProjectInput(projectFull);
-    
-    const driveLink = getProjectDownloadLink(getValue("driveLink", "#"));
-    const sheetLink = safeURL(getValue("sheetLink", "#"));
-    const actionTitle = getValue("actionTitle", "Actions");
-    const actionText = getValue("actionText", "Kindly review the report.");
-    
-    const name = getValue("signatureName", "Name");
-    const role = getValue("signatureRole", "Consultant");
-    const mobile = getValue("signatureMobile", "");
-    const email = getValue("signatureEmail", "");
-    const website = safeURL(getValue("signatureWebsite", "www.lionsgate.com"));
-    const websiteRaw = getValue("signatureWebsite", "www.lionsgate.com");
-
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escapeHTML(projectFull)} - ${escapeHTML(reportType)}</title>
-</head>
-<body style="margin:0; padding:0; background:${t.bg}; font-family:Arial,Helvetica,sans-serif; color:${t.text};">
-
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; background:${t.bg}; padding:45px 15px;">
-<tr>
-<td align="center">
-
-<table width="660" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:660px; background:${t.cardBg}; border-radius:14px; overflow:hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-
-<!-- HEADER -->
-<tr>
-<td style="background:${t.headerBg}; padding:30px 38px;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td>
-<div style="color:rgba(255,255,255,0.7); font-size:11px; line-height:16px; letter-spacing:2px; text-transform:uppercase;">
-${escapeHTML(company)}
-</div>
-<div style="margin-top:4px; color:#ffffff; font-size:20px; line-height:28px; font-weight:700;">
-${escapeHTML(projectFull)}<br>${escapeHTML(reportType)}
-</div>
-</td>
-<td width="54" align="right">
-<div style="width:46px; height:46px; background:rgba(255,255,255,0.1); border-radius:10px; line-height:46px; text-align:center; color:${t.accent}; font-size:24px;">
-&#128193;
-</div>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-
-<!-- ACCENT LINE -->
-<tr>
-<td style="height:4px; background:${t.accent}; font-size:0; line-height:0;">&nbsp;</td>
-</tr>
-
-<!-- CONTENT -->
-<tr>
-<td style="padding:40px 42px;">
-
-<div style="margin-bottom:9px; color:${t.textMuted}; font-size:14px; line-height:21px;">Hi Team,</div>
-<div style="margin-bottom:13px; color:${t.text}; font-size:26px; line-height:34px; font-weight:700;">Report ready for review</div>
-<div style="margin-bottom:30px; color:${t.textMuted}; font-size:14px; line-height:23px;">
-Please find the <strong style="color:${t.text};">${escapeHTML(projectFull)} ${escapeHTML(reportType)}</strong> for the title below. Kindly download the project file and review the details using the review sheet.
-</div>
-
-<!-- DOWNLOAD CARD -->
-<a href="${escapeHTML(driveLink)}" target="_blank" rel="noopener" style="display:block; padding:22px; border:1px solid #e3e7ed; border-radius:12px; background:${t.bg}; color:inherit; text-decoration:none;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td width="54" valign="middle">
-<div style="width:44px; height:44px; background:#fff; border:1px solid #d9dee7; border-radius:9px; line-height:44px; text-align:center; font-size:22px; color:${t.text};">&#128196;</div>
-</td>
-<td valign="middle" style="padding-left:15px;">
-<div style="color:${t.textMuted}; font-size:10px; line-height:15px; font-weight:700; letter-spacing:1.5px;">PROJECT FILE</div>
-<div style="margin-top:3px; color:${t.text}; font-size:17px; line-height:24px; font-weight:700;">${escapeHTML(movie)}</div>
-${reportId ? `<div style="margin-top:3px; color:${t.textMuted}; font-size:12px; line-height:18px;">Report ID &nbsp;•&nbsp; ${escapeHTML(reportId)}</div>` : ''}
-</td>
-<td width="120" align="right" valign="middle">
-<span style="display:inline-block; padding:10px 13px; border-radius:6px; background:${t.headerBg}; color:#ffffff; font-size:10px; line-height:14px; font-weight:700; white-space:nowrap;">
-&#11015; DOWNLOAD
-</span>
-</td>
-</tr>
-</table>
-</a>
-
-<!-- ACTION -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
-<tr>
-<td width="4" style="background:${t.accent}; border-radius:4px;">&nbsp;</td>
-<td style="padding-left:17px;">
-<div style="color:${t.text}; font-size:14px; line-height:20px; font-weight:700;">${escapeHTML(actionTitle)}</div>
-<div style="margin-top:3px; color:${t.textMuted}; font-size:13px; line-height:20px;">${escapeHTML(actionText)}</div>
-</td>
-</tr>
-</table>
-
-<!-- REVIEW BUTTON -->
-<table cellpadding="0" cellspacing="0" border="0" style="margin-top:25px;">
-<tr>
-<td style="background:${t.headerBg}; border-radius:7px;">
-<a href="${escapeHTML(sheetLink)}" target="_blank" rel="noopener" style="display:inline-block; padding:13px 21px; color:#ffffff; font-size:13px; line-height:18px; font-weight:700; text-decoration:none;">
-&#9998; REVIEW REPORT
-</a>
-</td>
-</tr>
-</table>
-
-<!-- SIGNATURE -->
-<div style="margin-top:32px; padding-top:25px; border-top:1px solid #edf0f3;">
-<div style="margin-bottom:2px; color:${t.text}; font-size:14px; line-height:20px; font-weight:700;">${escapeHTML(name)}</div>
-<div style="margin-bottom:8px; color:${t.textMuted}; font-size:13px; line-height:20px;">${escapeHTML(role)}</div>
-<img src="${AMAGI_LOGO_URL}" alt="Logo" width="82" style="display:block; width:82px; max-width:82px; height:auto; margin-bottom:10px; border:none; outline:none; text-decoration:none; background:transparent;">
-<div style="color:${t.textMuted}; font-size:12px; line-height:20px;">
-${mobile ? `<div><strong style="color:${t.text};">Mobile:</strong> ${escapeHTML(mobile)}</div>` : ''}
-${email ? `<div><strong style="color:${t.text};">Email:</strong> <a href="mailto:${escapeHTML(email)}" style="color:${t.textMuted}; text-decoration:none;">${escapeHTML(email)}</a></div>` : ''}
-${websiteRaw ? `<div><a href="${escapeHTML(website)}" target="_blank" style="color:${t.link}; text-decoration:none;">${escapeHTML(websiteRaw)}</a></div>` : ''}
-</div>
-</div>
-</td>
-</tr>
-
-<!-- FOOTER -->
-<tr>
-<td style="padding:19px 42px; border-top:1px solid #e8ebef; background:${t.bg};">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-<td style="color:${t.textMuted}; font-size:10px; line-height:16px;">
-${escapeHTML(projectFull)} &nbsp;•&nbsp; ${escapeHTML(reportType)}
-</td>
-<td align="right" style="color:${t.textMuted}; font-size:10px; line-height:16px;">Confidential</td>
-</tr>
-</table>
-</td>
-</tr>
-
-</table>
-</td>
-</tr>
-</table>
-</body>
-</html>`;
-}
-
-function getPlainText() {
-    const projectFull = getValue("projectFull", "Conan el bárbaro - 9382098CSP");
-    const reportType = getValue("reportType", "S&P Report");
-    const driveLink = getValue("driveLink", "");
-    const sheetLink = getValue("sheetLink", "");
-    const actionTitle = getValue("actionTitle", "Actions");
-    const actionText = getValue("actionText", "Kindly review the report.");
-    
-    return `Hi Team,\n\nReport ready for review\n\nPlease find the ${projectFull} ${reportType} for the title below.\n\nDOWNLOAD:\n${driveLink}\n\n${actionTitle}\n${actionText}\n\nREVIEW REPORT:\n${sheetLink}`;
-}
-
-function updatePreview() {
-    const t = themes[parseInt(document.getElementById("templateTheme").value) || 0];
-    document.getElementById("previewWrapperBg").style.background = t.bg;
-    document.getElementById("emailPreviewContainer").innerHTML = getEmailHTML();
-}
-
 function clearProjectDetails() {
-    if(!confirm("Clear all project inputs? Signatures will be kept.")) return;
     document.getElementById("projectFull").value = "";
     document.getElementById("driveLink").value = "";
     document.getElementById("sheetLink").value = "";
+    document.getElementById("actionText").value = "Kindly review the report and update the review sheet with your comments.";
     updatePreview();
+    showToast("Project fields cleared. Ready for new input.");
+}
+
+/* =========================================================
+   HTML EMAIL GENERATOR (4 DISTINCT LAYOUTS)
+========================================================= */
+function getEmailHTML() {
+    const layoutType = document.getElementById("templateLayout").value;
+    
+    // Data mapping
+    const data = {
+        company: escapeHTML(getValue("company", "LIONSGATE")),
+        reportType: escapeHTML(getValue("reportType", "S&P Report")),
+        fullText: escapeHTML(getValue("projectFull", "Conan el bárbaro - 9382098CSP")),
+        driveLink: escapeHTML(getProjectDownloadLink(getValue("driveLink", "#"))),
+        sheetLink: escapeHTML(safeURL(getValue("sheetLink", "#"))),
+        actionTitle: escapeHTML(getValue("actionTitle", "Actions")),
+        actionText: escapeHTML(getValue("actionText", "Kindly review the report.")),
+        name: escapeHTML(getValue("signatureName", "Name")),
+        role: escapeHTML(getValue("signatureRole", "Consultant")),
+        mobile: escapeHTML(getValue("signatureMobile", "")),
+        email: escapeHTML(getValue("signatureEmail", "")),
+        websiteLabel: escapeHTML(getValue("signatureWebsite", "www.lionsgate.com")),
+        websiteUrl: escapeHTML(safeURL(getValue("signatureWebsite", "www.lionsgate.com")))
+    };
+    
+    const parsed = parseProjectInput(getValue("projectFull", "Conan el bárbaro - 9382098CSP"));
+    data.movie = escapeHTML(parsed.title);
+    data.reportId = escapeHTML(parsed.id);
+
+    // Common Signature HTML block
+    const getSignatureHtml = (textColor, mutedColor, linkColor) => `
+        <div style="margin-top:35px; padding-top:25px; border-top:1px solid rgba(128,128,128,0.2);">
+            <div style="margin-bottom:2px; color:${textColor}; font-size:15px; line-height:22px; font-weight:700;">${data.name}</div>
+            <div style="margin-bottom:12px; color:${mutedColor}; font-size:13px; line-height:20px;">${data.role}</div>
+            <img src="${AMAGI_LOGO_URL}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; text-decoration:none; background:transparent;">
+            <div style="color:${mutedColor}; font-size:12px; line-height:20px;">
+                ${data.mobile ? `<div><strong style="color:${textColor};">M:</strong> ${data.mobile}</div>` : ''}
+                ${data.email ? `<div><strong style="color:${textColor};">E:</strong> <a href="mailto:${data.email}" style="color:${linkColor}; text-decoration:none;">${data.email}</a></div>` : ''}
+                ${data.websiteLabel ? `<div><strong style="color:${textColor};">W:</strong> <a href="${data.websiteUrl}" target="_blank" style="color:${linkColor}; text-decoration:none;">${data.websiteLabel}</a></div>` : ''}
+            </div>
+        </div>
+    `;
+
+    // ---------------------------------------------------------
+    // LAYOUT 1: CLASSIC PROFESSIONAL (Blue & Gold)
+    // ---------------------------------------------------------
+    if (layoutType === "classic") {
+        document.getElementById("previewWrapperBg").style.background = "#eef1f5";
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${data.fullText} - ${data.reportType}</title></head>
+<body style="margin:0; padding:0; background:#eef1f5; font-family:Arial, sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef1f5; padding:40px 15px;"><tr><td align="center">
+<table width="660" cellpadding="0" cellspacing="0" border="0" style="max-width:660px; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0;">
+<tr><td style="background:#172033; padding:35px 40px;">
+    <div style="color:#94a3b8; font-size:11px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
+    <div style="margin-top:6px; color:#ffffff; font-size:24px; font-weight:bold; line-height:32px;">${data.fullText}<br><span style="color:#D4AF37;">${data.reportType}</span></div>
+</td></tr>
+<tr><td style="height:4px; background:#D4AF37; line-height:0;">&nbsp;</td></tr>
+<tr><td style="padding:40px;">
+    <div style="color:#475569; font-size:15px; margin-bottom:10px;">Hi Team,</div>
+    <div style="color:#0f172a; font-size:24px; font-weight:bold; margin-bottom:20px;">Report Ready for Review</div>
+    <div style="color:#475569; font-size:15px; line-height:24px; margin-bottom:30px;">Please find the <strong>${data.fullText} ${data.reportType}</strong> for the title below. Kindly download the project file and review using the provided sheet.</div>
+    
+    <a href="${data.driveLink}" target="_blank" style="display:block; padding:20px; border:1px solid #cbd5e1; border-radius:8px; background:#f8fafc; text-decoration:none;">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td width="50" align="left"><div style="font-size:32px; color:#172033;">&#128193;</div></td>
+            <td align="left">
+                <div style="color:#64748b; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Project File</div>
+                <div style="color:#0f172a; font-size:18px; font-weight:bold; margin-top:4px;">${data.movie}</div>
+                ${data.reportId ? `<div style="color:#64748b; font-size:13px; margin-top:2px;">ID: ${data.reportId}</div>` : ''}
+            </td>
+            <td width="120" align="right"><span style="background:#172033; color:#fff; padding:10px 16px; border-radius:6px; font-size:12px; font-weight:bold;">&#11015; DOWNLOAD</span></td>
+        </tr></table>
+    </a>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:30px;"><tr>
+        <td width="4" style="background:#D4AF37;">&nbsp;</td>
+        <td style="padding-left:16px;">
+            <div style="color:#0f172a; font-size:15px; font-weight:bold;">${data.actionTitle}</div>
+            <div style="color:#475569; font-size:14px; margin-top:4px; line-height:20px;">${data.actionText}</div>
+        </td>
+    </tr></table>
+
+    <table cellpadding="0" cellspacing="0" style="margin-top:25px;"><tr><td style="background:#172033; border-radius:6px;">
+        <a href="${data.sheetLink}" target="_blank" style="display:inline-block; padding:14px 24px; color:#ffffff; font-size:14px; font-weight:bold; text-decoration:none;">&#9998; OPEN REVIEW SHEET</a>
+    </td></tr></table>
+
+    ${getSignatureHtml('#0f172a', '#475569', '#172033')}
+</td></tr>
+<tr><td style="background:#f1f5f9; padding:20px 40px; color:#94a3b8; font-size:11px; text-align:center;">
+    ${data.fullText} &bull; Confidential
+</td></tr>
+</table>
+</td></tr></table></body></html>`;
+    }
+
+    // ---------------------------------------------------------
+    // LAYOUT 2: CINEMATIC DARK (Black & Gold)
+    // ---------------------------------------------------------
+    else if (layoutType === "dark") {
+        document.getElementById("previewWrapperBg").style.background = "#0f172a";
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0; padding:0; background:#0f172a; font-family:Arial, sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0f172a; padding:40px 15px;"><tr><td align="center">
+<table width="660" cellpadding="0" cellspacing="0" border="0" style="max-width:660px; background:#1e293b; border-radius:0; border:1px solid #334155;">
+<tr><td align="center" style="padding:40px 40px 20px;">
+    <div style="color:#D4AF37; font-size:14px; letter-spacing:4px; text-transform:uppercase; font-weight:bold;">${data.company}</div>
+    <div style="height:1px; background:#334155; width:40px; margin:20px auto;"></div>
+    <div style="color:#ffffff; font-size:28px; font-weight:bold; line-height:36px; text-align:center;">${data.movie}</div>
+    <div style="color:#94a3b8; font-size:16px; margin-top:8px; text-align:center;">${data.reportType} &bull; ${data.reportId}</div>
+</td></tr>
+<tr><td style="padding:20px 50px 50px;">
+    <div style="background:#0f172a; padding:25px; border-left:3px solid #D4AF37; margin-bottom:30px;">
+        <div style="color:#ffffff; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
+        <div style="color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
+    </div>
+    
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="48%" align="center" style="background:#D4AF37;">
+                <a href="${data.driveLink}" target="_blank" style="display:block; padding:16px; color:#000000; font-size:13px; font-weight:bold; text-decoration:none; letter-spacing:1px;">&#128194; DOWNLOAD PROJECT</a>
+            </td>
+            <td width="4%">&nbsp;</td>
+            <td width="48%" align="center" style="border:1px solid #D4AF37;">
+                <a href="${data.sheetLink}" target="_blank" style="display:block; padding:16px; color:#D4AF37; font-size:13px; font-weight:bold; text-decoration:none; letter-spacing:1px;">&#9998; REVIEW SHEET</a>
+            </td>
+        </tr>
+    </table>
+
+    ${getSignatureHtml('#ffffff', '#94a3b8', '#D4AF37')}
+</td></tr>
+</table>
+</td></tr></table></body></html>`;
+    }
+
+    // ---------------------------------------------------------
+    // LAYOUT 3: MODERN MINIMALIST (White & Gray, Centered)
+    // ---------------------------------------------------------
+    else if (layoutType === "minimal") {
+        document.getElementById("previewWrapperBg").style.background = "#f8fafc";
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0; padding:0; background:#f8fafc; font-family:Helvetica, Arial, sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8fafc; padding:40px 15px;"><tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px; background:#ffffff; border:1px solid #e2e8f0;">
+<tr><td align="center" style="padding:50px 40px 30px;">
+    <div style="font-size:32px; color:#0f172a; margin-bottom:15px;">&#128196;</div>
+    <div style="color:#0f172a; font-size:24px; font-weight:normal; letter-spacing:1px;">${data.reportType}</div>
+    <div style="color:#64748b; font-size:14px; margin-top:10px;">${data.fullText}</div>
+</td></tr>
+<tr><td style="padding:0 40px;">
+    <div style="height:1px; background:#f1f5f9; width:100%;"></div>
+</td></tr>
+<tr><td align="center" style="padding:40px;">
+    <div style="color:#334155; font-size:16px; line-height:26px; text-align:center; max-width:450px;">
+        ${data.actionText}
+    </div>
+    
+    <div style="margin:35px 0;">
+        <a href="${data.driveLink}" target="_blank" style="display:inline-block; margin-bottom:15px; width:220px; padding:15px 0; background:#0f172a; color:#ffffff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px; text-align:center;">DOWNLOAD FILE</a><br>
+        <a href="${data.sheetLink}" target="_blank" style="display:inline-block; width:220px; padding:15px 0; border:1px solid #0f172a; color:#0f172a; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px; text-align:center;">REVIEW SHEET</a>
+    </div>
+
+    <div style="text-align:left;">
+        ${getSignatureHtml('#0f172a', '#64748b', '#0f172a')}
+    </div>
+</td></tr>
+</table>
+</td></tr></table></body></html>`;
+    }
+
+    // ---------------------------------------------------------
+    // LAYOUT 4: VIBRANT & PILL BASED (Blue gradient look via solid tones)
+    // ---------------------------------------------------------
+    else {
+        document.getElementById("previewWrapperBg").style.background = "#f0fdf4";
+        return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0; padding:0; background:#f0f9ff; font-family:'Helvetica Neue', Arial, sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f9ff; padding:40px 15px;"><tr><td align="center">
+<table width="660" cellpadding="0" cellspacing="0" border="0" style="max-width:660px; background:#ffffff; border-radius:24px; overflow:hidden; box-shadow:0 10px 25px rgba(3,105,161,0.1);">
+<tr><td style="background:#0284c7; padding:40px;">
+    <table width="100%"><tr>
+        <td>
+            <div style="color:#bae6fd; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px;">${data.company}</div>
+            <div style="color:#ffffff; font-size:26px; font-weight:bold;">Report Action Required</div>
+        </td>
+        <td align="right">
+            <div style="background:#0369a1; padding:12px 20px; border-radius:50px; color:#ffffff; font-size:12px; font-weight:bold;">&#9200; PENDING</div>
+        </td>
+    </tr></table>
+</td></tr>
+<tr><td style="padding:40px;">
+    
+    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:25px; margin-bottom:30px;">
+        <div style="color:#64748b; font-size:12px; text-transform:uppercase; font-weight:bold; margin-bottom:8px;">Project Details</div>
+        <div style="color:#0f172a; font-size:20px; font-weight:bold; margin-bottom:4px;">${data.movie}</div>
+        <div style="color:#475569; font-size:14px;">Type: <strong>${data.reportType}</strong> &nbsp;|&nbsp; ID: <strong>${data.reportId}</strong></div>
+    </div>
+
+    <div style="color:#0f172a; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
+    <div style="color:#475569; font-size:15px; line-height:24px; margin-bottom:30px;">${data.actionText}</div>
+
+    <table width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td width="48%">
+            <a href="${data.driveLink}" target="_blank" style="display:block; text-align:center; padding:16px; background:#f1f5f9; color:#0f172a; font-size:14px; font-weight:bold; text-decoration:none; border-radius:50px;">&#11015; GET FILE</a>
+        </td>
+        <td width="4%">&nbsp;</td>
+        <td width="48%">
+            <a href="${data.sheetLink}" target="_blank" style="display:block; text-align:center; padding:16px; background:#0284c7; color:#ffffff; font-size:14px; font-weight:bold; text-decoration:none; border-radius:50px;">&#9998; OPEN SHEET</a>
+        </td>
+    </tr></table>
+
+    ${getSignatureHtml('#0f172a', '#64748b', '#0284c7')}
+
+</td></tr>
+</table>
+</td></tr></table></body></html>`;
+    }
+}
+
+function getPlainText() {
+    const projectFull = getValue("projectFull", "Project Name");
+    const reportType = getValue("reportType", "S&P Report");
+    return `Hi Team,\n\nReport ready for review\n\nPlease find the ${projectFull} ${reportType} for the title below.\n\nDOWNLOAD:\n${getValue("driveLink", "")}\n\n${getValue("actionTitle", "Actions")}\n${getValue("actionText", "")}\n\nREVIEW REPORT:\n${getValue("sheetLink", "")}`;
+}
+
+function updatePreview() {
+    document.getElementById("emailPreviewContainer").innerHTML = getEmailHTML();
 }
 
 async function copyForEmail() {
@@ -499,12 +569,12 @@ async function copyForEmail() {
                 "text/plain": new Blob([text], { type: "text/plain" })
             });
             await navigator.clipboard.write([item]);
-            showMessage("Email copied. Paste directly into Gmail/Outlook.");
+            showToast("Success! Paste directly into Gmail or Outlook.");
             return;
         }
     } catch (e) {}
 
-    // Fallback
+    // Fallback logic
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html;
     wrapper.style.position = "fixed"; wrapper.style.left = "-999999px";
@@ -515,7 +585,7 @@ async function copyForEmail() {
     selection.removeAllRanges(); selection.addRange(range);
     document.execCommand("copy");
     selection.removeAllRanges(); document.body.removeChild(wrapper);
-    showMessage("Email copied. Paste directly into Gmail/Outlook.");
+    showToast("Success! Paste directly into Gmail or Outlook.");
 }
 
 async function copyHTMLSource() {
@@ -523,7 +593,7 @@ async function copyHTMLSource() {
     try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             await navigator.clipboard.writeText(html);
-            showMessage("HTML source code copied.");
+            showToast("HTML source code copied to clipboard.");
             return;
         }
     } catch (e) {}
@@ -532,23 +602,23 @@ async function copyHTMLSource() {
     document.body.appendChild(textarea);
     textarea.select(); document.execCommand("copy");
     document.body.removeChild(textarea);
-    showMessage("HTML source code copied.");
+    showToast("HTML source code copied to clipboard.");
 }
 
 function downloadHTML() {
     const html = getEmailHTML();
-    let filename = getValue("projectFull", "Project").replace(/[^a-z0-9]/gi, "_").replace(/_+/g, "_") + "_Email.html";
+    const filename = getValue("projectFull", "Project").replace(/[^a-z0-9]/gi, "_").replace(/_+/g, "_") + "_Report.html";
     const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url; link.download = filename;
     document.body.appendChild(link); link.click(); document.body.removeChild(link);
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    showMessage("HTML file downloaded.");
+    showToast("HTML file downloaded to your computer.");
 }
 
-// Event Listeners for live preview update
-['templateTheme', 'company', 'reportType', 'projectFull', 'driveLink', 'sheetLink', 'actionTitle', 'actionText', 'signatureName', 'signatureRole', 'signatureMobile', 'signatureEmail', 'signatureWebsite'].forEach(id => {
+// Attach Live Update Listeners
+['templateLayout', 'company', 'reportType', 'projectFull', 'driveLink', 'sheetLink', 'actionTitle', 'actionText', 'signatureName', 'signatureRole', 'signatureMobile', 'signatureEmail', 'signatureWebsite'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', updatePreview);
 });
 
