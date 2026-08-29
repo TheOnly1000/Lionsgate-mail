@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S&P Report Creator Pro</title>
+<title>S&P Report Creator Pro v3</title>
 
 <style>
 /* =========================================================
-   APP UI STYLES (Premium SaaS Design)
+   APP UI STYLES
 ========================================================= */
 :root {
     --primary: #0f172a;
@@ -26,19 +26,17 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; }
 
-.app { width: 100%; max-width: 1440px; margin: 0 auto; padding: 40px 30px; }
-.header { text-align: center; margin-bottom: 40px; animation: fadeInDown 0.6s ease-out; }
+.app { width: 100%; max-width: 1500px; margin: 0 auto; padding: 40px 30px; }
+.header { text-align: center; margin-bottom: 30px; animation: fadeInDown 0.6s ease-out; }
 .header h1 { margin: 0 0 10px; font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
 .header p { margin: 0; font-size: 16px; color: var(--text-muted); }
 
-.workspace { display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 30px; align-items: start; }
+.workspace { display: grid; grid-template-columns: 500px minmax(0, 1fr); gap: 30px; align-items: start; }
 
 /* Panels */
 .panel {
     background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 20px;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-    padding: 35px; border: 1px solid rgba(255,255,255,0.6);
-    animation: fadeInUp 0.6s ease-out;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); padding: 35px; border: 1px solid rgba(255,255,255,0.6);
 }
 
 .preview-panel { position: sticky; top: 30px; padding: 0; background: transparent; box-shadow: none; border: none; }
@@ -46,36 +44,41 @@ html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMa
 .preview-header { background: #f8fafc; padding: 18px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
 .preview-content { background: #eef1f5; width: 100%; height: 850px; }
 
-/* IFRAME STYLING - Isolated perfectly */
 iframe#emailPreviewFrame { width: 100%; height: 100%; border: none; display: block; background: transparent; }
 
-/* Forms */
-.section-title { 
-    margin: 35px 0 20px; padding-bottom: 12px; border-bottom: 2px solid #f1f5f9; 
-    color: var(--primary); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; 
-    text-transform: uppercase; display: flex; align-items: center; gap: 10px; 
-}
+/* Forms & Typography */
+.section-title { margin: 35px 0 20px; padding-bottom: 12px; border-bottom: 2px solid #f1f5f9; color: var(--primary); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
 .section-title svg { width: 18px; height: 18px; color: var(--accent); stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
 .section-title:first-child { margin-top: 0; }
 
 .form-group { margin-bottom: 20px; }
 label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-input, textarea, select {
-    width: 100%; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: 10px;
-    background: #f8fafc; color: var(--text-main); font-size: 14px; transition: all 0.2s ease;
-    font-family: inherit;
+input[type="text"], input[type="url"], input[type="email"], input[type="tel"], textarea, select {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px;
+    background: #f8fafc; color: var(--text-main); font-size: 14px; transition: all 0.2s ease; font-family: inherit;
 }
-textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
 input:focus, textarea:focus, select:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); outline: none; }
-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 16px auto; }
+select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 14px top 50%; background-size: 16px auto; }
+
+/* Checkbox & Color Picker */
+.row-flex { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+input[type="color"] { width: 40px; height: 40px; padding: 0; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; }
+
+/* Rich Text Editor */
+.rte-container { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #fff; }
+.rte-toolbar { background: #f1f5f9; padding: 8px; display: flex; gap: 5px; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; }
+.rte-btn { background: #fff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 5px 8px; cursor: pointer; font-size: 14px; font-weight: bold; color: var(--text-main); transition: 0.2s; }
+.rte-btn:hover { background: #e2e8f0; }
+.rte-editor { min-height: 100px; padding: 12px; font-size: 14px; outline: none; line-height: 1.5; color: var(--text-main); background: #fff; }
+.rte-editor[data-placeholder]:empty:before { content: attr(data-placeholder); color: #94a3b8; pointer-events: none; display: block; }
 
 /* Buttons */
 .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
 .button {
-    width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 13px; font-weight: 700;
-    letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase;
+    width: 100%; padding: 12px 18px; border: none; border-radius: 8px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase;
 }
 .button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .button:active { transform: scale(0.98); }
@@ -91,13 +94,11 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 .sig-row { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 15px; }
 .sig-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-/* Toast Notification */
+/* Toast */
 #toast {
     position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
-    background: #10b981; color: white; padding: 14px 30px; border-radius: 50px;
-    font-weight: 600; font-size: 14px; box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-    transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000;
-    display: flex; align-items: center; gap: 10px;
+    background: #10b981; color: white; padding: 14px 30px; border-radius: 50px; font-weight: 600; font-size: 14px;
+    box-shadow: 0 10px 30px rgba(16,185,129,0.4); transition: bottom 0.4s; z-index: 1000; display: flex; align-items: center; gap: 10px;
 }
 #toast svg { width: 18px; height: 18px; }
 #toast.show { bottom: 40px; }
@@ -105,14 +106,10 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .workspace { grid-template-columns: 1fr; }
     .preview-panel { position: relative; top: 0; }
     .preview-content { height: 700px; }
-}
-@media (max-width: 600px) {
-    .app { padding: 20px 15px; }
-    .sig-row, .sig-row-half, .btn-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -121,7 +118,7 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 <div class="app">
     <div class="header">
         <h1>S&P Report Creator Pro</h1>
-        <p>Generate beautiful, universally compatible emails instantly.</p>
+        <p>Start typing the project name to auto-generate your email.</p>
     </div>
 
     <div class="workspace">
@@ -129,45 +126,64 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
         <div class="panel settings-panel">
             
             <div class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5z"></path><path d="M14 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"></path><path d="M4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4z"></path><path d="M14 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"></path></svg>
-                Template Layout
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                Template Layout & Design
             </div>
             <div class="form-group">
                 <select id="templateLayout" onchange="updatePreview()">
-                    <option value="1">Template 1: Classic Professional (Blue & Gold)</option>
-                    <option value="2">Template 2: Cinematic Dark (Black & Gold)</option>
-                    <option value="3">Template 3: Modern Minimalist (White & Gray)</option>
-                    <option value="4">Template 4: Vibrant Pill-Based (Blue Theme)</option>
-                    <option value="5">Template 5: Corporate Emerald (Green Accents)</option>
-                    <option value="6">Template 6: Studio Slate (Charcoal & Crimson)</option>
-                    <option value="7">Template 7: Elegant Luxury (Cream & Serif)</option>
-                    <option value="8">Template 8: Brutalist High Contrast (B&W)</option>
-                    <option value="9">Template 9: Tech Neon (Dark Blue & Cyan)</option>
-                    <option value="10">Template 10: Soft Pastel (Gentle & Rounded)</option>
+                    <option value="1">1. Classic Professional (Blue & Gold)</option>
+                    <option value="2">2. Cinematic Dark (Black & Gold)</option>
+                    <option value="3">3. Modern Minimalist (White & Gray)</option>
+                    <option value="4">4. Vibrant Pill-Based (Blue Theme)</option>
+                    <option value="5">5. Corporate Emerald (Green Accents)</option>
+                    <option value="6">6. Studio Slate (Charcoal & Crimson)</option>
+                    <option value="7">7. Elegant Luxury (Cream & Serif)</option>
+                    <option value="8">8. Brutalist High Contrast (B&W)</option>
+                    <option value="9">9. Tech Neon (Dark Blue & Cyan)</option>
+                    <option value="10">10. Soft Pastel (Gentle & Rounded)</option>
+                    <option value="11">11. Executive Navy (Navy & Silver)</option>
+                    <option value="12">12. Monospace Clean (Typewriter Minimal)</option>
+                    <option value="13">13. Warm Terracotta (Earthy Tones)</option>
+                    <option value="14">14. Midnight Purple (Deep Royal Purple)</option>
+                    <option value="15">15. Forest Minimal (White & Deep Green)</option>
+                    <option value="16">16. Ocean Wave (Teal & Slate)</option>
+                    <option value="17">17. Desert Sand (Warm Beige & Black)</option>
+                    <option value="18">18. High Contrast Yellow (Yellow & Black)</option>
+                    <option value="19">19. Glass Edge (Light Gray & Soft Blue)</option>
+                    <option value="20">20. Simple Wireframe (Strict Borders)</option>
                 </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Custom Accent Color (Optional)</label>
+                <div class="row-flex">
+                    <input type="checkbox" id="useCustomAccent" onchange="updatePreview()"> 
+                    <span style="font-size: 13px; color: var(--text-muted); font-weight:bold;">Override Template Color</span>
+                </div>
+                <input type="color" id="customAccentColor" value="#D4AF37" oninput="if(document.getElementById('useCustomAccent').checked) updatePreview()">
             </div>
 
             <div class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
                 Project Information
+            </div>
+            <div class="form-group">
+                <label>Project Full Title & ID (Start typing here)</label>
+                <input type="text" id="projectFull" placeholder="e.g. Conan el bárbaro - 9382098CSP">
             </div>
             <div class="sig-row-half">
                 <div class="form-group">
                     <label>Company / Brand</label>
-                    <input type="text" id="company" value="LIONSGATE">
+                    <input type="text" id="company" placeholder="LIONSGATE">
                 </div>
                 <div class="form-group">
                     <label>Report Type</label>
-                    <input type="text" id="reportType" value="S&P Report">
+                    <input type="text" id="reportType" placeholder="S&P Report">
                 </div>
             </div>
             <div class="form-group">
-                <label>Project Full Title & ID</label>
-                <input type="text" id="projectFull" value="Conan el bárbaro - 9382098CSP">
-            </div>
-            <div class="form-group">
                 <label>Project File / Google Drive Link</label>
-                <input type="url" id="driveLink" placeholder="Paste Drive link (auto-converts)">
+                <input type="url" id="driveLink" placeholder="Paste link (auto-converts)">
             </div>
             <div class="form-group">
                 <label>Review Sheet Link</label>
@@ -176,15 +192,51 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 
             <div class="section-title">
                 <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                Action Required
+                Standard Action
             </div>
             <div class="form-group">
                 <label>Action Heading</label>
-                <input type="text" id="actionTitle" value="Actions">
+                <input type="text" id="actionTitle" placeholder="Actions">
             </div>
             <div class="form-group">
                 <label>Action Description</label>
-                <textarea id="actionText">Kindly review the report and update the review sheet with your comments.</textarea>
+                <textarea id="actionText" placeholder="Kindly review the report and update the review sheet with your comments."></textarea>
+            </div>
+
+            <!-- OPTIONAL RICH TEXT BLOCKS -->
+            <div class="section-title">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Optional Sections (Notes & Warnings)
+            </div>
+            
+            <div class="form-group">
+                <label>Optional Note (Standard styling)</label>
+                <div class="rte-container">
+                    <div class="rte-toolbar">
+                        <button class="rte-btn" onclick="execCmd('bold')" title="Bold"><b>B</b></button>
+                        <button class="rte-btn" onclick="execCmd('italic')" title="Italic"><i>I</i></button>
+                        <button class="rte-btn" onclick="execCmd('underline')" title="Underline"><u>U</u></button>
+                        <button class="rte-btn" onclick="execCmd('insertUnorderedList')" title="Bullet List">&bull; List</button>
+                        <button class="rte-btn" onclick="execCmd('insertOrderedList')" title="Numbered List">1. List</button>
+                        <button class="rte-btn" onclick="insertLink()" title="Insert Link">&#128279;</button>
+                        <button class="rte-btn" onclick="insertTable()" title="Insert Table">&#128198;</button>
+                    </div>
+                    <div class="rte-editor" id="noteEditor" contenteditable="true" data-placeholder="Add an optional note here..." oninput="updatePreview()"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: var(--danger);">Critical / Caution (Red styling)</label>
+                <div class="rte-container" style="border-color: #fca5a5;">
+                    <div class="rte-toolbar" style="background: #fef2f2; border-color: #fca5a5;">
+                        <button class="rte-btn" onclick="execCmd('bold')" title="Bold"><b>B</b></button>
+                        <button class="rte-btn" onclick="execCmd('italic')" title="Italic"><i>I</i></button>
+                        <button class="rte-btn" onclick="execCmd('underline')" title="Underline"><u>U</u></button>
+                        <button class="rte-btn" onclick="execCmd('insertUnorderedList')" title="Bullet List">&bull; List</button>
+                        <button class="rte-btn" onclick="execCmd('insertOrderedList')" title="Numbered List">1. List</button>
+                    </div>
+                    <div class="rte-editor" id="cautionEditor" contenteditable="true" data-placeholder="Add a critical warning here..." oninput="updatePreview()"></div>
+                </div>
             </div>
 
             <div class="section-title">
@@ -198,38 +250,19 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
                 </select>
             </div>
             <div class="sig-row-half">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" id="signatureName" value="John Doe">
-                </div>
-                <div class="form-group">
-                    <label>Designation</label>
-                    <input type="text" id="signatureRole" value="Creative Consultant">
-                </div>
+                <div class="form-group"><label>Name</label><input type="text" id="signatureName" placeholder="John Doe"></div>
+                <div class="form-group"><label>Designation</label><input type="text" id="signatureRole" placeholder="Creative Consultant"></div>
             </div>
             <div class="sig-row-half">
-                <div class="form-group">
-                    <label>Mobile</label>
-                    <input type="tel" id="signatureMobile" placeholder="+1 555-0100">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="signatureEmail" placeholder="name@company.com">
-                </div>
+                <div class="form-group"><label>Mobile</label><input type="tel" id="signatureMobile" placeholder="+1 555-0100"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="signatureEmail" placeholder="name@company.com"></div>
             </div>
-            <div class="form-group">
-                <label>Website</label>
-                <input type="text" id="signatureWebsite" value="www.lionsgate.com">
-            </div>
+            <div class="form-group"><label>Website</label><input type="text" id="signatureWebsite" placeholder="www.lionsgate.com"></div>
 
             <div class="sig-row" style="margin-top: 20px; align-items: end;">
-                <div class="form-group" style="margin:0;">
-                    <label>Save Profile As</label>
-                    <input type="text" id="sigProfileName" placeholder="e.g. Main Profile">
-                </div>
+                <div class="form-group" style="margin:0;"><label>Save Profile As</label><input type="text" id="sigProfileName" placeholder="e.g. Main Profile"></div>
                 <button type="button" class="button primary" onclick="saveSignature()">
-                    <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                    Save Sig
+                    <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg> Save Sig
                 </button>
             </div>
 
@@ -239,22 +272,18 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
             </div>
             <div class="btn-grid">
                 <button type="button" class="button gold" onclick="copyForEmail()">
-                    <svg viewBox="0 0 24 24"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                    Copy for Email
+                    <svg viewBox="0 0 24 24"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2"></path></svg> Copy for Email
                 </button>
                 <button type="button" class="button secondary" onclick="copyHTMLSource()">
-                    <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    Copy HTML
+                    <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg> Copy HTML
                 </button>
             </div>
             <div class="btn-grid">
                 <button type="button" class="button secondary" onclick="downloadHTML()">
-                    <svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Download HTML
+                    <svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Download HTML
                 </button>
                 <button type="button" class="button danger" onclick="clearAllData()">
-                    <svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"></path></svg>
-                    Restart (Wipe Data)
+                    <svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"></path></svg> Clear Form
                 </button>
             </div>
         </div>
@@ -264,9 +293,8 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
             <div class="preview-container">
                 <div class="preview-header">
                     <span>Live HTML Preview</span>
-                    <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px; color:#475569;">Perfectly Isolated & Responsive</span>
+                    <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px; color:#475569;">Auto-fills on typing</span>
                 </div>
-                <!-- IFRAME replaces the old div to completely prevent rendering overlap -->
                 <div class="preview-content" id="previewWrapperBg">
                     <iframe id="emailPreviewFrame" title="Email Preview"></iframe>
                 </div>
@@ -282,20 +310,19 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 
 <script>
 /* =========================================================
-   CORE LOGIC & UTILITIES
+   CORE UTILITIES & CONSTANTS
 ========================================================= */
-// Replaced the broken Base64 string with the direct, reliable AWS S3 link.
 const AMAGI_LOGO_URL = "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png";
-
+const SIG_STORAGE_KEY = "SP_Template_Signatures_Persistent_V1"; // Hard key
 let signatures = {};
 
 function getSafeStorage() { try { return window.localStorage; } catch (e) { return null; } }
-function getValue(id, fallback = "") { const el = document.getElementById(id); return el ? el.value.trim() || fallback : fallback; }
+function getValue(id, fallback = "") { const el = document.getElementById(id); return (el && el.value.trim() !== "") ? el.value.trim() : fallback; }
 function escapeHTML(str) { return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
-function safeURL(url) { if (!url) return "#"; if (/^https?:\/\//i.test(url) || url.startsWith("mailto:")) return url; return "https://" + url; }
+function safeURL(url) { if (!url || url==="#") return "#"; if (/^https?:\/\//i.test(url) || url.startsWith("mailto:")) return url; return "https://" + url; }
 
 function getProjectDownloadLink(url) {
-    if (!url) return "#";
+    if (!url || url==="#") return "#";
     const original = String(url).trim();
     const fileMatch = original.match(/\/file\/d\/([a-zA-Z0-9_-]+)/i);
     if (fileMatch && fileMatch[1]) {
@@ -305,8 +332,7 @@ function getProjectDownloadLink(url) {
 }
 
 function parseProjectInput(input) {
-    let title = input;
-    let id = "";
+    let title = input; let id = "";
     if (input.includes("-")) {
         const parts = input.split("-");
         id = parts.pop().trim();
@@ -324,13 +350,44 @@ function showToast(message, isError = false) {
 }
 
 /* =========================================================
+   RICH TEXT EDITOR LOGIC
+========================================================= */
+function execCmd(command) {
+    document.execCommand(command, false, null);
+    updatePreview();
+}
+function insertLink() {
+    const url = prompt("Enter the link URL:");
+    if (url) { document.execCommand("createLink", false, url); updatePreview(); }
+}
+function insertTable() {
+    const rows = prompt("Number of rows?", "2");
+    const cols = prompt("Number of columns?", "2");
+    if (rows && cols && !isNaN(rows) && !isNaN(cols)) {
+        let tableHTML = '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse; width:100%; border-color:#cbd5e1; margin-top:10px;">';
+        for(let i=0; i<rows; i++){
+            tableHTML += '<tr>';
+            for(let j=0; j<cols; j++){ tableHTML += '<td>Data</td>'; }
+            tableHTML += '</tr>';
+        }
+        tableHTML += '</table><br>';
+        document.execCommand('insertHTML', false, tableHTML);
+        updatePreview();
+    }
+}
+function getRTEContent(id) {
+    const el = document.getElementById(id);
+    return el.innerHTML.trim();
+}
+
+/* =========================================================
    SIGNATURE MANAGEMENT
 ========================================================= */
 function initSignatures() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            const saved = storage.getItem("spTemplateSignaturesV6");
+            const saved = storage.getItem(SIG_STORAGE_KEY);
             if (saved) signatures = JSON.parse(saved);
         } catch (e) {}
     }
@@ -342,9 +399,7 @@ function populateSignatureDropdown() {
     dropdown.innerHTML = '<option value="">-- Select or Create New --</option>';
     for (const key in signatures) {
         const opt = document.createElement("option");
-        opt.value = key;
-        opt.textContent = key;
-        dropdown.appendChild(opt);
+        opt.value = key; opt.textContent = key; dropdown.appendChild(opt);
     }
 }
 
@@ -361,22 +416,22 @@ function loadSelectedSignature() {
 }
 
 function saveSignature() {
-    let profileName = getValue("sigProfileName", "").trim();
+    let profileName = document.getElementById("sigProfileName").value.trim();
     if (!profileName) profileName = "Signature " + (Object.keys(signatures).length + 1);
     
     signatures[profileName] = {
-        name: getValue("signatureName"),
-        role: getValue("signatureRole"),
-        mobile: getValue("signatureMobile"),
-        email: getValue("signatureEmail"),
-        website: getValue("signatureWebsite")
+        name: document.getElementById("signatureName").value,
+        role: document.getElementById("signatureRole").value,
+        mobile: document.getElementById("signatureMobile").value,
+        email: document.getElementById("signatureEmail").value,
+        website: document.getElementById("signatureWebsite").value
     };
 
     const storage = getSafeStorage();
     if (storage) {
         try {
-            storage.setItem("spTemplateSignaturesV6", JSON.stringify(signatures));
-            showToast(`Signature "${profileName}" saved!`);
+            storage.setItem(SIG_STORAGE_KEY, JSON.stringify(signatures));
+            showToast(`Signature "${profileName}" saved permanently!`);
             populateSignatureDropdown();
             document.getElementById("savedSignaturesDropdown").value = profileName;
         } catch (e) { showToast("Error saving signature.", true); }
@@ -387,64 +442,59 @@ function saveSignature() {
    RESTART / WIPE ALL DATA
 ========================================================= */
 function clearAllData() {
-    if(!confirm("Are you sure you want to completely wipe all inputs? (Signatures will remain saved)")) return;
-    
-    document.getElementById("company").value = "";
-    document.getElementById("reportType").value = "";
-    document.getElementById("projectFull").value = "";
-    document.getElementById("driveLink").value = "";
-    document.getElementById("sheetLink").value = "";
-    document.getElementById("actionTitle").value = "Actions";
-    document.getElementById("actionText").value = "";
-    
-    document.getElementById("savedSignaturesDropdown").value = "";
-    document.getElementById("signatureName").value = "";
-    document.getElementById("signatureRole").value = "";
-    document.getElementById("signatureMobile").value = "";
-    document.getElementById("signatureEmail").value = "";
-    document.getElementById("signatureWebsite").value = "";
-    document.getElementById("sigProfileName").value = "";
-
+    if(!confirm("Wipe all inputs clean? (Signatures will remain saved)")) return;
+    document.querySelectorAll('input[type="text"], input[type="url"], input[type="email"], input[type="tel"], textarea').forEach(el => el.value = '');
+    document.getElementById("noteEditor").innerHTML = '';
+    document.getElementById("cautionEditor").innerHTML = '';
+    document.getElementById("templateLayout").value = "1";
+    document.getElementById("useCustomAccent").checked = false;
     updatePreview();
-    showToast("All fields wiped clean!");
+    showToast("Form cleared.");
 }
 
 /* =========================================================
-   HTML EMAIL GENERATOR
+   HTML EMAIL GENERATOR (20 LAYOUTS)
 ========================================================= */
 function getEmailHTML() {
+    const fullInput = document.getElementById("projectFull").value.trim();
+    if(!fullInput) {
+        // Show empty placeholder state if completely blank
+        return `<div style="padding:50px; text-align:center; font-family:Arial; color:#64748b;">Start typing the <strong>Project Full Title</strong> to preview your email.</div>`;
+    }
+
     const layoutType = document.getElementById("templateLayout").value;
+    const useCustomAccent = document.getElementById("useCustomAccent").checked;
+    const userAccentColor = document.getElementById("customAccentColor").value;
     
-    // Data extraction
     const data = {
-        company: escapeHTML(getValue("company", "Company")),
-        reportType: escapeHTML(getValue("reportType", "Report")),
-        fullText: escapeHTML(getValue("projectFull", "Project Name")),
+        company: escapeHTML(getValue("company", "LIONSGATE")),
+        reportType: escapeHTML(getValue("reportType", "S&P Report")),
+        fullText: escapeHTML(fullInput),
         driveLink: escapeHTML(getProjectDownloadLink(getValue("driveLink", "#"))),
         sheetLink: escapeHTML(safeURL(getValue("sheetLink", "#"))),
         actionTitle: escapeHTML(getValue("actionTitle", "Actions")),
-        actionText: escapeHTML(getValue("actionText", "Please review.")),
-        name: escapeHTML(getValue("signatureName", "Name")),
-        role: escapeHTML(getValue("signatureRole", "Role")),
+        actionText: escapeHTML(getValue("actionText", "Kindly review the report and update the review sheet with your comments.")),
+        name: escapeHTML(getValue("signatureName", "John Doe")),
+        role: escapeHTML(getValue("signatureRole", "Creative Consultant")),
         mobile: escapeHTML(getValue("signatureMobile", "")),
         email: escapeHTML(getValue("signatureEmail", "")),
-        websiteLabel: escapeHTML(getValue("signatureWebsite", "www.website.com")),
-        websiteUrl: escapeHTML(safeURL(getValue("signatureWebsite", "www.website.com")))
+        websiteLabel: escapeHTML(getValue("signatureWebsite", "www.lionsgate.com")),
+        websiteUrl: escapeHTML(safeURL(getValue("signatureWebsite", "www.lionsgate.com")))
     };
     
-    const parsed = parseProjectInput(getValue("projectFull", "Project Name"));
+    const parsed = parseProjectInput(fullInput);
     data.movie = escapeHTML(parsed.title);
     data.reportId = escapeHTML(parsed.id);
 
-    // Dynamic Introductory Sentence (Required in all templates)
+    // Intro text for all templates
     const introSentence = `Please find the <strong>${data.fullText} ${data.reportType}</strong> for the title below.`;
 
-    // Signature Builder - Fixed Logo URL and robust table styling
+    // Signature Builder (Logo size reduced to 65px)
     const getSig = (tc, mc, lc, topBorder = true) => `
         <div style="margin-top:35px; padding-top:25px; ${topBorder ? `border-top:1px solid ${mc}40;` : ''}">
             <div style="margin-bottom:2px; color:${tc}; font-size:15px; line-height:22px; font-weight:700;">${data.name}</div>
             <div style="margin-bottom:12px; color:${mc}; font-size:13px; line-height:20px;">${data.role}</div>
-            <img src="${AMAGI_LOGO_URL}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; background:transparent;">
+            <img src="${AMAGI_LOGO_URL}" alt="Logo" width="65" style="display:block; width:65px; max-width:65px; height:auto; margin-bottom:12px; border:none; outline:none;">
             <div style="color:${mc}; font-size:12px; line-height:20px;">
                 ${data.mobile ? `<div><strong style="color:${tc};">&#128241;</strong> ${data.mobile}</div>` : ''}
                 ${data.email ? `<div><strong style="color:${tc};">&#9993;</strong> <a href="mailto:${data.email}" style="color:${lc}; text-decoration:none;">${data.email}</a></div>` : ''}
@@ -453,101 +503,115 @@ function getEmailHTML() {
         </div>
     `;
 
+    // Blocks for Rich Text Optional Fields
+    const noteContent = getRTEContent("noteEditor");
+    const cautionContent = getRTEContent("cautionEditor");
+
+    const getOptionalBlocksHtml = (accentColor, textColor) => {
+        let html = "";
+        if(noteContent) {
+            html += `<div style="margin-top:20px; padding:15px; border-left:4px solid ${accentColor}; background:${accentColor}15; color:${textColor}; font-size:14px; line-height:1.6;">
+                <strong>Note:</strong><br>${noteContent}
+            </div>`;
+        }
+        if(cautionContent) {
+            html += `<div style="margin-top:20px; padding:15px; border-left:4px solid #ef4444; background:#fef2f2; color:#991b1b; font-size:14px; line-height:1.6;">
+                <strong style="color:#dc2626;">&#9888; Critical / Caution:</strong><br>${cautionContent}
+            </div>`;
+        }
+        return html;
+    };
+
     let html = '';
     let previewBg = '';
+    let accent = '';
 
+    // Generate 20 Layouts based on Selection
     switch(layoutType) {
         case "1": // Classic Professional
-            previewBg = "#eef1f5";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#eef1f5; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            previewBg = "#eef1f5"; accent = useCustomAccent ? userAccentColor : "#D4AF37";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; margin:0 auto;">
             <tr><td style="background:#172033; padding:35px 40px;">
                 <div style="color:#94a3b8; font-size:11px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
-                <div style="margin-top:6px; color:#ffffff; font-size:24px; font-weight:bold;">${data.fullText}<br><span style="color:#D4AF37;">${data.reportType}</span></div>
+                <div style="margin-top:6px; color:#ffffff; font-size:24px; font-weight:bold;">${data.fullText}<br><span style="color:${accent};">${data.reportType}</span></div>
             </td></tr>
-            <tr><td style="height:4px; background:#D4AF37; line-height:0;">&nbsp;</td></tr>
+            <tr><td style="height:4px; background:${accent}; line-height:0;">&nbsp;</td></tr>
             <tr><td style="padding:40px;">
                 <div style="color:#0f172a; font-size:20px; font-weight:bold; margin-bottom:20px;">Report Ready for Review</div>
                 <div style="color:#475569; font-size:15px; margin-bottom:30px;">${introSentence}</div>
-                
                 <a href="${data.driveLink}" target="_blank" style="display:block; padding:20px; border:1px solid #cbd5e1; border-radius:8px; background:#f8fafc; text-decoration:none;">
                     <table width="100%"><tr>
                         <td width="50" style="vertical-align: middle;"><div style="font-size:28px; color:#172033;">&#128193;</div></td>
-                        <td style="vertical-align: middle;">
-                            <div style="color:#64748b; font-size:11px; font-weight:bold; text-transform:uppercase;">Project File</div>
+                        <td style="vertical-align: middle;"><div style="color:#64748b; font-size:11px; font-weight:bold; text-transform:uppercase;">Project File</div>
                             <div style="color:#0f172a; font-size:18px; font-weight:bold;">${data.movie}</div>
-                            ${data.reportId ? `<div style="color:#64748b; font-size:12px;">ID: ${data.reportId}</div>` : ''}
-                        </td>
+                            ${data.reportId ? `<div style="color:#64748b; font-size:12px;">ID: ${data.reportId}</div>` : ''}</td>
                         <td width="110" align="right" style="vertical-align: middle;"><span style="background:#172033; color:#fff; padding:10px 14px; border-radius:6px; font-size:11px; font-weight:bold;">&#11015; DOWNLOAD</span></td>
                     </tr></table>
                 </a>
-
-                <div style="margin-top:30px; padding-left:15px; border-left:4px solid #D4AF37;">
+                <div style="margin-top:30px; padding-left:15px; border-left:4px solid ${accent};">
                     <div style="color:#0f172a; font-size:15px; font-weight:bold;">${data.actionTitle}</div>
                     <div style="color:#475569; font-size:14px; margin-top:4px;">${data.actionText}</div>
                 </div>
-
+                ${getOptionalBlocksHtml(accent, '#475569')}
                 <div style="margin-top:25px;"><a href="${data.sheetLink}" target="_blank" style="display:inline-block; padding:12px 24px; background:#172033; color:#ffffff; font-size:13px; font-weight:bold; text-decoration:none; border-radius:6px;">&#9998; REVIEW SHEET</a></div>
                 ${getSig('#0f172a', '#475569', '#172033')}
             </td></tr></table></td></tr></table>`;
             break;
 
         case "2": // Cinematic Dark
-            previewBg = "#0f172a";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            previewBg = "#0f172a"; accent = useCustomAccent ? userAccentColor : "#D4AF37";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#1e293b; border:1px solid #334155; margin:0 auto;">
             <tr><td align="center" style="padding:40px 30px 20px;">
-                <div style="color:#D4AF37; font-size:14px; letter-spacing:4px; text-transform:uppercase; font-weight:bold;">${data.company}</div>
+                <div style="color:${accent}; font-size:14px; letter-spacing:4px; text-transform:uppercase; font-weight:bold;">${data.company}</div>
                 <div style="height:1px; background:#334155; width:40px; margin:20px auto;"></div>
                 <div style="color:#ffffff; font-size:28px; font-weight:bold; text-align:center;">&#127916; ${data.movie}</div>
                 <div style="color:#94a3b8; font-size:16px; margin-top:8px; text-align:center;">${data.reportType} &bull; ${data.reportId}</div>
             </td></tr>
             <tr><td style="padding:20px 40px 50px;">
                 <div style="color:#cbd5e1; font-size:15px; margin-bottom:25px; text-align:center;">${introSentence}</div>
-                <div style="background:#0f172a; padding:25px; border-left:3px solid #D4AF37; margin-bottom:30px;">
+                <div style="background:#0f172a; padding:25px; border-left:3px solid ${accent}; margin-bottom:30px;">
                     <div style="color:#ffffff; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
                     <div style="color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
                 </div>
-                <table width="100%"><tr>
-                    <td align="center" style="background:#D4AF37; display: inline-block; width: 48%; margin-bottom: 10px;"><a href="${data.driveLink}" style="display:block; padding:14px 10px; color:#000; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128194; GET PROJECT</a></td>
-                    <td align="center" style="border:1px solid #D4AF37; display: inline-block; width: 48%; float: right;"><a href="${data.sheetLink}" style="display:block; padding:14px 10px; color:#D4AF37; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128221; REVIEW SHEET</a></td>
+                ${getOptionalBlocksHtml(accent, '#cbd5e1')}
+                <table width="100%" style="margin-top:20px;"><tr>
+                    <td align="center" style="background:${accent}; display: inline-block; width: 48%; margin-bottom: 10px;"><a href="${data.driveLink}" style="display:block; padding:14px 10px; color:#000; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128194; GET PROJECT</a></td>
+                    <td align="center" style="border:1px solid ${accent}; display: inline-block; width: 48%; float: right;"><a href="${data.sheetLink}" style="display:block; padding:14px 10px; color:${accent}; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128221; REVIEW SHEET</a></td>
                 </tr></table>
-                ${getSig('#ffffff', '#94a3b8', '#D4AF37')}
+                ${getSig('#ffffff', '#94a3b8', accent)}
             </td></tr></table></td></tr></table>`;
             break;
 
         case "3": // Minimalist
-            previewBg = "#f8fafc";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc; padding:40px 15px; font-family:Helvetica, Arial, sans-serif;"><tr><td align="center">
+            previewBg = "#f8fafc"; accent = useCustomAccent ? userAccentColor : "#0f172a";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Helvetica, Arial, sans-serif;"><tr><td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:1px solid #e2e8f0; margin:0 auto;">
             <tr><td align="center" style="padding:50px 30px 30px;">
-                <div style="color:#0f172a; font-size:24px; letter-spacing:1px; text-transform:uppercase;">&#128196; ${data.reportType}</div>
+                <div style="color:${accent}; font-size:24px; letter-spacing:1px; text-transform:uppercase;">&#128196; ${data.reportType}</div>
                 <div style="color:#64748b; font-size:14px; margin-top:10px;">${data.fullText}</div>
             </td></tr>
             <tr><td style="padding:0 30px;"><div style="height:1px; background:#f1f5f9; width:100%;"></div></td></tr>
             <tr><td align="center" style="padding:40px 30px;">
                 <div style="color:#475569; font-size:15px; margin-bottom:25px; line-height:24px;">${introSentence}</div>
                 <div style="color:#334155; font-size:16px; line-height:26px; max-width:450px;">${data.actionText}</div>
+                <div style="text-align:left;">${getOptionalBlocksHtml(accent, '#334155')}</div>
                 <div style="margin:35px 0;">
-                    <a href="${data.driveLink}" style="display:block; margin:0 auto 15px; max-width:220px; padding:15px 0; background:#0f172a; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&darr; DOWNLOAD FILE</a>
-                    <a href="${data.sheetLink}" style="display:block; margin:0 auto; max-width:220px; padding:15px 0; border:1px solid #0f172a; color:#0f172a; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&#10003; REVIEW SHEET</a>
+                    <a href="${data.driveLink}" style="display:block; margin:0 auto 15px; max-width:220px; padding:15px 0; background:${accent}; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&darr; DOWNLOAD FILE</a>
+                    <a href="${data.sheetLink}" style="display:block; margin:0 auto; max-width:220px; padding:15px 0; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&#10003; REVIEW SHEET</a>
                 </div>
-                <div style="text-align:left;">${getSig('#0f172a', '#64748b', '#0f172a', false)}</div>
+                <div style="text-align:left;">${getSig('#0f172a', '#64748b', accent, false)}</div>
             </td></tr></table></td></tr></table>`;
             break;
 
         case "4": // Vibrant Pill
-            previewBg = "#f0f9ff";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f9ff; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:24px; box-shadow:0 10px 25px rgba(3,105,161,0.1); margin:0 auto;">
-            <tr><td style="background:#0284c7; padding:40px 30px; border-radius:24px 24px 0 0;">
-                <table width="100%"><tr>
-                    <td>
-                        <div style="color:#bae6fd; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
-                        <div style="color:#ffffff; font-size:26px; font-weight:bold; margin-top:5px;">Report Action Required</div>
-                    </td>
-                    <td align="right" style="vertical-align: top;"><span style="background:#0369a1; padding:8px 12px; border-radius:20px; color:#fff; font-size:11px; white-space:nowrap;">&#9200; PENDING</span></td>
-                </tr></table>
+            previewBg = "#f0f9ff"; accent = useCustomAccent ? userAccentColor : "#0284c7";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:24px; box-shadow:0 10px 25px rgba(0,0,0,0.05); margin:0 auto;">
+            <tr><td style="background:${accent}; padding:40px 30px; border-radius:24px 24px 0 0;">
+                <div style="color:#ffffff; opacity:0.8; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:#ffffff; font-size:26px; font-weight:bold; margin-top:5px;">Report Action Required</div>
             </td></tr>
             <tr><td style="padding:40px 30px;">
                 <div style="color:#475569; font-size:15px; margin-bottom:25px;">${introSentence}</div>
@@ -558,138 +622,370 @@ function getEmailHTML() {
                 </div>
                 <div style="color:#0f172a; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
                 <div style="color:#475569; font-size:15px; line-height:24px; margin-bottom:30px;">${data.actionText}</div>
-                <table width="100%"><tr>
+                ${getOptionalBlocksHtml(accent, '#475569')}
+                <table width="100%" style="margin-top:20px;"><tr>
                     <td align="center" style="display:inline-block; width: 48%; margin-bottom:10px;"><a href="${data.driveLink}" style="display:block; text-align:center; padding:14px 10px; background:#f1f5f9; color:#0f172a; font-size:13px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128229; GET FILE</a></td>
-                    <td align="center" style="display:inline-block; width: 48%; float:right;"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:14px 10px; background:#0284c7; color:#ffffff; font-size:13px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128203; OPEN SHEET</a></td>
+                    <td align="center" style="display:inline-block; width: 48%; float:right;"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:14px 10px; background:${accent}; color:#ffffff; font-size:13px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128203; OPEN SHEET</a></td>
                 </tr></table>
-                ${getSig('#0f172a', '#64748b', '#0284c7')}
+                ${getSig('#0f172a', '#64748b', accent)}
             </td></tr></table></td></tr></table>`;
             break;
-            
+
         case "5": // Corporate Emerald
-            previewBg = "#f0fdf4";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f0fdf4; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-top:6px solid #059669; border-bottom:1px solid #e2e8f0; border-left:1px solid #e2e8f0; border-right:1px solid #e2e8f0; margin:0 auto;">
+            previewBg = "#f0fdf4"; accent = useCustomAccent ? userAccentColor : "#059669";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-top:6px solid ${accent}; border-bottom:1px solid #e2e8f0; border-left:1px solid #e2e8f0; border-right:1px solid #e2e8f0; margin:0 auto;">
             <tr><td style="padding:40px 30px;">
-                <table width="100%"><tr>
-                    <td><div style="color:#059669; font-size:16px; font-weight:bold;">${data.company}</div></td>
-                    <td align="right"><div style="color:#64748b; font-size:12px;">${data.reportId}</div></td>
-                </tr></table>
+                <div style="color:${accent}; font-size:16px; font-weight:bold;">${data.company}</div>
                 <div style="margin-top:30px; color:#0f172a; font-size:22px; font-weight:bold;">${data.movie}</div>
-                <div style="color:#475569; font-size:16px; margin-top:5px; margin-bottom: 25px;">${data.reportType} Review</div>
+                <div style="color:#475569; font-size:16px; margin-top:5px; margin-bottom: 25px;">${data.reportType} | ID: ${data.reportId}</div>
                 <div style="color:#475569; font-size:15px; margin-bottom:25px;">${introSentence}</div>
-                <div style="margin-top:25px; padding:20px; background:#ecfdf5; border-radius:8px;">
-                    <div style="color:#065f46; font-size:15px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
-                    <div style="color:#047857; font-size:14px;">${data.actionText}</div>
+                <div style="margin-top:25px; padding:20px; background:#f1f5f9; border-radius:8px; border-left:4px solid ${accent};">
+                    <div style="color:${accent}; font-size:15px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#334155; font-size:14px;">${data.actionText}</div>
                 </div>
+                ${getOptionalBlocksHtml(accent, '#334155')}
                 <div style="margin-top:25px;">
-                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:#059669; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#128190; Download</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; margin-left:5px; border:1px solid #059669; color:#059669; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#9989; Review Sheet</a>
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#128190; Download</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; margin-left:5px; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#9989; Review Sheet</a>
                 </div>
-                ${getSig('#0f172a', '#475569', '#059669')}
+                ${getSig('#0f172a', '#475569', accent)}
             </td></tr></table></td></tr></table>`;
             break;
 
         case "6": // Studio Slate
-            previewBg = "#1e293b";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#1e293b; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#0f172a; border-left:4px solid #dc2626; margin:0 auto;">
+            previewBg = "#1e293b"; accent = useCustomAccent ? userAccentColor : "#dc2626";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#0f172a; border-left:4px solid ${accent}; margin:0 auto;">
             <tr><td style="padding:40px 30px;">
-                <div style="color:#dc2626; font-size:12px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:${accent}; font-size:12px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
                 <div style="color:#ffffff; font-size:32px; text-transform:uppercase; margin-top:10px; font-weight:bold;">&#128253; ${data.movie}</div>
                 <div style="color:#94a3b8; font-size:14px; text-transform:uppercase;">${data.reportType} // ${data.reportId}</div>
                 <div style="margin-top:30px; height:1px; background:#334155;"></div>
                 <div style="color:#cbd5e1; font-size:15px; margin-top:25px; margin-bottom:25px;">${introSentence}</div>
                 <div style="margin-top:30px; color:#ffffff; font-size:18px; text-transform:uppercase; font-weight:bold;">${data.actionTitle}</div>
                 <div style="margin-top:10px; color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
+                ${getOptionalBlocksHtml(accent, '#cbd5e1')}
                 <div style="margin-top:30px;">
-                    <a href="${data.driveLink}" style="display:inline-block; margin-right:10px; margin-bottom:10px; padding:12px 20px; background:#dc2626; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#11015; Get Assets</a>
+                    <a href="${data.driveLink}" style="display:inline-block; margin-right:10px; margin-bottom:10px; padding:12px 20px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#11015; Get Assets</a>
                     <a href="${data.sheetLink}" style="display:inline-block; margin-bottom:10px; padding:12px 20px; background:#334155; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#9998; Open Sheet</a>
                 </div>
-                <div>${getSig('#ffffff', '#94a3b8', '#dc2626')}</div>
+                <div>${getSig('#ffffff', '#94a3b8', accent)}</div>
             </td></tr></table></td></tr></table>`;
             break;
 
         case "7": // Elegant Luxury
-            previewBg = "#faf9f6";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#faf9f6; padding:40px 15px; font-family:Georgia, serif;"><tr><td align="center">
+            previewBg = "#faf9f6"; accent = useCustomAccent ? userAccentColor : "#111111";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Georgia, serif;"><tr><td align="center">
             <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:1px solid #e5e5e5; margin:0 auto;">
             <tr><td align="center" style="padding:50px 30px;">
                 <div style="color:#666666; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-family:Arial, sans-serif;">${data.company}</div>
-                <div style="color:#111111; font-size:28px; margin-top:20px; font-style:italic;">&#10023; ${data.movie}</div>
-                <div style="color:#888888; font-size:14px; margin-top:10px;">${data.reportType}</div>
+                <div style="color:${accent}; font-size:28px; margin-top:20px; font-style:italic;">&#10023; ${data.movie}</div>
+                <div style="color:#888888; font-size:14px; margin-top:10px;">${data.reportType} | ${data.reportId}</div>
                 <div style="margin:30px auto; border-top:1px solid #eeeeee; width:50px;"></div>
                 <div style="color:#555555; font-size:15px; margin-bottom:20px; font-family:Arial, sans-serif;">${introSentence}</div>
                 <div style="color:#444444; font-size:15px; line-height:26px; text-align:center;">${data.actionText}</div>
+                <div style="text-align:left; font-family:Arial, sans-serif;">${getOptionalBlocksHtml(accent, '#444444')}</div>
                 <div style="margin-top:35px;">
-                    <a href="${data.driveLink}" style="display:inline-block; color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111; margin:0 10px 10px;">&darr; Download</a>
+                    <a href="${data.driveLink}" style="display:inline-block; color:${accent}; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid ${accent}; margin:0 10px 10px;">&darr; Download</a>
                     <span style="color:#ccc; display:inline-block; margin:0 5px 10px;">|</span>
-                    <a href="${data.sheetLink}" style="display:inline-block; color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111; margin:0 10px 10px;">&#9998; Review</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; color:${accent}; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid ${accent}; margin:0 10px 10px;">&#9998; Review</a>
                 </div>
-                <div style="font-family:Arial, sans-serif; text-align:left; width: 100%; box-sizing: border-box;">${getSig('#111111', '#888888', '#111111')}</div>
+                <div style="font-family:Arial, sans-serif; text-align:left; width: 100%; box-sizing: border-box;">${getSig('#111111', '#888888', accent)}</div>
             </td></tr></table></td></tr></table>`;
             break;
 
         case "8": // Brutalist High Contrast
-            previewBg = "#ffffff";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff; padding:40px 15px; font-family:Courier New, monospace;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:4px solid #000000; box-shadow:6px 6px 0px #000000; margin:0 auto;">
-            <tr><td style="border-bottom:4px solid #000000; padding:20px; background:#f0f0f0;">
-                <div style="color:#000; font-size:18px; font-weight:bold; text-transform:uppercase;">[ ${data.company} ]</div>
+            previewBg = "#ffffff"; accent = useCustomAccent ? userAccentColor : "#000000";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Courier New, monospace;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:4px solid ${accent}; box-shadow:6px 6px 0px ${accent}; margin:0 auto;">
+            <tr><td style="border-bottom:4px solid ${accent}; padding:20px; background:#f0f0f0;">
+                <div style="color:${accent}; font-size:18px; font-weight:bold; text-transform:uppercase;">[ ${data.company} ]</div>
             </td></tr>
             <tr><td style="padding:30px;">
                 <div style="color:#000; font-size:24px; font-weight:bold; text-transform:uppercase; background:#ffeb3b; display:inline-block; padding:5px 10px;">${data.movie}</div>
                 <div style="color:#000; font-size:16px; margin-top:15px; font-weight:bold;">TYPE: ${data.reportType} // ID: ${data.reportId}</div>
-                <div style="color:#000; font-size:14px; margin-top:25px; font-weight:bold;">> PLEASE FIND THE ${data.fullText.toUpperCase()} ${data.reportType.toUpperCase()} FOR THE TITLE BELOW.</div>
-                <div style="margin-top:25px; border:2px dashed #000; padding:15px;">
-                    <div style="color:#000; font-size:14px; font-weight:bold; text-transform:uppercase; text-decoration:underline;">${data.actionTitle}</div>
+                <div style="color:#000; font-size:14px; margin-top:25px; font-weight:bold;">> ${introSentence}</div>
+                <div style="margin-top:25px; border:2px dashed ${accent}; padding:15px;">
+                    <div style="color:${accent}; font-size:14px; font-weight:bold; text-transform:uppercase; text-decoration:underline;">${data.actionTitle}</div>
                     <div style="color:#000; font-size:14px; margin-top:10px;">> ${data.actionText}</div>
                 </div>
+                ${getOptionalBlocksHtml(accent, '#000000')}
                 <div style="margin-top:30px;">
-                    <a href="${data.driveLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:#000; color:#fff; text-decoration:none; font-weight:bold; border:2px solid #000;">[&#8595;] DOWNLOAD</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:#fff; color:#000; text-decoration:none; font-weight:bold; border:2px solid #000;">[&#10003;] REVIEW</a>
+                    <a href="${data.driveLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:${accent}; color:#fff; text-decoration:none; font-weight:bold; border:2px solid ${accent};">[&#8595;] DOWNLOAD</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:#fff; color:${accent}; text-decoration:none; font-weight:bold; border:2px solid ${accent};">[&#10003;] REVIEW</a>
                 </div>
-                <div style="font-family:Arial, sans-serif;">${getSig('#000000', '#555555', '#000000')}</div>
+                <div style="font-family:Arial, sans-serif;">${getSig('#000000', '#555555', accent)}</div>
             </td></tr></table></td></tr></table>`;
             break;
 
         case "9": // Tech Neon
-            previewBg = "#0a0f1c";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0f1c; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#111827; border:1px solid #1f2937; border-top:2px solid #00f0ff; margin:0 auto;">
+            previewBg = "#0a0f1c"; accent = useCustomAccent ? userAccentColor : "#00f0ff";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#111827; border:1px solid #1f2937; border-top:2px solid ${accent}; margin:0 auto;">
             <tr><td style="padding:40px 30px;">
-                <div style="color:#00f0ff; font-size:12px; letter-spacing:2px; text-transform:uppercase;">SYSTEM // ${data.company}</div>
+                <div style="color:${accent}; font-size:12px; letter-spacing:2px; text-transform:uppercase;">SYSTEM // ${data.company}</div>
                 <div style="color:#ffffff; font-size:28px; font-weight:bold; margin-top:10px;">&#128187; ${data.movie}</div>
                 <div style="color:#6b7280; font-size:14px; margin-top:5px;">[ ${data.reportType} - ${data.reportId} ]</div>
                 <div style="color:#9ca3af; font-size:15px; margin-top:25px; margin-bottom:25px;">> ${introSentence}</div>
-                <div style="margin-top:20px; background:#0a0f1c; border-left:2px solid #00f0ff; padding:20px;">
+                <div style="margin-top:20px; background:#0a0f1c; border-left:2px solid ${accent}; padding:20px;">
                     <div style="color:#e5e7eb; font-size:14px; line-height:22px;">> ${data.actionText}</div>
                 </div>
+                ${getOptionalBlocksHtml(accent, '#e5e7eb')}
                 <div style="margin-top:30px;">
-                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:transparent; border:1px solid #00f0ff; color:#00f0ff; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">&#11015; ACCESS DATA</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:#00f0ff; color:#0a0f1c; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; margin-left:5px;">&#9881; EXECUTE REVIEW</a>
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:transparent; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">&#11015; ACCESS DATA</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:${accent}; color:#0a0f1c; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; margin-left:5px;">&#9881; EXECUTE REVIEW</a>
                 </div>
-                ${getSig('#ffffff', '#6b7280', '#00f0ff')}
+                ${getSig('#ffffff', '#6b7280', accent)}
             </td></tr></table></td></tr></table>`;
             break;
 
         case "10": // Soft Pastel
-            previewBg = "#fdf4ff";
-            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#fdf4ff; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border-radius:30px; box-shadow:0 10px 30px rgba(216,180,226,0.2); margin:0 auto;">
+            previewBg = "#fdf4ff"; accent = useCustomAccent ? userAccentColor : "#d946ef";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border-radius:30px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin:0 auto;">
             <tr><td align="center" style="padding:40px 30px 20px;">
-                <div style="background:#fae8ff; color:#a21caf; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:bold; display:inline-block;">${data.company}</div>
-                <div style="color:#4a044e; font-size:26px; font-weight:bold; margin-top:20px;">&#10024; ${data.movie}</div>
-                <div style="color:#c026d3; font-size:14px; margin-top:5px;">${data.reportType}</div>
+                <div style="background:#f8fafc; color:${accent}; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:bold; display:inline-block;">${data.company}</div>
+                <div style="color:#333; font-size:26px; font-weight:bold; margin-top:20px;">&#10024; ${data.movie}</div>
+                <div style="color:#666; font-size:14px; margin-top:5px;">${data.reportType} | ${data.reportId}</div>
             </td></tr>
             <tr><td style="padding:10px 40px 40px; text-align:center;">
-                <div style="color:#701a75; font-size:15px; margin-bottom:20px;">${introSentence}</div>
-                <div style="color:#701a75; font-size:15px; line-height:24px; background:#fdf4ff; padding:20px; border-radius:15px; text-align:left;">${data.actionText}</div>
+                <div style="color:#444; font-size:15px; margin-bottom:20px;">${introSentence}</div>
+                <div style="color:#444; font-size:15px; line-height:24px; background:#f8fafc; padding:20px; border-radius:15px; text-align:left;">${data.actionText}</div>
+                <div style="text-align:left;">${getOptionalBlocksHtml(accent, '#444')}</div>
                 <div style="margin-top:25px;">
-                    <a href="${data.driveLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#d946ef; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#128140; Download File</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#fdf4ff; border:1px solid #d946ef; color:#d946ef; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#9998; Open Sheet</a>
+                    <a href="${data.driveLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#128140; Download File</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#fff; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#9998; Open Sheet</a>
                 </div>
-                <div style="text-align:left;">${getSig('#4a044e', '#86198f', '#d946ef')}</div>
+                <div style="text-align:left;">${getSig('#333', '#666', accent)}</div>
+            </td></tr></table></td></tr></table>`;
+            break;
+            
+        case "11": // Executive Navy
+            previewBg = "#e2e8f0"; accent = useCustomAccent ? userAccentColor : "#1e3a8a";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-top:10px solid ${accent}; margin:0 auto; box-shadow:0 4px 6px rgba(0,0,0,0.05);">
+            <tr><td style="padding:40px 40px 20px;">
+                <div style="color:#64748b; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
+                <div style="margin-top:15px; color:${accent}; font-size:28px; font-weight:bold;">${data.movie}</div>
+                <div style="color:#64748b; font-size:14px; margin-top:5px;">${data.reportType} - Ref: ${data.reportId}</div>
+            </td></tr>
+            <tr><td style="padding:20px 40px 40px;">
+                <div style="color:#334155; font-size:15px; line-height:24px; margin-bottom:25px;">${introSentence}</div>
+                <div style="background:#f8fafc; border-left:4px solid ${accent}; padding:20px; margin-bottom:25px;">
+                    <div style="font-weight:bold; color:#0f172a; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#475569; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#475569')}
+                <table width="100%" style="margin-top:10px;"><tr>
+                    <td align="left"><a href="${data.driveLink}" style="display:inline-block; padding:12px 25px; background:${accent}; color:#fff; text-decoration:none; font-size:14px; font-weight:bold;">Download Archive</a></td>
+                    <td align="right"><a href="${data.sheetLink}" style="display:inline-block; padding:12px 25px; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:14px; font-weight:bold;">Review Portal</a></td>
+                </tr></table>
+                ${getSig('#0f172a', '#64748b', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "12": // Monospace Clean
+            previewBg = "#f4f4f5"; accent = useCustomAccent ? userAccentColor : "#27272a";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:'Courier New', Courier, monospace;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:1px solid #d4d4d8; margin:0 auto;">
+            <tr><td style="padding:40px;">
+                <div style="color:#a1a1aa; font-size:12px; margin-bottom:20px;">> ${data.company}</div>
+                <div style="color:${accent}; font-size:22px; font-weight:bold; border-bottom:1px solid #e4e4e7; padding-bottom:10px; margin-bottom:20px;">${data.movie}</div>
+                <div style="color:#52525b; font-size:14px; margin-bottom:10px;">TYPE: ${data.reportType} | ID: ${data.reportId}</div>
+                <div style="color:#3f3f46; font-size:14px; line-height:22px; margin-bottom:25px;">${introSentence}</div>
+                <div style="background:#f4f4f5; padding:15px; margin-bottom:25px;">
+                    <div style="font-weight:bold; color:#18181b; margin-bottom:5px;"># ${data.actionTitle}</div>
+                    <div style="color:#3f3f46; font-size:14px; line-height:20px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#3f3f46')}
+                <div style="margin-top:20px;">
+                    <a href="${data.driveLink}" style="display:inline-block; text-decoration:none; color:#fafafa; background:${accent}; padding:10px 20px; font-weight:bold; font-size:12px; margin-right:10px;">[DOWNLOAD]</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; text-decoration:none; color:${accent}; border:1px solid ${accent}; padding:10px 20px; font-weight:bold; font-size:12px;">[REVIEW]</a>
+                </div>
+                <div style="font-family:Arial, sans-serif;">${getSig('#18181b', '#71717a', accent)}</div>
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "13": // Warm Terracotta
+            previewBg = "#fff7ed"; accent = useCustomAccent ? userAccentColor : "#c2410c";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Georgia, serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px; background:#ffffff; border-radius:8px; box-shadow:0 4px 20px rgba(194,65,12,0.05); margin:0 auto;">
+            <tr><td align="center" style="padding:40px 30px 20px;">
+                <div style="color:${accent}; font-size:13px; letter-spacing:2px; text-transform:uppercase; font-family:Arial, sans-serif;">${data.company}</div>
+                <div style="color:#431407; font-size:30px; margin-top:15px;">${data.movie}</div>
+                <div style="color:#9a3412; font-size:15px; margin-top:5px; font-style:italic;">${data.reportType}</div>
+            </td></tr>
+            <tr><td style="padding:20px 40px 40px;">
+                <div style="color:#7c2d12; font-size:16px; line-height:26px; text-align:center; margin-bottom:30px;">${introSentence}</div>
+                <div style="border-top:1px solid #ffedd5; border-bottom:1px solid #ffedd5; padding:20px 0; margin-bottom:30px;">
+                    <div style="color:${accent}; font-size:16px; font-weight:bold; text-align:center; margin-bottom:10px; font-family:Arial, sans-serif;">${data.actionTitle}</div>
+                    <div style="color:#7c2d12; font-size:15px; line-height:24px; text-align:center;">${data.actionText}</div>
+                </div>
+                <div style="font-family:Arial, sans-serif;">${getOptionalBlocksHtml(accent, '#7c2d12')}</div>
+                <div style="text-align:center; margin-top:30px; font-family:Arial, sans-serif;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 24px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px; margin:0 5px 10px;">Download File</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 24px; background:#fff; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px; margin:0 5px 10px;">Open Sheet</a>
+                </div>
+                <div style="text-align:left; font-family:Arial, sans-serif;">${getSig('#431407', '#9a3412', accent)}</div>
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "14": // Midnight Purple
+            previewBg = "#171026"; accent = useCustomAccent ? userAccentColor : "#a855f7";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#2e1e4a; border-radius:16px; border:1px solid #4c3076; margin:0 auto;">
+            <tr><td style="padding:40px;">
+                <div style="color:#d8b4fe; font-size:12px; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:#ffffff; font-size:28px; font-weight:bold; margin-top:10px;">${data.movie}</div>
+                <div style="color:#c084fc; font-size:14px; margin-top:5px;">${data.reportType} (ID: ${data.reportId})</div>
+                <div style="margin-top:25px; color:#e9d5ff; font-size:15px; line-height:24px;">${introSentence}</div>
+                <div style="background:#1e1432; border-radius:8px; padding:20px; margin-top:25px;">
+                    <div style="color:${accent}; font-size:15px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
+                    <div style="color:#d8b4fe; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#d8b4fe')}
+                <table width="100%" style="margin-top:30px;"><tr>
+                    <td width="50%"><a href="${data.driveLink}" style="display:block; text-align:center; padding:14px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:8px; margin-right:5px;">Download File</a></td>
+                    <td width="50%"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:14px; background:#4c3076; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:8px; margin-left:5px;">Review Sheet</a></td>
+                </tr></table>
+                ${getSig('#ffffff', '#c084fc', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "15": // Forest Minimal
+            previewBg = "#f8faf9"; accent = useCustomAccent ? userAccentColor : "#14532d";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; margin:0 auto; padding:40px;">
+            <tr><td>
+                <div style="color:#a7f3d0; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:${accent}; font-size:26px; font-weight:bold; margin-top:15px;">${data.movie}</div>
+                <div style="color:#065f46; font-size:15px; margin-top:5px; margin-bottom:25px;">${data.reportType}</div>
+                <div style="color:#064e3b; font-size:15px; line-height:24px; margin-bottom:25px;">${introSentence}</div>
+                <div style="border-top:1px solid #ecfdf5; padding-top:25px; margin-bottom:25px;">
+                    <div style="color:${accent}; font-size:14px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#065f46; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#065f46')}
+                <div style="margin-top:25px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 24px; background:${accent}; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:1px; margin-right:10px;">DOWNLOAD</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 24px; background:#fff; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:1px;">REVIEW</a>
+                </div>
+                ${getSig(accent, '#065f46', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "16": // Ocean Wave
+            previewBg = "#f0fdfa"; accent = useCustomAccent ? userAccentColor : "#0d9488";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 10px 15px -3px rgba(13,148,136,0.1); margin:0 auto;">
+            <tr><td style="background:${accent}; padding:30px 40px; color:#fff;">
+                <div style="font-size:12px; opacity:0.8; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
+                <div style="font-size:24px; font-weight:bold; margin-top:5px;">${data.movie}</div>
+            </td></tr>
+            <tr><td style="padding:40px;">
+                <div style="color:#0f766e; font-size:14px; font-weight:bold; margin-bottom:20px;">${data.reportType} (ID: ${data.reportId})</div>
+                <div style="color:#115e59; font-size:15px; line-height:24px; margin-bottom:30px;">${introSentence}</div>
+                <div style="background:#f0fdfa; padding:20px; border-radius:8px; border-left:4px solid ${accent}; margin-bottom:30px;">
+                    <div style="color:#115e59; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#0f766e; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#0f766e')}
+                <table width="100%"><tr>
+                    <td align="center"><a href="${data.driveLink}" style="display:block; padding:14px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:6px; margin:0 5px;">Download Assets</a></td>
+                    <td align="center"><a href="${data.sheetLink}" style="display:block; padding:14px; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:13px; font-weight:bold; border-radius:6px; margin:0 5px;">Review Report</a></td>
+                </tr></table>
+                ${getSig('#115e59', '#0f766e', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "17": // Desert Sand
+            previewBg = "#fdfbf7"; accent = useCustomAccent ? userAccentColor : "#b45309";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#fefce8; border:1px solid #fde047; margin:0 auto;">
+            <tr><td style="padding:40px;">
+                <div style="color:#a16207; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:#422006; font-size:28px; font-weight:bold; margin-top:15px;">${data.movie}</div>
+                <div style="color:#854d0e; font-size:14px; margin-top:5px; margin-bottom:25px;">${data.reportType} // ${data.reportId}</div>
+                <div style="color:#713f12; font-size:15px; line-height:24px; margin-bottom:25px;">${introSentence}</div>
+                <div style="border-top:2px dashed #fef08a; border-bottom:2px dashed #fef08a; padding:20px 0; margin-bottom:25px;">
+                    <div style="color:${accent}; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#713f12; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#713f12')}
+                <div style="margin-top:25px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 24px; background:${accent}; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; margin-right:10px;">Download File</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 24px; background:#fefce8; border:1px solid ${accent}; color:${accent}; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase;">Review Sheet</a>
+                </div>
+                ${getSig('#422006', '#854d0e', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "18": // High Contrast Yellow
+            previewBg = "#facc15"; accent = useCustomAccent ? userAccentColor : "#000000";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Helvetica, Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px; background:#000000; color:#ffffff; margin:0 auto; box-shadow: 10px 10px 0px rgba(0,0,0,0.2);">
+            <tr><td style="padding:40px;">
+                <div style="background:#facc15; color:#000; display:inline-block; padding:5px 10px; font-size:12px; font-weight:bold; text-transform:uppercase;">${data.company}</div>
+                <div style="font-size:32px; font-weight:bold; margin-top:20px; text-transform:uppercase;">${data.movie}</div>
+                <div style="color:#a1a1aa; font-size:14px; margin-top:5px; margin-bottom:30px;">${data.reportType} | ID: ${data.reportId}</div>
+                <div style="color:#e4e4e7; font-size:16px; line-height:24px; margin-bottom:30px;">${introSentence}</div>
+                <div style="border-left:4px solid #facc15; padding-left:15px; margin-bottom:30px;">
+                    <div style="color:#facc15; font-size:16px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#d4d4d8; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml('#facc15', '#d4d4d8')}
+                <div style="margin-top:30px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:14px 20px; background:#facc15; color:#000; text-decoration:none; font-size:14px; font-weight:bold; text-transform:uppercase; margin-right:10px;">[ DOWNLOAD ]</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:14px 20px; border:2px solid #facc15; color:#facc15; text-decoration:none; font-size:14px; font-weight:bold; text-transform:uppercase;">[ REVIEW ]</a>
+                </div>
+                ${getSig('#ffffff', '#a1a1aa', '#facc15')}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "19": // Glass Edge
+            previewBg = "#f8fafc"; accent = useCustomAccent ? userAccentColor : "#3b82f6";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:16px; border:1px solid #e2e8f0; box-shadow:0 10px 25px -5px rgba(0,0,0,0.05); margin:0 auto;">
+            <tr><td style="padding:40px;">
+                <div style="color:#94a3b8; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:#0f172a; font-size:26px; font-weight:bold; margin-top:10px;">${data.movie}</div>
+                <div style="display:inline-block; margin-top:10px; padding:4px 10px; background:#eff6ff; color:${accent}; border-radius:4px; font-size:12px; font-weight:bold;">${data.reportType}</div>
+                <div style="margin-top:30px; color:#475569; font-size:15px; line-height:24px;">${introSentence}</div>
+                <div style="margin-top:25px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:20px;">
+                    <div style="color:#0f172a; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#475569; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#475569')}
+                <table width="100%" style="margin-top:25px;"><tr>
+                    <td width="50%" style="padding-right:5px;"><a href="${data.driveLink}" style="display:block; text-align:center; padding:12px; background:${accent}; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:6px;">Download Project</a></td>
+                    <td width="50%" style="padding-left:5px;"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:12px; border:1px solid #cbd5e1; color:#334155; text-decoration:none; font-size:13px; font-weight:bold; border-radius:6px;">Review Details</a></td>
+                </tr></table>
+                ${getSig('#0f172a', '#64748b', accent)}
+            </td></tr></table></td></tr></table>`;
+            break;
+
+        case "20": // Simple Wireframe
+            previewBg = "#ffffff"; accent = useCustomAccent ? userAccentColor : "#000000";
+            html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:${previewBg}; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:2px solid #000; margin:0 auto;">
+            <tr><td style="padding:30px; border-bottom:2px solid #000;">
+                <div style="color:#000; font-size:12px; text-transform:uppercase;">${data.company}</div>
+                <div style="color:#000; font-size:24px; font-weight:bold; margin-top:5px;">${data.movie}</div>
+                <div style="color:#666; font-size:14px; margin-top:5px;">${data.reportType} (Ref: ${data.reportId})</div>
+            </td></tr>
+            <tr><td style="padding:30px;">
+                <div style="color:#000; font-size:15px; line-height:24px; margin-bottom:20px;">${introSentence}</div>
+                <div style="border:1px solid #000; padding:15px; margin-bottom:25px;">
+                    <div style="color:#000; font-weight:bold; text-decoration:underline; margin-bottom:5px;">${data.actionTitle}</div>
+                    <div style="color:#333; font-size:14px; line-height:22px;">${data.actionText}</div>
+                </div>
+                ${getOptionalBlocksHtml(accent, '#333')}
+                <div style="margin-top:20px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:10px 15px; background:#000; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; margin-right:10px;">DOWNLOAD -></a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:10px 15px; border:1px solid #000; color:#000; text-decoration:none; font-size:12px; font-weight:bold;">REVIEW -></a>
+                </div>
+                ${getSig('#000', '#666', accent)}
             </td></tr></table></td></tr></table>`;
             break;
     }
@@ -710,6 +1006,9 @@ function updatePreview() {
 }
 
 async function copyForEmail() {
+    const fullInput = document.getElementById("projectFull").value.trim();
+    if(!fullInput) { showToast("Please enter a Project Title first.", true); return; }
+    
     updatePreview();
     const html = getEmailHTML();
     const text = getPlainText();
@@ -740,6 +1039,9 @@ async function copyForEmail() {
 }
 
 async function copyHTMLSource() {
+    const fullInput = document.getElementById("projectFull").value.trim();
+    if(!fullInput) { showToast("Please enter a Project Title first.", true); return; }
+
     const html = getEmailHTML();
     try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -757,8 +1059,11 @@ async function copyHTMLSource() {
 }
 
 function downloadHTML() {
+    const fullInput = document.getElementById("projectFull").value.trim();
+    if(!fullInput) { showToast("Please enter a Project Title first.", true); return; }
+
     const html = getEmailHTML();
-    const filename = getValue("projectFull", "Project").replace(/[^a-z0-9]/gi, "_").replace(/_+/g, "_") + "_Report.html";
+    const filename = fullInput.replace(/[^a-z0-9]/gi, "_").replace(/_+/g, "_") + "_Report.html";
     const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -768,12 +1073,19 @@ function downloadHTML() {
     showToast("HTML file downloaded.");
 }
 
-['templateLayout', 'company', 'reportType', 'projectFull', 'driveLink', 'sheetLink', 'actionTitle', 'actionText', 'signatureName', 'signatureRole', 'signatureMobile', 'signatureEmail', 'signatureWebsite'].forEach(id => {
+// Attach event listeners to auto-update
+['templateLayout', 'useCustomAccent', 'company', 'reportType', 'projectFull', 'driveLink', 'sheetLink', 'actionTitle', 'actionText', 'signatureName', 'signatureRole', 'signatureMobile', 'signatureEmail', 'signatureWebsite'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', updatePreview);
 });
 
 (function initialize() {
     initSignatures();
+    // Default form to blank initially (except standard labels)
+    document.getElementById("projectFull").value = "";
+    document.getElementById("driveLink").value = "";
+    document.getElementById("sheetLink").value = "";
+    document.getElementById("noteEditor").innerHTML = "";
+    document.getElementById("cautionEditor").innerHTML = "";
     updatePreview();
 })();
 </script>
