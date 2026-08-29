@@ -4,13 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Amagi Report Email Template Maker</title>
+<title>Amagi S&P Report Email Template Maker</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
 
 * {
     box-sizing: border-box;
@@ -25,16 +21,8 @@ body {
 body {
     background: #eef1f5;
     color: #172033;
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-
-/* =========================================================
-   APP
-========================================================= */
 
 .app {
     width: 100%;
@@ -42,11 +30,6 @@ body {
     margin: 0 auto;
     padding: 32px 22px 60px;
 }
-
-
-/* =========================================================
-   PAGE HEADER
-========================================================= */
 
 .page-header {
     margin-bottom: 25px;
@@ -57,7 +40,6 @@ body {
     font-size: 28px;
     line-height: 36px;
     font-weight: 700;
-    color: #172033;
 }
 
 .page-header p {
@@ -67,11 +49,6 @@ body {
     color: #6d788a;
 }
 
-
-/* =========================================================
-   WORKSPACE
-========================================================= */
-
 .workspace {
     display: grid;
     grid-template-columns: 390px minmax(0, 1fr);
@@ -79,21 +56,13 @@ body {
     align-items: start;
 }
 
-
-/* =========================================================
-   PANEL
-========================================================= */
-
 .panel {
-    background: #ffffff;
+    background: #fff;
     border-radius: 14px;
-    box-shadow: 0 8px 30px rgba(23, 32, 51, 0.07);
+    box-shadow: 0 8px 30px rgba(23, 32, 51, .07);
 }
 
-.settings-panel {
-    padding: 25px;
-}
-
+.settings-panel,
 .preview-panel {
     padding: 25px;
 }
@@ -103,13 +72,7 @@ body {
     font-size: 15px;
     line-height: 20px;
     font-weight: 700;
-    color: #172033;
 }
-
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
 
 .section-title {
     margin: 26px 0 15px;
@@ -126,11 +89,6 @@ body {
     text-transform: uppercase;
 }
 
-
-/* =========================================================
-   FORM
-========================================================= */
-
 .form-group {
     margin-bottom: 15px;
 }
@@ -145,62 +103,66 @@ label {
     line-height: 14px;
     font-weight: 700;
 
-    letter-spacing: 0.7px;
+    letter-spacing: .7px;
     text-transform: uppercase;
 }
 
 input[type="text"],
 input[type="url"],
 input[type="email"],
-input[type="tel"] {
+input[type="tel"],
+textarea {
     width: 100%;
-    height: 43px;
 
     margin: 0;
-    padding: 0 12px;
+    padding: 11px 12px;
 
     border: 1px solid #d9dee7;
     border-radius: 7px;
 
-    background: #ffffff;
+    background: #fff;
 
     color: #172033;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
 
     outline: none;
 
     transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
 
-input::placeholder {
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"] {
+    height: 43px;
+}
+
+textarea {
+    min-height: 82px;
+    resize: vertical;
+    line-height: 19px;
+}
+
+input::placeholder,
+textarea::placeholder {
     color: #a5adba;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     border-color: #172033;
 
     box-shadow:
-        0 0 0 3px
-        rgba(23, 32, 51, 0.06);
+        0 0 0 3px rgba(23, 32, 51, .06);
 }
-
-
-/* =========================================================
-   CHECKBOX
-========================================================= */
 
 .checkbox-row {
     display: flex;
     align-items: center;
-
     gap: 8px;
 
     margin: 4px 0 14px;
@@ -217,11 +179,6 @@ input:focus {
     margin: 0;
 }
 
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
 .button {
     width: 100%;
     min-height: 43px;
@@ -233,24 +190,21 @@ input:focus {
     border-radius: 7px;
 
     background: #172033;
-    color: #ffffff;
+    color: #fff;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     font-size: 11px;
     line-height: 16px;
     font-weight: 700;
 
-    letter-spacing: 0.5px;
+    letter-spacing: .5px;
 
     cursor: pointer;
 
     transition:
-        background 0.15s ease,
-        transform 0.15s ease;
+        background .15s ease,
+        transform .15s ease;
 }
 
 .button:hover {
@@ -279,11 +233,6 @@ input:focus {
     background: #dce2ea;
 }
 
-
-/* =========================================================
-   MESSAGE
-========================================================= */
-
 .saved-message {
     display: none;
 
@@ -294,17 +243,11 @@ input:focus {
     border-radius: 7px;
 
     background: #edf7f0;
-
     color: #3b6d48;
 
     font-size: 11px;
     line-height: 16px;
 }
-
-
-/* =========================================================
-   PREVIEW
-========================================================= */
 
 .preview-label {
     margin-bottom: 12px;
@@ -329,11 +272,6 @@ input:focus {
     background: #eef1f5;
 }
 
-
-/* =========================================================
-   EMAIL CARD
-========================================================= */
-
 .email-card {
     width: 100%;
     max-width: 660px;
@@ -344,27 +282,19 @@ input:focus {
 
     border-radius: 14px;
 
-    background: #ffffff;
+    background: #fff;
 
     box-shadow:
-        0 8px 30px
-        rgba(23, 32, 51, 0.07);
+        0 8px 30px rgba(23, 32, 51, .07);
 }
-
-
-/* =========================================================
-   EMAIL HEADER
-========================================================= */
 
 .email-header {
     padding: 30px 38px;
-
     background: #172033;
 }
 
 .header-table {
     width: 100%;
-
     border-collapse: collapse;
 }
 
@@ -373,7 +303,6 @@ input:focus {
 
     font-size: 11px;
     line-height: 16px;
-    font-weight: 400;
 
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -382,7 +311,7 @@ input:focus {
 .header-title {
     margin-top: 4px;
 
-    color: #ffffff;
+    color: #fff;
 
     font-size: 24px;
     line-height: 32px;
@@ -392,8 +321,8 @@ input:focus {
 .header-icon {
     display: block;
 
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
 }
 
 .gold-line {
@@ -402,11 +331,6 @@ input:focus {
 
     background: #e5b94d;
 }
-
-
-/* =========================================================
-   EMAIL CONTENT
-========================================================= */
 
 .email-content {
     padding: 40px 42px;
@@ -444,11 +368,6 @@ input:focus {
     color: #263247;
 }
 
-
-/* =========================================================
-   FILE CARD
-========================================================= */
-
 .file-card {
     display: block;
 
@@ -463,10 +382,10 @@ input:focus {
     text-decoration: none;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
 }
 
 .file-card:hover {
@@ -475,21 +394,18 @@ input:focus {
     border-color: #cdd4de;
 
     box-shadow:
-        0 7px 20px
-        rgba(23, 32, 51, 0.08);
+        0 7px 20px rgba(23, 32, 51, .08);
 
     transform: translateY(-2px);
 }
 
 .file-table {
     width: 100%;
-
     border-collapse: collapse;
 }
 
 .file-icon-cell {
     width: 54px;
-
     vertical-align: middle;
 }
 
@@ -548,7 +464,7 @@ input:focus {
     border-radius: 6px;
 
     background: #172033;
-    color: #ffffff;
+    color: #fff;
 
     font-size: 10px;
     line-height: 14px;
@@ -559,14 +475,8 @@ input:focus {
 
 .download-icon {
     vertical-align: -2px;
-
     margin-right: 4px;
 }
-
-
-/* =========================================================
-   ACTION BOX
-========================================================= */
 
 .action-box {
     margin-top: 28px;
@@ -593,11 +503,6 @@ input:focus {
     line-height: 20px;
 }
 
-
-/* =========================================================
-   REVIEW BUTTON
-========================================================= */
-
 .review-button {
     display: inline-block;
 
@@ -607,35 +512,19 @@ input:focus {
     border-radius: 7px;
 
     background: #172033;
-    color: #ffffff;
+    color: #fff;
 
     font-size: 13px;
     line-height: 18px;
     font-weight: 700;
 
     text-decoration: none;
-
-    transition:
-        background 0.15s ease,
-        transform 0.15s ease;
-}
-
-.review-button:hover {
-    background: #293751;
-
-    transform: translateY(-1px);
 }
 
 .review-icon {
     vertical-align: -2px;
-
     margin-right: 6px;
 }
-
-
-/* =========================================================
-   SIGNATURE
-========================================================= */
 
 .signature {
     margin-top: 32px;
@@ -656,7 +545,7 @@ input:focus {
 }
 
 .signature-role {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 
     color: #536074;
 
@@ -664,13 +553,24 @@ input:focus {
     line-height: 20px;
 }
 
+
+/*
+    LOGO SIZE
+
+    Changed from 130px to 82px.
+    This makes it visually closer to the
+    signature text instead of looking like
+    a large standalone logo.
+*/
+
 .signature-logo {
     display: block;
 
-    width: 130px;
+    width: 82px;
+    max-width: 82px;
     height: auto;
 
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 
     border: 0;
     outline: none;
@@ -689,18 +589,12 @@ input:focus {
 
 .signature-contact a {
     color: #536074;
-
     text-decoration: none;
 }
 
 .signature-contact .website {
     color: #1747c7;
 }
-
-
-/* =========================================================
-   EMAIL FOOTER
-========================================================= */
 
 .email-footer {
     padding: 19px 42px;
@@ -712,7 +606,6 @@ input:focus {
 
 .footer-table {
     width: 100%;
-
     border-collapse: collapse;
 }
 
@@ -728,11 +621,6 @@ input:focus {
     text-align: right;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
 @media (max-width: 950px) {
 
     .workspace {
@@ -740,7 +628,6 @@ input:focus {
     }
 
 }
-
 
 @media (max-width: 600px) {
 
@@ -775,7 +662,6 @@ input:focus {
 
     .download-button {
         padding: 8px;
-
         font-size: 9px;
     }
 
@@ -798,9 +684,6 @@ input:focus {
 
 <div class="app">
 
-    <!-- =====================================================
-         PAGE HEADER
-    ====================================================== -->
 
     <div class="page-header">
 
@@ -815,10 +698,6 @@ input:focus {
     </div>
 
 
-    <!-- =====================================================
-         WORKSPACE
-    ====================================================== -->
-
     <div class="workspace">
 
 
@@ -832,10 +711,6 @@ input:focus {
                 Template Details
             </div>
 
-
-            <!-- =============================================
-                 REPORT INFORMATION
-            ============================================== -->
 
             <div class="section-title">
                 Report Information
@@ -852,7 +727,6 @@ input:focus {
                     type="text"
                     id="company"
                     value="AMAGI"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -868,7 +742,6 @@ input:focus {
                     type="text"
                     id="reportType"
                     value="S&P Report"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -884,8 +757,6 @@ input:focus {
                     type="text"
                     id="movie"
                     value="Conan el Bárbaro"
-                    placeholder="Example: Conan el Bárbaro"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -901,8 +772,6 @@ input:focus {
                     type="text"
                     id="reportId"
                     value="9382098CSP"
-                    placeholder="Example: 9382098CSP"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -918,7 +787,6 @@ input:focus {
                     type="url"
                     id="driveLink"
                     placeholder="Paste Drive / Project File link"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -934,15 +802,51 @@ input:focus {
                     type="url"
                     id="sheetLink"
                     placeholder="Paste Google Sheet link"
-                    oninput="updatePreview()"
                 >
 
             </div>
 
 
-            <!-- =============================================
+            <!-- =================================================
+                 ACTION TEXT
+            ================================================== -->
+
+            <div class="section-title">
+                Action Section
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="actionTitle">
+                    Action Heading
+                </label>
+
+                <input
+                    type="text"
+                    id="actionTitle"
+                    value="Action required"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="actionText">
+                    Action Description
+                </label>
+
+                <textarea
+                    id="actionText"
+                >Please review the report and update the review sheet with your comments or required changes.</textarea>
+
+            </div>
+
+
+            <!-- =================================================
                  SIGNATURE
-            ============================================== -->
+            ================================================== -->
 
             <div class="section-title">
                 Signature
@@ -959,7 +863,6 @@ input:focus {
                     type="text"
                     id="signatureName"
                     value="Name"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -975,7 +878,6 @@ input:focus {
                     type="text"
                     id="signatureRole"
                     value="Consultant, Creative"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -991,7 +893,6 @@ input:focus {
                     type="tel"
                     id="signatureMobile"
                     placeholder="+91 XXXXX XXXXX"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -1007,7 +908,6 @@ input:focus {
                     type="email"
                     id="signatureEmail"
                     placeholder="name@amagi.com"
-                    oninput="updatePreview()"
                 >
 
             </div>
@@ -1023,15 +923,10 @@ input:focus {
                     type="text"
                     id="signatureWebsite"
                     value="www.amagi.com"
-                    oninput="updatePreview()"
                 >
 
             </div>
 
-
-            <!-- =============================================
-                 SAVE SIGNATURE
-            ============================================== -->
 
             <div class="checkbox-row">
 
@@ -1063,9 +958,9 @@ input:focus {
             ></div>
 
 
-            <!-- =============================================
+            <!-- =================================================
                  GENERATE
-            ============================================== -->
+            ================================================== -->
 
             <div class="section-title">
                 Generate
@@ -1081,12 +976,31 @@ input:focus {
             </button>
 
 
+            <!--
+                THIS is the important new button.
+
+                It copies the rendered email as rich HTML,
+                not the source code.
+
+                You can then paste directly into Gmail,
+                Outlook, Apple Mail, etc.
+            -->
+
+            <button
+                type="button"
+                class="button gold"
+                onclick="copyForEmail()"
+            >
+                COPY FOR EMAIL
+            </button>
+
+
             <button
                 type="button"
                 class="button secondary"
-                onclick="copyHTML()"
+                onclick="copyHTMLSource()"
             >
-                COPY EMAIL HTML
+                COPY HTML SOURCE
             </button>
 
 
@@ -1130,9 +1044,7 @@ input:focus {
                 >
 
 
-                    <!-- =====================================
-                         EMAIL HEADER
-                    ====================================== -->
+                    <!-- HEADER -->
 
                     <div class="email-header">
 
@@ -1169,12 +1081,10 @@ input:focus {
                                     align="right"
                                 >
 
-                                    <!-- REPORT SVG ICON -->
-
                                     <svg
                                         class="header-icon"
-                                        width="46"
-                                        height="46"
+                                        width="42"
+                                        height="42"
                                         viewBox="0 0 46 46"
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
@@ -1218,14 +1128,10 @@ input:focus {
                     </div>
 
 
-                    <!-- GOLD LINE -->
-
                     <div class="gold-line"></div>
 
 
-                    <!-- =====================================
-                         EMAIL CONTENT
-                    ====================================== -->
+                    <!-- CONTENT -->
 
                     <div class="email-content">
 
@@ -1258,9 +1164,7 @@ input:focus {
                         </div>
 
 
-                        <!-- =================================
-                             DOWNLOAD FILE CARD
-                        ================================== -->
+                        <!-- FILE -->
 
                         <a
                             href="#"
@@ -1278,9 +1182,6 @@ input:focus {
                             >
 
                                 <tr>
-
-
-                                    <!-- FILE ICON -->
 
                                     <td class="file-icon-cell">
 
@@ -1325,8 +1226,6 @@ input:focus {
                                     </td>
 
 
-                                    <!-- FILE DETAILS -->
-
                                     <td class="file-details">
 
                                         <div class="file-label">
@@ -1356,14 +1255,9 @@ input:focus {
                                     </td>
 
 
-                                    <!-- DOWNLOAD -->
-
                                     <td class="download-cell">
 
                                         <span class="download-button">
-
-
-                                            <!-- DOWNLOAD SVG -->
 
                                             <svg
                                                 class="download-icon"
@@ -1398,7 +1292,6 @@ input:focus {
 
                                             </svg>
 
-
                                             DOWNLOAD
 
                                         </span>
@@ -1412,31 +1305,29 @@ input:focus {
                         </a>
 
 
-                        <!-- =================================
-                             ACTION BOX
-                        ================================== -->
+                        <!-- ACTION -->
 
                         <div class="action-box">
 
-                            <div class="action-title">
+                            <div
+                                class="action-title"
+                                id="previewActionTitle"
+                            >
                                 Action required
                             </div>
 
 
-                            <div class="action-text">
-
-                                Please review the report and update
-                                the review sheet with your comments
-                                or required changes.
-
+                            <div
+                                class="action-text"
+                                id="previewActionText"
+                            >
+                                Please review the report and update the review sheet with your comments or required changes.
                             </div>
 
                         </div>
 
 
-                        <!-- =================================
-                             REVIEW REPORT BUTTON
-                        ================================== -->
+                        <!-- REVIEW -->
 
                         <a
                             href="#"
@@ -1445,9 +1336,6 @@ input:focus {
                             target="_blank"
                             rel="noopener"
                         >
-
-
-                            <!-- REVIEW SVG -->
 
                             <svg
                                 class="review-icon"
@@ -1473,18 +1361,14 @@ input:focus {
 
                             </svg>
 
-
                             REVIEW REPORT
 
                         </a>
 
 
-                        <!-- =================================
-                             SIGNATURE
-                        ================================== -->
+                        <!-- SIGNATURE -->
 
                         <div class="signature">
-
 
                             <div
                                 class="signature-name"
@@ -1502,14 +1386,10 @@ input:focus {
                             </div>
 
 
-                            <!-- =================================
-                                 AMAGI LOGO
-                            ================================== -->
-
                             <img
                                 id="previewLogo"
                                 class="signature-logo"
-                                width="130"
+                                width="82"
                                 alt="Amagi"
                             >
 
@@ -1568,9 +1448,7 @@ input:focus {
                     </div>
 
 
-                    <!-- =====================================
-                         FOOTER
-                    ====================================== -->
+                    <!-- FOOTER -->
 
                     <div class="email-footer">
 
@@ -1582,7 +1460,6 @@ input:focus {
                         >
 
                             <tr>
-
 
                                 <td class="footer-left">
 
@@ -1602,7 +1479,6 @@ input:focus {
                                 <td class="footer-right">
                                     Confidential
                                 </td>
-
 
                             </tr>
 
@@ -1625,51 +1501,23 @@ input:focus {
 <script>
 
 /* =========================================================
-   AMAGI LOGO
+   LOGO
 ========================================================= */
-
-/*
-   Primary logo URL supplied by you.
-
-   The "#https://..." portion from the original URL is a
-   fragment and is not part of the image request, so it is
-   intentionally excluded here.
-*/
 
 const AMAGI_LOGO_URL =
 "https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft";
 
 
-/*
-   Base64 fallback supplied by you.
-*/
-
 const AMAGI_LOGO_BASE64 =
-"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs2k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
-
-
-/* =========================================================
-   MEMORY STORAGE
-========================================================= */
-
-/*
-   Important:
-   We NEVER directly access localStorage without checking it.
-
-   This prevents:
-
-   Uncaught SecurityError:
-   Failed to read the 'localStorage' property from 'Window'
-
-   when this HTML is opened inside a sandbox.
-*/
-
-let memorySignature = null;
+"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs0k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
 
 
 /* =========================================================
    SAFE STORAGE
 ========================================================= */
+
+let memorySignature = null;
+
 
 function getSafeStorage() {
 
@@ -1682,21 +1530,17 @@ function getSafeStorage() {
             return null;
         }
 
-
-        const testKey =
+        const key =
             "__amagi_storage_test__";
 
-
         window.localStorage.setItem(
-            testKey,
+            key,
             "1"
         );
 
-
         window.localStorage.removeItem(
-            testKey
+            key
         );
-
 
         return window.localStorage;
 
@@ -1708,25 +1552,25 @@ function getSafeStorage() {
 
 
 /* =========================================================
-   GET FIELD VALUE
+   VALUE
 ========================================================= */
 
-function getValue(id, fallback = "") {
+function getValue(
+    id,
+    fallback = ""
+) {
 
     const element =
         document.getElementById(id);
-
 
     if (!element) {
         return fallback;
     }
 
-
-    const result =
+    const value =
         element.value.trim();
 
-
-    return result || fallback;
+    return value || fallback;
 }
 
 
@@ -1756,7 +1600,7 @@ function escapeAttribute(value) {
 
 
 /* =========================================================
-   VALIDATE URL
+   URL
 ========================================================= */
 
 function safeURL(value) {
@@ -1765,27 +1609,44 @@ function safeURL(value) {
         return "#";
     }
 
-
-    /*
-       Allow normal web links.
-    */
-
     if (
         value.startsWith("https://") ||
         value.startsWith("http://") ||
         value.startsWith("mailto:")
     ) {
-
         return value;
     }
 
-
-    /*
-       If user enters a URL without protocol,
-       automatically add https://
-    */
-
     return "https://" + value;
+}
+
+
+/* =========================================================
+   LOAD LOGO
+========================================================= */
+
+function loadLogo() {
+
+    const logo =
+        document.getElementById(
+            "previewLogo"
+        );
+
+    if (!logo) {
+        return;
+    }
+
+    logo.src =
+        AMAGI_LOGO_URL;
+
+    logo.onerror =
+        function() {
+
+            logo.onerror = null;
+
+            logo.src =
+                AMAGI_LOGO_BASE64;
+        };
 }
 
 
@@ -1801,13 +1662,11 @@ function updatePreview() {
             "AMAGI"
         );
 
-
     const reportType =
         getValue(
             "reportType",
             "S&P Report"
         );
-
 
     const movie =
         getValue(
@@ -1815,13 +1674,11 @@ function updatePreview() {
             "Movie / Project Name"
         );
 
-
     const reportId =
         getValue(
             "reportId",
             "REPORT-ID"
         );
-
 
     const driveLink =
         getValue(
@@ -1829,13 +1686,23 @@ function updatePreview() {
             "#"
         );
 
-
     const sheetLink =
         getValue(
             "sheetLink",
             "#"
         );
 
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
+
+    const actionText =
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
 
     const name =
         getValue(
@@ -1843,13 +1710,11 @@ function updatePreview() {
             "Name"
         );
 
-
     const role =
         getValue(
             "signatureRole",
             "Consultant, Creative"
         );
-
 
     const mobile =
         getValue(
@@ -1857,13 +1722,11 @@ function updatePreview() {
             "+91 XXXXX XXXXX"
         );
 
-
     const email =
         getValue(
             "signatureEmail",
             "email@amagi.com"
         );
-
 
     const website =
         getValue(
@@ -1871,10 +1734,6 @@ function updatePreview() {
             "www.amagi.com"
         );
 
-
-    /* ---------------------------------------------
-       HEADER
-    ---------------------------------------------- */
 
     document.getElementById(
         "previewCompany"
@@ -1893,10 +1752,6 @@ function updatePreview() {
     ).textContent =
         reportType;
 
-
-    /* ---------------------------------------------
-       FILE
-    ---------------------------------------------- */
 
     document.getElementById(
         "previewMovie"
@@ -1922,9 +1777,17 @@ function updatePreview() {
         safeURL(sheetLink);
 
 
-    /* ---------------------------------------------
-       SIGNATURE
-    ---------------------------------------------- */
+    document.getElementById(
+        "previewActionTitle"
+    ).textContent =
+        actionTitle;
+
+
+    document.getElementById(
+        "previewActionText"
+    ).textContent =
+        actionText;
+
 
     document.getElementById(
         "previewSignatureName"
@@ -1949,36 +1812,24 @@ function updatePreview() {
             "previewEmail"
         );
 
-
     emailElement.textContent =
         email;
-
 
     emailElement.href =
         "mailto:" + email;
 
-
-    /* ---------------------------------------------
-       WEBSITE
-    ---------------------------------------------- */
 
     const websiteElement =
         document.getElementById(
             "previewWebsite"
         );
 
-
     websiteElement.textContent =
         website;
-
 
     websiteElement.href =
         safeURL(website);
 
-
-    /* ---------------------------------------------
-       FOOTER
-    ---------------------------------------------- */
 
     document.getElementById(
         "previewFooterReport"
@@ -1992,54 +1843,7 @@ function updatePreview() {
         reportId;
 
 
-    /* ---------------------------------------------
-       LOGO
-    ---------------------------------------------- */
-
     loadLogo();
-}
-
-
-/* =========================================================
-   LOAD LOGO
-========================================================= */
-
-function loadLogo() {
-
-    const logo =
-        document.getElementById(
-            "previewLogo"
-        );
-
-
-    if (!logo) {
-        return;
-    }
-
-
-    /*
-       First attempt:
-       supplied hosted Amagi image.
-    */
-
-    logo.src =
-        AMAGI_LOGO_URL;
-
-
-    /*
-       If hosted image fails,
-       use Base64 fallback.
-    */
-
-    logo.onerror =
-        function() {
-
-            logo.onerror = null;
-
-            logo.src =
-                AMAGI_LOGO_BASE64;
-
-        };
 }
 
 
@@ -2084,17 +1888,9 @@ function saveSignature() {
     };
 
 
-    /*
-       Always save in memory.
-    */
-
     memorySignature =
         signature;
 
-
-    /*
-       Save to localStorage only when available.
-    */
 
     const storage =
         getSafeStorage();
@@ -2109,28 +1905,16 @@ function saveSignature() {
                 JSON.stringify(signature)
             );
 
-
             showMessage(
                 "Signature saved successfully."
             );
 
-
             return;
 
-        } catch (error) {
-
-            /*
-               Ignore storage errors.
-            */
-
-        }
+        } catch (error) {}
 
     }
 
-
-    /*
-       Sandboxed fallback.
-    */
 
     showMessage(
         "Signature saved for this session."
@@ -2148,10 +1932,6 @@ function loadSavedSignature() {
         null;
 
 
-    /*
-       Try browser storage.
-    */
-
     const storage =
         getSafeStorage();
 
@@ -2165,7 +1945,6 @@ function loadSavedSignature() {
                     "amagiEmailSignature"
                 );
 
-
             if (saved) {
 
                 signature =
@@ -2177,16 +1956,9 @@ function loadSavedSignature() {
 
             signature =
                 null;
-
         }
-
     }
 
-
-    /*
-       If browser storage isn't available,
-       use in-memory signature.
-    */
 
     if (
         !signature &&
@@ -2195,7 +1967,6 @@ function loadSavedSignature() {
 
         signature =
             memorySignature;
-
     }
 
 
@@ -2212,7 +1983,6 @@ function loadSavedSignature() {
             "signatureName"
         ).value =
             signature.name;
-
     }
 
 
@@ -2224,7 +1994,6 @@ function loadSavedSignature() {
             "signatureRole"
         ).value =
             signature.role;
-
     }
 
 
@@ -2236,7 +2005,6 @@ function loadSavedSignature() {
             "signatureMobile"
         ).value =
             signature.mobile;
-
     }
 
 
@@ -2248,7 +2016,6 @@ function loadSavedSignature() {
             "signatureEmail"
         ).value =
             signature.email;
-
     }
 
 
@@ -2260,14 +2027,12 @@ function loadSavedSignature() {
             "signatureWebsite"
         ).value =
             signature.website;
-
     }
-
 }
 
 
 /* =========================================================
-   SHOW MESSAGE
+   MESSAGE
 ========================================================= */
 
 function showMessage(message) {
@@ -2277,15 +2042,12 @@ function showMessage(message) {
             "savedMessage"
         );
 
-
     if (!element) {
         return;
     }
 
-
     element.textContent =
         message;
-
 
     element.style.display =
         "block";
@@ -2304,7 +2066,7 @@ function showMessage(message) {
 
 
 /* =========================================================
-   GENERATE EMAIL HTML
+   BUILD EMAIL HTML
 ========================================================= */
 
 function getEmailHTML() {
@@ -2315,13 +2077,11 @@ function getEmailHTML() {
             "AMAGI"
         );
 
-
     const reportType =
         getValue(
             "reportType",
             "S&P Report"
         );
-
 
     const movie =
         getValue(
@@ -2329,13 +2089,11 @@ function getEmailHTML() {
             "Movie / Project Name"
         );
 
-
     const reportId =
         getValue(
             "reportId",
             "REPORT-ID"
         );
-
 
     const driveLink =
         getValue(
@@ -2343,13 +2101,23 @@ function getEmailHTML() {
             "#"
         );
 
-
     const sheetLink =
         getValue(
             "sheetLink",
             "#"
         );
 
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
+
+    const actionText =
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
 
     const name =
         getValue(
@@ -2357,13 +2125,11 @@ function getEmailHTML() {
             "Name"
         );
 
-
     const role =
         getValue(
             "signatureRole",
             "Consultant, Creative"
         );
-
 
     const mobile =
         getValue(
@@ -2371,13 +2137,11 @@ function getEmailHTML() {
             "+91 XXXXX XXXXX"
         );
 
-
     const email =
         getValue(
             "signatureEmail",
             "email@amagi.com"
         );
-
 
     const website =
         getValue(
@@ -2389,24 +2153,14 @@ function getEmailHTML() {
     const finalDriveLink =
         safeURL(driveLink);
 
-
     const finalSheetLink =
         safeURL(sheetLink);
-
 
     const finalWebsite =
         safeURL(website);
 
 
-    /*
-       Generated email intentionally uses the hosted
-       Amagi logo.
-
-       This is preferable for email because many email
-       clients do not allow data:image URLs.
-    */
-
-    const emailHTML = `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2418,34 +2172,32 @@ function getEmailHTML() {
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-${escapeHTML(reportType)}
-</title>
+<title>${escapeHTML(reportType)}</title>
 
 </head>
 
 
 <body
-    style="
-        margin:0;
-        padding:0;
-        background:#eef1f5;
-        font-family:Arial,Helvetica,sans-serif;
-        color:#172033;
-    "
+style="
+margin:0;
+padding:0;
+background:#eef1f5;
+font-family:Arial,Helvetica,sans-serif;
+color:#172033;
+"
 >
 
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        background:#eef1f5;
-        padding:45px 15px;
-    "
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+width:100%;
+background:#eef1f5;
+padding:45px 15px;
+"
 >
 
 <tr>
@@ -2454,67 +2206,64 @@ ${escapeHTML(reportType)}
 
 
 <table
-    width="660"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        max-width:660px;
-        background:#ffffff;
-        border-radius:14px;
-        overflow:hidden;
-    "
+width="660"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+width:100%;
+max-width:660px;
+background:#ffffff;
+border-radius:14px;
+overflow:hidden;
+"
 >
 
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
+<!-- HEADER -->
 
 <tr>
 
 <td
-    style="
-        background:#172033;
-        padding:30px 38px;
-    "
+style="
+background:#172033;
+padding:30px 38px;
+"
 >
 
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
 >
 
 <tr>
 
-
 <td>
 
 <div
-    style="
-        color:#aab4c5;
-        font-size:11px;
-        line-height:16px;
-        letter-spacing:2px;
-        text-transform:uppercase;
-    "
+style="
+color:#aab4c5;
+font-size:11px;
+line-height:16px;
+letter-spacing:2px;
+text-transform:uppercase;
+"
 >
 ${escapeHTML(company)}
 </div>
 
 
 <div
-    style="
-        margin-top:4px;
-        color:#ffffff;
-        font-size:24px;
-        line-height:32px;
-        font-weight:700;
-    "
+style="
+margin-top:4px;
+color:#ffffff;
+font-size:24px;
+line-height:32px;
+font-weight:700;
+"
 >
 ${escapeHTML(reportType)}
 </div>
@@ -2523,55 +2272,53 @@ ${escapeHTML(reportType)}
 
 
 <td
-    width="54"
-    align="right"
+width="54"
+align="right"
 >
 
 
-<!-- REPORT SVG -->
-
 <svg
-    width="46"
-    height="46"
-    viewBox="0 0 46 46"
-    xmlns="http://www.w3.org/2000/svg"
+width="42"
+height="42"
+viewBox="0 0 46 46"
+xmlns="http://www.w3.org/2000/svg"
 >
 
 <rect
-    width="46"
-    height="46"
-    rx="10"
-    fill="#27344A"
+width="46"
+height="46"
+rx="10"
+fill="#27344A"
 />
 
 
 <path
-    d="M15 13.5C15 12.67 15.67 12 16.5 12H28L33 17V32.5C33 33.33 32.33 34 31.5 34H16.5C15.67 34 15 33.33 15 32.5V13.5Z"
-    stroke="#E5B94D"
-    stroke-width="1.8"
-    fill="none"
+d="M15 13.5C15 12.67 15.67 12 16.5 12H28L33 17V32.5C33 33.33 32.33 34 31.5 34H16.5C15.67 34 15 33.33 15 32.5V13.5Z"
+stroke="#E5B94D"
+stroke-width="1.8"
+fill="none"
 />
 
 
 <path
-    d="M27.5 12V17.5H33"
-    stroke="#E5B94D"
-    stroke-width="1.8"
-    fill="none"
+d="M27.5 12V17.5H33"
+stroke="#E5B94D"
+stroke-width="1.8"
+fill="none"
 />
 
 
 <path
-    d="M19 22H29M19 26H29M19 30H25"
-    stroke="#FFFFFF"
-    stroke-width="1.6"
-    stroke-linecap="round"
+d="M19 22H29M19 26H29M19 30H25"
+stroke="#FFFFFF"
+stroke-width="1.6"
+stroke-linecap="round"
 />
 
 </svg>
 
-</td>
 
+</td>
 
 </tr>
 
@@ -2583,19 +2330,17 @@ ${escapeHTML(reportType)}
 </tr>
 
 
-<!-- =====================================================
-     GOLD LINE
-====================================================== -->
+<!-- GOLD -->
 
 <tr>
 
 <td
-    style="
-        height:4px;
-        background:#e5b94d;
-        font-size:0;
-        line-height:0;
-    "
+style="
+height:4px;
+background:#e5b94d;
+font-size:0;
+line-height:0;
+"
 >
 &nbsp;
 </td>
@@ -2603,51 +2348,49 @@ ${escapeHTML(reportType)}
 </tr>
 
 
-<!-- =====================================================
-     CONTENT
-====================================================== -->
+<!-- CONTENT -->
 
 <tr>
 
 <td
-    style="
-        padding:40px 42px;
-    "
+style="
+padding:40px 42px;
+"
 >
 
 
 <div
-    style="
-        margin-bottom:9px;
-        color:#697588;
-        font-size:14px;
-        line-height:21px;
-    "
+style="
+margin-bottom:9px;
+color:#697588;
+font-size:14px;
+line-height:21px;
+"
 >
 Hi Team,
 </div>
 
 
 <div
-    style="
-        margin-bottom:13px;
-        color:#172033;
-        font-size:26px;
-        line-height:34px;
-        font-weight:700;
-    "
+style="
+margin-bottom:13px;
+color:#172033;
+font-size:26px;
+line-height:34px;
+font-weight:700;
+"
 >
 Report ready for review
 </div>
 
 
 <div
-    style="
-        margin-bottom:30px;
-        color:#697588;
-        font-size:14px;
-        line-height:23px;
-    "
+style="
+margin-bottom:30px;
+color:#697588;
+font-size:14px;
+line-height:23px;
+"
 >
 
 Please find the
@@ -2663,80 +2406,76 @@ Kindly download the project file and review the details using the review sheet.
 </div>
 
 
-<!-- =====================================================
-     DOWNLOADABLE FILE CARD
-====================================================== -->
+<!-- DOWNLOAD CARD -->
 
 <a
-    href="${escapeAttribute(finalDriveLink)}"
-    target="_blank"
-    rel="noopener"
-    style="
-        display:block;
-        padding:22px;
-        border:1px solid #e3e7ed;
-        border-radius:12px;
-        background:#f8f9fb;
-        color:inherit;
-        text-decoration:none;
-    "
+href="${escapeAttribute(finalDriveLink)}"
+target="_blank"
+rel="noopener"
+style="
+display:block;
+padding:22px;
+border:1px solid #e3e7ed;
+border-radius:12px;
+background:#f8f9fb;
+color:inherit;
+text-decoration:none;
+"
 >
 
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
 >
 
 <tr>
 
 
 <td
-    width="54"
-    valign="middle"
+width="54"
+valign="middle"
 >
 
 
-<!-- FILE SVG -->
-
 <svg
-    width="44"
-    height="44"
-    viewBox="0 0 44 44"
-    xmlns="http://www.w3.org/2000/svg"
+width="44"
+height="44"
+viewBox="0 0 44 44"
+xmlns="http://www.w3.org/2000/svg"
 >
 
 <rect
-    width="44"
-    height="44"
-    rx="9"
-    fill="#E9EDF3"
+width="44"
+height="44"
+rx="9"
+fill="#E9EDF3"
 />
 
 
 <path
-    d="M14 11.5C14 10.67 14.67 10 15.5 10H26L31 15V32.5C31 33.33 30.33 34 29.5 34H15.5C14.67 34 14 33.33 14 32.5V11.5Z"
-    stroke="#172033"
-    stroke-width="1.6"
-    fill="none"
+d="M14 11.5C14 10.67 14.67 10 15.5 10H26L31 15V32.5C31 33.33 30.33 34 29.5 34H15.5C14.67 34 14 33.33 14 32.5V11.5Z"
+stroke="#172033"
+stroke-width="1.6"
+fill="none"
 />
 
 
 <path
-    d="M25.5 10V15.5H31"
-    stroke="#172033"
-    stroke-width="1.6"
-    fill="none"
+d="M25.5 10V15.5H31"
+stroke="#172033"
+stroke-width="1.6"
+fill="none"
 />
 
 
 <path
-    d="M18 21H27M18 25H27M18 29H24"
-    stroke="#6B7688"
-    stroke-width="1.5"
-    stroke-linecap="round"
+d="M18 21H27M18 25H27M18 29H24"
+stroke="#6B7688"
+stroke-width="1.5"
+stroke-linecap="round"
 />
 
 </svg>
@@ -2749,38 +2488,38 @@ Kindly download the project file and review the details using the review sheet.
 
 
 <div
-    style="
-        color:#929baa;
-        font-size:10px;
-        line-height:15px;
-        font-weight:700;
-        letter-spacing:1.5px;
-    "
+style="
+color:#929baa;
+font-size:10px;
+line-height:15px;
+font-weight:700;
+letter-spacing:1.5px;
+"
 >
 REPORT
 </div>
 
 
 <div
-    style="
-        margin-top:3px;
-        color:#172033;
-        font-size:17px;
-        line-height:24px;
-        font-weight:700;
-    "
+style="
+margin-top:3px;
+color:#172033;
+font-size:17px;
+line-height:24px;
+font-weight:700;
+"
 >
 ${escapeHTML(movie)}
 </div>
 
 
 <div
-    style="
-        margin-top:3px;
-        color:#788396;
-        font-size:12px;
-        line-height:18px;
-    "
+style="
+margin-top:3px;
+color:#788396;
+font-size:12px;
+line-height:18px;
+"
 >
 Report ID &nbsp;•&nbsp;
 ${escapeHTML(reportId)}
@@ -2791,63 +2530,61 @@ ${escapeHTML(reportId)}
 
 
 <td
-    width="125"
-    align="right"
-    valign="middle"
+width="125"
+align="right"
+valign="middle"
 >
 
 
 <span
-    style="
-        display:inline-block;
-        padding:10px 13px;
-        border-radius:6px;
-        background:#172033;
-        color:#ffffff;
-        font-size:10px;
-        line-height:14px;
-        font-weight:700;
-        white-space:nowrap;
-    "
+style="
+display:inline-block;
+padding:10px 13px;
+border-radius:6px;
+background:#172033;
+color:#ffffff;
+font-size:10px;
+line-height:14px;
+font-weight:700;
+white-space:nowrap;
+"
 >
 
-
-<!-- DOWNLOAD SVG -->
 
 <svg
-    width="12"
-    height="12"
-    viewBox="0 0 16 16"
-    xmlns="http://www.w3.org/2000/svg"
-    style="
-        vertical-align:-2px;
-        margin-right:4px;
-    "
+width="12"
+height="12"
+viewBox="0 0 16 16"
+xmlns="http://www.w3.org/2000/svg"
+style="
+vertical-align:-2px;
+margin-right:4px;
+"
 >
 
 <path
-    d="M8 2V10"
-    stroke="#E5B94D"
-    stroke-width="1.6"
-    stroke-linecap="round"
+d="M8 2V10"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
 />
 
 
 <path
-    d="M4.5 7.5L8 11L11.5 7.5"
-    fill="none"
-    stroke="#E5B94D"
-    stroke-width="1.6"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+d="M4.5 7.5L8 11L11.5 7.5"
+fill="none"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
+stroke-linejoin="round"
 />
 
 
 <path
-    d="M3 13H13"
-    stroke="#E5B94D"
-    stroke-width="1.6"
-    stroke-linecap="round"
+d="M3 13H13"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
 />
 
 </svg>
@@ -2870,138 +2607,131 @@ DOWNLOAD
 </a>
 
 
-<!-- =====================================================
-     ACTION BOX
-====================================================== -->
+<!-- ACTION -->
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        margin-top:28px;
-    "
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+margin-top:28px;
+"
 >
 
 <tr>
 
 
 <td
-    width="4"
-    style="
-        background:#e5b94d;
-        border-radius:4px;
-    "
+width="4"
+style="
+background:#e5b94d;
+border-radius:4px;
+"
 >
 &nbsp;
 </td>
 
 
 <td
-    style="
-        padding-left:17px;
-    "
+style="
+padding-left:17px;
+"
 >
 
 
 <div
-    style="
-        color:#172033;
-        font-size:13px;
-        line-height:20px;
-        font-weight:700;
-    "
+style="
+color:#172033;
+font-size:13px;
+line-height:20px;
+font-weight:700;
+"
 >
-Action required
+${escapeHTML(actionTitle)}
 </div>
 
 
 <div
-    style="
-        margin-top:3px;
-        color:#697588;
-        font-size:13px;
-        line-height:20px;
-    "
+style="
+margin-top:3px;
+color:#697588;
+font-size:13px;
+line-height:20px;
+"
 >
-Please review the report and update the review sheet with your comments or required changes.
+${escapeHTML(actionText)}
 </div>
 
 
 </td>
-
 
 </tr>
 
 </table>
 
 
-<!-- =====================================================
-     REVIEW REPORT BUTTON
-====================================================== -->
+<!-- REVIEW BUTTON -->
 
 <table
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        margin-top:25px;
-    "
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+margin-top:25px;
+"
 >
 
 <tr>
 
 <td
-    style="
-        background:#172033;
-        border-radius:7px;
-    "
+style="
+background:#172033;
+border-radius:7px;
+"
 >
 
 
 <a
-    href="${escapeAttribute(finalSheetLink)}"
-    target="_blank"
-    rel="noopener"
-    style="
-        display:inline-block;
-        padding:13px 21px;
-        color:#ffffff;
-        font-size:13px;
-        line-height:18px;
-        font-weight:700;
-        text-decoration:none;
-    "
+href="${escapeAttribute(finalSheetLink)}"
+target="_blank"
+rel="noopener"
+style="
+display:inline-block;
+padding:13px 21px;
+color:#ffffff;
+font-size:13px;
+line-height:18px;
+font-weight:700;
+text-decoration:none;
+"
 >
 
 
-<!-- REVIEW SVG -->
-
 <svg
-    width="14"
-    height="14"
-    viewBox="0 0 16 16"
-    xmlns="http://www.w3.org/2000/svg"
-    style="
-        vertical-align:-2px;
-        margin-right:6px;
-    "
+width="14"
+height="14"
+viewBox="0 0 16 16"
+xmlns="http://www.w3.org/2000/svg"
+style="
+vertical-align:-2px;
+margin-right:6px;
+"
 >
 
 <path
-    d="M2.5 3.5H13.5V12.5H2.5V3.5Z"
-    stroke="#E5B94D"
-    stroke-width="1.4"
-    fill="none"
+d="M2.5 3.5H13.5V12.5H2.5V3.5Z"
+stroke="#E5B94D"
+stroke-width="1.4"
+fill="none"
 />
 
 
 <path
-    d="M5 6H11M5 8H11M5 10H8.5"
-    stroke="#E5B94D"
-    stroke-width="1.3"
-    stroke-linecap="round"
+d="M5 6H11M5 8H11M5 10H8.5"
+stroke="#E5B94D"
+stroke-width="1.3"
+stroke-linecap="round"
 />
 
 </svg>
@@ -3020,72 +2750,69 @@ REVIEW REPORT
 </table>
 
 
-<!-- =====================================================
-     SIGNATURE
-====================================================== -->
+<!-- SIGNATURE -->
 
 <div
-    style="
-        margin-top:32px;
-        padding-top:25px;
-        border-top:1px solid #edf0f3;
-    "
+style="
+margin-top:32px;
+padding-top:25px;
+border-top:1px solid #edf0f3;
+"
 >
 
 
 <div
-    style="
-        margin-bottom:2px;
-        color:#172033;
-        font-size:14px;
-        line-height:20px;
-        font-weight:700;
-    "
+style="
+margin-bottom:2px;
+color:#172033;
+font-size:14px;
+line-height:20px;
+font-weight:700;
+"
 >
 ${escapeHTML(name)}
 </div>
 
 
 <div
-    style="
-        margin-bottom:14px;
-        color:#536074;
-        font-size:13px;
-        line-height:20px;
-    "
+style="
+margin-bottom:8px;
+color:#536074;
+font-size:13px;
+line-height:20px;
+"
 >
 ${escapeHTML(role)}
 </div>
 
 
-<!-- =================================================
-     AMAGI LOGO
-
-     Hosted URL is used here for email compatibility.
-================================================== -->
+<!--
+    SMALL LOGO
+-->
 
 <img
-    src="${AMAGI_LOGO_URL}"
-    alt="Amagi"
-    width="130"
-    style="
-        display:block;
-        width:130px;
-        height:auto;
-        margin-bottom:14px;
-        border:0;
-        outline:none;
-        text-decoration:none;
-    "
+src="${AMAGI_LOGO_URL}"
+alt="Amagi"
+width="82"
+style="
+display:block;
+width:82px;
+max-width:82px;
+height:auto;
+margin-bottom:10px;
+border:0;
+outline:none;
+text-decoration:none;
+"
 >
 
 
 <div
-    style="
-        color:#536074;
-        font-size:12px;
-        line-height:20px;
-    "
+style="
+color:#536074;
+font-size:12px;
+line-height:20px;
+"
 >
 
 
@@ -3108,11 +2835,11 @@ Email:
 
 
 <a
-    href="mailto:${escapeAttribute(email)}"
-    style="
-        color:#536074;
-        text-decoration:none;
-    "
+href="mailto:${escapeAttribute(email)}"
+style="
+color:#536074;
+text-decoration:none;
+"
 >
 ${escapeHTML(email)}
 </a>
@@ -3123,18 +2850,16 @@ ${escapeHTML(email)}
 
 <div>
 
-
 <a
-    href="${escapeAttribute(finalWebsite)}"
-    target="_blank"
-    style="
-        color:#1747c7;
-        text-decoration:none;
-    "
+href="${escapeAttribute(finalWebsite)}"
+target="_blank"
+style="
+color:#1747c7;
+text-decoration:none;
+"
 >
 ${escapeHTML(website)}
 </a>
-
 
 </div>
 
@@ -3150,37 +2875,35 @@ ${escapeHTML(website)}
 </tr>
 
 
-<!-- =====================================================
-     FOOTER
-====================================================== -->
+<!-- FOOTER -->
 
 <tr>
 
 <td
-    style="
-        padding:19px 42px;
-        border-top:1px solid #e8ebef;
-        background:#f8f9fb;
-    "
+style="
+padding:19px 42px;
+border-top:1px solid #e8ebef;
+background:#f8f9fb;
+"
 >
 
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
 >
 
 <tr>
 
 
 <td
-    style="
-        color:#929baa;
-        font-size:10px;
-        line-height:16px;
-    "
+style="
+color:#929baa;
+font-size:10px;
+line-height:16px;
+"
 >
 
 ${escapeHTML(reportType)}
@@ -3193,12 +2916,12 @@ ${escapeHTML(reportId)}
 
 
 <td
-    align="right"
-    style="
-        color:#929baa;
-        font-size:10px;
-        line-height:16px;
-    "
+align="right"
+style="
+color:#929baa;
+font-size:10px;
+line-height:16px;
+"
 >
 
 Confidential
@@ -3230,24 +2953,303 @@ Confidential
 
 </html>`;
 
-
-    return emailHTML;
 }
 
 
 /* =========================================================
-   COPY HTML
+   PLAIN TEXT VERSION
 ========================================================= */
 
-async function copyHTML() {
+function getPlainText() {
+
+    const reportType =
+        getValue(
+            "reportType",
+            "S&P Report"
+        );
+
+    const movie =
+        getValue(
+            "movie",
+            "Movie / Project Name"
+        );
+
+    const reportId =
+        getValue(
+            "reportId",
+            "REPORT-ID"
+        );
+
+    const driveLink =
+        getValue(
+            "driveLink",
+            ""
+        );
+
+    const sheetLink =
+        getValue(
+            "sheetLink",
+            ""
+        );
+
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
+
+    const actionText =
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
+
+    const name =
+        getValue(
+            "signatureName",
+            "Name"
+        );
+
+    const role =
+        getValue(
+            "signatureRole",
+            "Consultant, Creative"
+        );
+
+    const mobile =
+        getValue(
+            "signatureMobile",
+            ""
+        );
+
+    const email =
+        getValue(
+            "signatureEmail",
+            ""
+        );
+
+    const website =
+        getValue(
+            "signatureWebsite",
+            "www.amagi.com"
+        );
+
+
+    return `Hi Team,
+
+Report ready for review
+
+Please find the ${reportType} for the title below.
+
+${movie}
+Report ID • ${reportId}
+
+DOWNLOAD:
+${driveLink}
+
+${actionTitle}
+${actionText}
+
+REVIEW REPORT:
+${sheetLink}
+
+${name}
+${role}
+Mobile: ${mobile}
+Email: ${email}
+${website}`;
+}
+
+
+/* =========================================================
+   COPY FOR EMAIL
+========================================================= */
+
+/*
+    This is different from "Copy HTML Source".
+
+    We copy:
+
+        text/html  -> formatted email
+        text/plain -> fallback text
+
+    Therefore when you paste into Gmail/Outlook,
+    the browser gives the mail application the
+    rendered HTML rather than the source code.
+*/
+
+async function copyForEmail() {
+
+    updatePreview();
+
 
     const html =
         getEmailHTML();
 
 
+    const text =
+        getPlainText();
+
+
     /*
-       Modern clipboard API.
+       Best method:
+       ClipboardItem with text/html.
     */
+
+    try {
+
+        if (
+            navigator.clipboard &&
+            window.ClipboardItem
+        ) {
+
+            const item =
+                new ClipboardItem({
+
+                    "text/html":
+                        new Blob(
+                            [html],
+                            {
+                                type:
+                                    "text/html"
+                            }
+                        ),
+
+                    "text/plain":
+                        new Blob(
+                            [text],
+                            {
+                                type:
+                                    "text/plain"
+                            }
+                        )
+
+                });
+
+
+            await navigator.clipboard.write(
+                [item]
+            );
+
+
+            showMessage(
+                "Email copied. Open your mail and paste."
+            );
+
+
+            return;
+
+        }
+
+    } catch (error) {
+
+        /*
+           Continue to fallback.
+        */
+    }
+
+
+    /*
+       Fallback for browsers where ClipboardItem
+       is unavailable.
+    */
+
+    try {
+
+        const wrapper =
+            document.createElement(
+                "div"
+            );
+
+
+        wrapper.innerHTML =
+            html;
+
+
+        wrapper.style.position =
+            "fixed";
+
+        wrapper.style.left =
+            "-999999px";
+
+        wrapper.style.top =
+            "0";
+
+        wrapper.style.width =
+            "660px";
+
+
+        document.body.appendChild(
+            wrapper
+        );
+
+
+        const range =
+            document.createRange();
+
+
+        range.selectNodeContents(
+            wrapper
+        );
+
+
+        const selection =
+            window.getSelection();
+
+
+        selection.removeAllRanges();
+
+
+        selection.addRange(
+            range
+        );
+
+
+        const copied =
+            document.execCommand(
+                "copy"
+            );
+
+
+        selection.removeAllRanges();
+
+
+        document.body.removeChild(
+            wrapper
+        );
+
+
+        if (copied) {
+
+            showMessage(
+                "Email copied. Open your mail and paste."
+            );
+
+            return;
+        }
+
+    } catch (error) {}
+
+
+    /*
+       Final fallback:
+       copy HTML source.
+    */
+
+    await copyHTMLSource();
+
+}
+
+
+/* =========================================================
+   COPY HTML SOURCE
+========================================================= */
+
+async function copyHTMLSource() {
+
+    const html =
+        getEmailHTML();
+
 
     try {
 
@@ -3262,25 +3264,16 @@ async function copyHTML() {
 
 
             showMessage(
-                "Email HTML copied to clipboard."
+                "HTML source copied."
             );
 
 
             return;
+
         }
 
-    } catch (error) {
+    } catch (error) {}
 
-        /*
-           Fall through to textarea method.
-        */
-
-    }
-
-
-    /*
-       Legacy fallback.
-    */
 
     try {
 
@@ -3322,13 +3315,13 @@ async function copyHTML() {
 
 
         showMessage(
-            "Email HTML copied to clipboard."
+            "HTML source copied."
         );
 
     } catch (error) {
 
         showMessage(
-            "Unable to copy automatically. Use Download HTML instead."
+            "Copy failed. Please use Download HTML."
         );
 
     }
@@ -3353,15 +3346,20 @@ function downloadHTML() {
         );
 
 
-    /*
-       Create a safe filename.
-    */
-
     let filename =
         movie
-            .replace(/[^a-z0-9]/gi, "_")
-            .replace(/_+/g, "_")
-            .replace(/^_+|_+$/g, "");
+            .replace(
+                /[^a-z0-9]/gi,
+                "_"
+            )
+            .replace(
+                /_+/g,
+                "_"
+            )
+            .replace(
+                /^_+|_+$/g,
+                ""
+            );
 
 
     if (!filename) {
@@ -3416,7 +3414,7 @@ function downloadHTML() {
     );
 
 
-    window.setTimeout(
+    setTimeout(
         function() {
 
             URL.revokeObjectURL(
@@ -3435,7 +3433,7 @@ function downloadHTML() {
 
 
 /* =========================================================
-   CLEAR PROJECT DETAILS
+   CLEAR PROJECT
 ========================================================= */
 
 function clearProjectDetails() {
@@ -3476,29 +3474,53 @@ function clearProjectDetails() {
 
 
 /* =========================================================
-   INITIALIZE
+   LIVE PREVIEW
+========================================================= */
+
+[
+    "company",
+    "reportType",
+    "movie",
+    "reportId",
+    "driveLink",
+    "sheetLink",
+    "actionTitle",
+    "actionText",
+    "signatureName",
+    "signatureRole",
+    "signatureMobile",
+    "signatureEmail",
+    "signatureWebsite"
+].forEach(
+    function(id) {
+
+        const element =
+            document.getElementById(id);
+
+
+        if (!element) {
+            return;
+        }
+
+
+        element.addEventListener(
+            "input",
+            updatePreview
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INIT
 ========================================================= */
 
 (function initialize() {
 
-    /*
-       Try loading an existing signature.
-       This is completely safe inside sandboxed documents.
-    */
-
     loadSavedSignature();
 
-
-    /*
-       Load Amagi logo.
-    */
-
     loadLogo();
-
-
-    /*
-       Build initial preview.
-    */
 
     updatePreview();
 
