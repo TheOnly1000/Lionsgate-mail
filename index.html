@@ -46,7 +46,7 @@ html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMa
 .preview-header { background: #f8fafc; padding: 18px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
 .preview-content { background: #eef1f5; width: 100%; height: 850px; }
 
-/* Iframe Reset */
+/* IFRAME STYLING - Isolated perfectly */
 iframe#emailPreviewFrame { width: 100%; height: 100%; border: none; display: block; background: transparent; }
 
 /* Forms */
@@ -108,7 +108,7 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 @media (max-width: 1024px) {
     .workspace { grid-template-columns: 1fr; }
     .preview-panel { position: relative; top: 0; }
-    .preview-content { height: 600px; }
+    .preview-content { height: 700px; }
 }
 @media (max-width: 600px) {
     .app { padding: 20px 15px; }
@@ -259,13 +259,14 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
             </div>
         </div>
 
-        <!-- PREVIEW PANEL (Using IFRAME to prevent HTML structural bleed/duplicates) -->
+        <!-- PREVIEW PANEL -->
         <div class="preview-panel">
             <div class="preview-container">
                 <div class="preview-header">
                     <span>Live HTML Preview</span>
                     <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px; color:#475569;">Perfectly Isolated & Responsive</span>
                 </div>
+                <!-- IFRAME replaces the old div to completely prevent rendering overlap -->
                 <div class="preview-content" id="previewWrapperBg">
                     <iframe id="emailPreviewFrame" title="Email Preview"></iframe>
                 </div>
@@ -283,8 +284,8 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 /* =========================================================
    CORE LOGIC & UTILITIES
 ========================================================= */
-// Embedded Base64 Image ensures it NEVER breaks or expires.
-const AMAGI_LOGO_BASE64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs0k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
+// Replaced the broken Base64 string with the direct, reliable AWS S3 link.
+const AMAGI_LOGO_URL = "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png";
 
 let signatures = {};
 
@@ -329,7 +330,7 @@ function initSignatures() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            const saved = storage.getItem("spTemplateSignaturesV5");
+            const saved = storage.getItem("spTemplateSignaturesV6");
             if (saved) signatures = JSON.parse(saved);
         } catch (e) {}
     }
@@ -374,7 +375,7 @@ function saveSignature() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            storage.setItem("spTemplateSignaturesV5", JSON.stringify(signatures));
+            storage.setItem("spTemplateSignaturesV6", JSON.stringify(signatures));
             showToast(`Signature "${profileName}" saved!`);
             populateSignatureDropdown();
             document.getElementById("savedSignaturesDropdown").value = profileName;
@@ -409,7 +410,7 @@ function clearAllData() {
 }
 
 /* =========================================================
-   HTML EMAIL GENERATOR (RESPONSIVE TABLES & SAFE EMOJIS)
+   HTML EMAIL GENERATOR
 ========================================================= */
 function getEmailHTML() {
     const layoutType = document.getElementById("templateLayout").value;
@@ -435,12 +436,15 @@ function getEmailHTML() {
     data.movie = escapeHTML(parsed.title);
     data.reportId = escapeHTML(parsed.id);
 
-    // Signature Builder - Uses Base64 Logo and HTML entity emojis
+    // Dynamic Introductory Sentence (Required in all templates)
+    const introSentence = `Please find the <strong>${data.fullText} ${data.reportType}</strong> for the title below.`;
+
+    // Signature Builder - Fixed Logo URL and robust table styling
     const getSig = (tc, mc, lc, topBorder = true) => `
         <div style="margin-top:35px; padding-top:25px; ${topBorder ? `border-top:1px solid ${mc}40;` : ''}">
             <div style="margin-bottom:2px; color:${tc}; font-size:15px; line-height:22px; font-weight:700;">${data.name}</div>
             <div style="margin-bottom:12px; color:${mc}; font-size:13px; line-height:20px;">${data.role}</div>
-            <img src="${AMAGI_LOGO_BASE64}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; background:transparent;">
+            <img src="${AMAGI_LOGO_URL}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; background:transparent;">
             <div style="color:${mc}; font-size:12px; line-height:20px;">
                 ${data.mobile ? `<div><strong style="color:${tc};">&#128241;</strong> ${data.mobile}</div>` : ''}
                 ${data.email ? `<div><strong style="color:${tc};">&#9993;</strong> <a href="mailto:${data.email}" style="color:${lc}; text-decoration:none;">${data.email}</a></div>` : ''}
@@ -452,7 +456,6 @@ function getEmailHTML() {
     let html = '';
     let previewBg = '';
 
-    // NOTE: Inner tables use width="100%" and style="max-width: 660px;" for bulletproof email responsiveness!
     switch(layoutType) {
         case "1": // Classic Professional
             previewBg = "#eef1f5";
@@ -465,7 +468,7 @@ function getEmailHTML() {
             <tr><td style="height:4px; background:#D4AF37; line-height:0;">&nbsp;</td></tr>
             <tr><td style="padding:40px;">
                 <div style="color:#0f172a; font-size:20px; font-weight:bold; margin-bottom:20px;">Report Ready for Review</div>
-                <div style="color:#475569; font-size:15px; margin-bottom:30px;">Please find the <strong>${data.fullText} ${data.reportType}</strong> for the title below.</div>
+                <div style="color:#475569; font-size:15px; margin-bottom:30px;">${introSentence}</div>
                 
                 <a href="${data.driveLink}" target="_blank" style="display:block; padding:20px; border:1px solid #cbd5e1; border-radius:8px; background:#f8fafc; text-decoration:none;">
                     <table width="100%"><tr>
@@ -500,6 +503,7 @@ function getEmailHTML() {
                 <div style="color:#94a3b8; font-size:16px; margin-top:8px; text-align:center;">${data.reportType} &bull; ${data.reportId}</div>
             </td></tr>
             <tr><td style="padding:20px 40px 50px;">
+                <div style="color:#cbd5e1; font-size:15px; margin-bottom:25px; text-align:center;">${introSentence}</div>
                 <div style="background:#0f172a; padding:25px; border-left:3px solid #D4AF37; margin-bottom:30px;">
                     <div style="color:#ffffff; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
                     <div style="color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
@@ -522,6 +526,7 @@ function getEmailHTML() {
             </td></tr>
             <tr><td style="padding:0 30px;"><div style="height:1px; background:#f1f5f9; width:100%;"></div></td></tr>
             <tr><td align="center" style="padding:40px 30px;">
+                <div style="color:#475569; font-size:15px; margin-bottom:25px; line-height:24px;">${introSentence}</div>
                 <div style="color:#334155; font-size:16px; line-height:26px; max-width:450px;">${data.actionText}</div>
                 <div style="margin:35px 0;">
                     <a href="${data.driveLink}" style="display:block; margin:0 auto 15px; max-width:220px; padding:15px 0; background:#0f172a; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&darr; DOWNLOAD FILE</a>
@@ -545,6 +550,7 @@ function getEmailHTML() {
                 </tr></table>
             </td></tr>
             <tr><td style="padding:40px 30px;">
+                <div style="color:#475569; font-size:15px; margin-bottom:25px;">${introSentence}</div>
                 <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:30px;">
                     <div style="color:#64748b; font-size:12px; text-transform:uppercase; font-weight:bold;">Project Details</div>
                     <div style="color:#0f172a; font-size:20px; font-weight:bold; margin:8px 0 4px;">${data.movie}</div>
@@ -570,7 +576,8 @@ function getEmailHTML() {
                     <td align="right"><div style="color:#64748b; font-size:12px;">${data.reportId}</div></td>
                 </tr></table>
                 <div style="margin-top:30px; color:#0f172a; font-size:22px; font-weight:bold;">${data.movie}</div>
-                <div style="color:#475569; font-size:16px; margin-top:5px;">${data.reportType} Review</div>
+                <div style="color:#475569; font-size:16px; margin-top:5px; margin-bottom: 25px;">${data.reportType} Review</div>
+                <div style="color:#475569; font-size:15px; margin-bottom:25px;">${introSentence}</div>
                 <div style="margin-top:25px; padding:20px; background:#ecfdf5; border-radius:8px;">
                     <div style="color:#065f46; font-size:15px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
                     <div style="color:#047857; font-size:14px;">${data.actionText}</div>
@@ -592,6 +599,7 @@ function getEmailHTML() {
                 <div style="color:#ffffff; font-size:32px; text-transform:uppercase; margin-top:10px; font-weight:bold;">&#128253; ${data.movie}</div>
                 <div style="color:#94a3b8; font-size:14px; text-transform:uppercase;">${data.reportType} // ${data.reportId}</div>
                 <div style="margin-top:30px; height:1px; background:#334155;"></div>
+                <div style="color:#cbd5e1; font-size:15px; margin-top:25px; margin-bottom:25px;">${introSentence}</div>
                 <div style="margin-top:30px; color:#ffffff; font-size:18px; text-transform:uppercase; font-weight:bold;">${data.actionTitle}</div>
                 <div style="margin-top:10px; color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
                 <div style="margin-top:30px;">
@@ -611,6 +619,7 @@ function getEmailHTML() {
                 <div style="color:#111111; font-size:28px; margin-top:20px; font-style:italic;">&#10023; ${data.movie}</div>
                 <div style="color:#888888; font-size:14px; margin-top:10px;">${data.reportType}</div>
                 <div style="margin:30px auto; border-top:1px solid #eeeeee; width:50px;"></div>
+                <div style="color:#555555; font-size:15px; margin-bottom:20px; font-family:Arial, sans-serif;">${introSentence}</div>
                 <div style="color:#444444; font-size:15px; line-height:26px; text-align:center;">${data.actionText}</div>
                 <div style="margin-top:35px;">
                     <a href="${data.driveLink}" style="display:inline-block; color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111; margin:0 10px 10px;">&darr; Download</a>
@@ -631,7 +640,8 @@ function getEmailHTML() {
             <tr><td style="padding:30px;">
                 <div style="color:#000; font-size:24px; font-weight:bold; text-transform:uppercase; background:#ffeb3b; display:inline-block; padding:5px 10px;">${data.movie}</div>
                 <div style="color:#000; font-size:16px; margin-top:15px; font-weight:bold;">TYPE: ${data.reportType} // ID: ${data.reportId}</div>
-                <div style="margin-top:30px; border:2px dashed #000; padding:15px;">
+                <div style="color:#000; font-size:14px; margin-top:25px; font-weight:bold;">> PLEASE FIND THE ${data.fullText.toUpperCase()} ${data.reportType.toUpperCase()} FOR THE TITLE BELOW.</div>
+                <div style="margin-top:25px; border:2px dashed #000; padding:15px;">
                     <div style="color:#000; font-size:14px; font-weight:bold; text-transform:uppercase; text-decoration:underline;">${data.actionTitle}</div>
                     <div style="color:#000; font-size:14px; margin-top:10px;">> ${data.actionText}</div>
                 </div>
@@ -651,7 +661,8 @@ function getEmailHTML() {
                 <div style="color:#00f0ff; font-size:12px; letter-spacing:2px; text-transform:uppercase;">SYSTEM // ${data.company}</div>
                 <div style="color:#ffffff; font-size:28px; font-weight:bold; margin-top:10px;">&#128187; ${data.movie}</div>
                 <div style="color:#6b7280; font-size:14px; margin-top:5px;">[ ${data.reportType} - ${data.reportId} ]</div>
-                <div style="margin-top:30px; background:#0a0f1c; border-left:2px solid #00f0ff; padding:20px;">
+                <div style="color:#9ca3af; font-size:15px; margin-top:25px; margin-bottom:25px;">> ${introSentence}</div>
+                <div style="margin-top:20px; background:#0a0f1c; border-left:2px solid #00f0ff; padding:20px;">
                     <div style="color:#e5e7eb; font-size:14px; line-height:22px;">> ${data.actionText}</div>
                 </div>
                 <div style="margin-top:30px;">
@@ -672,6 +683,7 @@ function getEmailHTML() {
                 <div style="color:#c026d3; font-size:14px; margin-top:5px;">${data.reportType}</div>
             </td></tr>
             <tr><td style="padding:10px 40px 40px; text-align:center;">
+                <div style="color:#701a75; font-size:15px; margin-bottom:20px;">${introSentence}</div>
                 <div style="color:#701a75; font-size:15px; line-height:24px; background:#fdf4ff; padding:20px; border-radius:15px; text-align:left;">${data.actionText}</div>
                 <div style="margin-top:25px;">
                     <a href="${data.driveLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#d946ef; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#128140; Download File</a>
@@ -690,14 +702,11 @@ function getPlainText() {
     return `Hi Team,\n\nReport ready for review\n\nPlease find the ${getValue("projectFull")} ${getValue("reportType")} for the title below.\n\nDOWNLOAD:\n${getValue("driveLink")}\n\n${getValue("actionTitle")}\n${getValue("actionText")}\n\nREVIEW REPORT:\n${getValue("sheetLink")}`;
 }
 
-// Write strictly to IFRAME to prevent CSS/HTML duplication and structural bleed
+// Writes perfectly safely to the iframe sandbox
 function updatePreview() {
     const html = getEmailHTML();
     const iframe = document.getElementById("emailPreviewFrame");
-    const doc = iframe.contentWindow.document;
-    doc.open();
-    doc.write(html);
-    doc.close();
+    iframe.srcdoc = html;
 }
 
 async function copyForEmail() {
