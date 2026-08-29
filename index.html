@@ -4,1765 +4,2226 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Amagi Email Template Maker</title>
+<title>Amagi S&P Report Email Template Maker</title>
 
 <style>
 
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    :root {
-        --bg: #f4f6f8;
-        --card: #ffffff;
-        --border: #e2e6eb;
-        --text: #17202a;
-        --muted: #6f7884;
-        --dark: #20252b;
-        --dark-hover: #11161b;
-        --soft: #f8f9fa;
-        --accent: #1f2933;
-        --success: #147a4b;
-        --danger: #b42318;
-        --shadow:
-            0 12px 35px rgba(24, 34, 45, 0.08);
-    }
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
 
-    html {
-        scroll-behavior: smooth;
-    }
+body {
+    background: #eef1f5;
+    color: #172033;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family:
-            Inter,
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Arial,
-            sans-serif;
-    }
+.app {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 32px 22px 60px;
+}
 
-    button,
-    input,
-    textarea {
-        font: inherit;
-    }
+.page-header {
+    margin-bottom: 25px;
+}
 
-    button {
-        cursor: pointer;
-    }
+.page-header h1 {
+    margin: 0 0 7px;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 700;
+}
 
-    .app {
-        min-height: 100vh;
-    }
+.page-header p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: #6d788a;
+}
 
-    /* =========================================================
-       TOP BAR
-    ========================================================= */
+.workspace {
+    display: grid;
+    grid-template-columns: 390px minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
+}
 
-    .topbar {
-        height: 72px;
-        background: #ffffff;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 28px;
-        position: sticky;
-        top: 0;
-        z-index: 50;
-    }
+.panel {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(23, 32, 51, .07);
+}
 
-    .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+.settings-panel,
+.preview-panel {
+    padding: 25px;
+}
 
-    .brand-mark {
-        width: 34px;
-        height: 34px;
-        border-radius: 9px;
-        background: #20252b;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.panel-title {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}
 
-    .brand-mark svg {
-        width: 18px;
-        height: 18px;
-    }
+.section-title {
+    margin: 26px 0 15px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #edf0f4;
 
-    .brand-title {
-        font-size: 15px;
-        font-weight: 750;
-        letter-spacing: -0.2px;
-    }
+    color: #929baa;
 
-    .brand-subtitle {
-        margin-top: 2px;
-        font-size: 11px;
-        color: var(--muted);
-    }
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 700;
 
-    .top-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
 
-    /* =========================================================
-       BUTTONS
-    ========================================================= */
+.form-group {
+    margin-bottom: 15px;
+}
 
-    .btn {
-        border: 1px solid var(--border);
-        background: #fff;
-        color: var(--text);
-        min-height: 38px;
-        padding: 0 13px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        font-size: 12px;
-        font-weight: 650;
-        transition:
-            background .15s ease,
-            border-color .15s ease,
-            transform .15s ease;
-    }
+label {
+    display: block;
+    margin-bottom: 7px;
 
-    .btn:hover {
-        background: #f5f6f7;
-        border-color: #cfd5db;
-    }
+    color: #536074;
 
-    .btn:active {
-        transform: translateY(1px);
-    }
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 700;
 
-    .btn-dark {
-        background: var(--dark);
-        color: #fff;
-        border-color: var(--dark);
-    }
+    letter-spacing: .7px;
+    text-transform: uppercase;
+}
 
-    .btn-dark:hover {
-        background: var(--dark-hover);
-        border-color: var(--dark-hover);
-    }
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
 
-    .btn svg {
-        width: 15px;
-        height: 15px;
-        flex: 0 0 auto;
-    }
+    margin: 0;
+    padding: 11px 12px;
 
-    /* =========================================================
-       LAYOUT
-    ========================================================= */
+    border: 1px solid #d9dee7;
+    border-radius: 7px;
+
+    background: #fff;
+
+    color: #172033;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"] {
+    height: 43px;
+}
+
+textarea {
+    min-height: 82px;
+    resize: vertical;
+    line-height: 19px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a5adba;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #172033;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 32, 51, .06);
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 4px 0 14px;
+
+    color: #697588;
+
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.checkbox-row input {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+}
+
+.button {
+    width: 100%;
+    min-height: 43px;
+
+    margin-top: 8px;
+    padding: 0 15px;
+
+    border: 0;
+    border-radius: 7px;
+
+    background: #172033;
+    color: #fff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+    transition:
+        background .15s ease,
+        transform .15s ease;
+}
+
+.button:hover {
+    background: #293751;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button.gold {
+    background: #e5b94d;
+    color: #172033;
+}
+
+.button.gold:hover {
+    background: #d9ad3e;
+}
+
+.button.secondary {
+    background: #e9edf3;
+    color: #172033;
+}
+
+.button.secondary:hover {
+    background: #dce2ea;
+}
+
+.saved-message {
+    display: none;
+
+    margin-top: 10px;
+    padding: 10px 12px;
+
+    border: 1px solid #cce5d2;
+    border-radius: 7px;
+
+    background: #edf7f0;
+    color: #3b6d48;
+
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.preview-label {
+    margin-bottom: 12px;
+
+    color: #929baa;
+
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.preview-wrapper {
+    min-height: 720px;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    background: #eef1f5;
+}
+
+.email-card {
+    width: 100%;
+    max-width: 660px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    box-shadow:
+        0 8px 30px rgba(23, 32, 51, .07);
+}
+
+.email-header {
+    padding: 30px 38px;
+    background: #172033;
+}
+
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.header-brand {
+    color: #aab4c5;
+
+    font-size: 11px;
+    line-height: 16px;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.header-title {
+    margin-top: 4px;
+
+    color: #fff;
+
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+}
+
+.header-icon {
+    display: block;
+
+    width: 42px;
+    height: 42px;
+}
+
+.gold-line {
+    width: 100%;
+    height: 4px;
+
+    background: #e5b94d;
+}
+
+.email-content {
+    padding: 40px 42px;
+}
+
+.greeting {
+    margin-bottom: 9px;
+
+    color: #697588;
+
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.main-title {
+    margin-bottom: 13px;
+
+    color: #172033;
+
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 700;
+}
+
+.description {
+    margin-bottom: 30px;
+
+    color: #697588;
+
+    font-size: 14px;
+    line-height: 23px;
+}
+
+.description strong {
+    color: #263247;
+}
+
+.file-card {
+    display: block;
+
+    padding: 22px;
+
+    border: 1px solid #e3e7ed;
+    border-radius: 12px;
+
+    background: #f8f9fb;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+.file-card:hover {
+    background: #f0f2f5;
+
+    border-color: #cdd4de;
+
+    box-shadow:
+        0 7px 20px rgba(23, 32, 51, .08);
+
+    transform: translateY(-2px);
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-icon-cell {
+    width: 54px;
+    vertical-align: middle;
+}
+
+.file-icon {
+    display: block;
+
+    width: 44px;
+    height: 44px;
+}
+
+.file-details {
+    vertical-align: middle;
+}
+
+.file-label {
+    color: #929baa;
+
+    font-size: 10px;
+    line-height: 15px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.movie-name {
+    margin-top: 3px;
+
+    color: #172033;
+
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.report-id {
+    margin-top: 3px;
+
+    color: #788396;
+
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.download-cell {
+    width: 125px;
+
+    text-align: right;
+    vertical-align: middle;
+}
+
+.download-button {
+    display: inline-block;
+
+    padding: 10px 13px;
+
+    border-radius: 6px;
+
+    background: #172033;
+    color: #fff;
+
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.download-icon {
+    vertical-align: -2px;
+    margin-right: 4px;
+}
+
+.action-box {
+    margin-top: 28px;
+
+    padding: 4px 0 4px 17px;
+
+    border-left: 4px solid #e5b94d;
+}
+
+.action-title {
+    color: #172033;
+
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.action-text {
+    margin-top: 3px;
+
+    color: #697588;
+
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.review-button {
+    display: inline-block;
+
+    margin-top: 25px;
+    padding: 13px 21px;
+
+    border-radius: 7px;
+
+    background: #172033;
+    color: #fff;
+
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.review-icon {
+    vertical-align: -2px;
+    margin-right: 6px;
+}
+
+.signature {
+    margin-top: 32px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #edf0f3;
+}
+
+.signature-name {
+    margin-bottom: 2px;
+
+    color: #172033;
+
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.signature-role {
+    margin-bottom: 10px;
+
+    color: #536074;
+
+    font-size: 13px;
+    line-height: 20px;
+}
+
+
+/*
+    LOGO SIZE
+
+    Changed from 130px to 82px.
+    This makes it visually closer to the
+    signature text instead of looking like
+    a large standalone logo.
+*/
+
+.signature-logo {
+    display: block;
+
+    width: 82px;
+    max-width: 82px;
+    height: auto;
+
+    margin-bottom: 10px;
+
+    border: 0;
+    outline: none;
+}
+
+.signature-contact {
+    color: #536074;
+
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.signature-contact strong {
+    color: #172033;
+}
+
+.signature-contact a {
+    color: #536074;
+    text-decoration: none;
+}
+
+.signature-contact .website {
+    color: #1747c7;
+}
+
+.email-footer {
+    padding: 19px 42px;
+
+    border-top: 1px solid #e8ebef;
+
+    background: #f8f9fb;
+}
+
+.footer-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.footer-left,
+.footer-right {
+    color: #929baa;
+
+    font-size: 10px;
+    line-height: 16px;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+@media (max-width: 950px) {
 
     .workspace {
-        max-width: 1480px;
-        margin: 0 auto;
-        padding: 24px;
-        display: grid;
-        grid-template-columns: 420px minmax(0, 1fr);
-        gap: 24px;
+        grid-template-columns: 1fr;
     }
 
-    .panel {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
+}
+
+@media (max-width: 600px) {
+
+    .app {
+        padding: 20px 10px 40px;
     }
 
-    .editor {
-        padding: 20px;
-        align-self: start;
-    }
-
+    .settings-panel,
     .preview-panel {
-        overflow: hidden;
-        min-width: 0;
+        padding: 18px;
     }
 
-    .panel-heading {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 20px;
+    .preview-wrapper {
+        padding: 10px;
     }
 
-    .panel-heading h1,
-    .panel-heading h2 {
-        margin: 0;
-        font-size: 17px;
-        letter-spacing: -0.3px;
+    .email-header {
+        padding: 25px 22px;
     }
 
-    .panel-heading p {
-        margin: 5px 0 0;
-        font-size: 11px;
-        line-height: 1.5;
-        color: var(--muted);
+    .email-content {
+        padding: 28px 22px;
     }
 
-    .section {
-        border-top: 1px solid var(--border);
-        padding-top: 18px;
-        margin-top: 18px;
+    .email-footer {
+        padding: 16px 22px;
     }
 
-    .section:first-of-type {
-        border-top: 0;
-        padding-top: 0;
-        margin-top: 0;
+    .download-cell {
+        width: 100px;
     }
 
-    .section-title {
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #707985;
-        margin-bottom: 12px;
-    }
-
-    /* =========================================================
-       FORM
-    ========================================================= */
-
-    .field {
-        margin-bottom: 13px;
-    }
-
-    .field:last-child {
-        margin-bottom: 0;
-    }
-
-    .field label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 11px;
-        font-weight: 700;
-        color: #4d5661;
-    }
-
-    .input,
-    .textarea {
-        width: 100%;
-        border: 1px solid #d9dee4;
-        background: #fff;
-        color: var(--text);
-        border-radius: 8px;
-        outline: none;
-        padding: 10px 11px;
-        font-size: 12px;
-        transition:
-            border-color .15s ease,
-            box-shadow .15s ease;
-    }
-
-    .input {
-        height: 40px;
-    }
-
-    .textarea {
-        min-height: 78px;
-        resize: vertical;
-        line-height: 1.5;
-    }
-
-    .input:focus,
-    .textarea:focus {
-        border-color: #7e8791;
-        box-shadow: 0 0 0 3px rgba(32, 37, 43, .07);
-    }
-
-    .field-help {
-        margin-top: 5px;
-        color: #8a929c;
-        font-size: 10px;
-        line-height: 1.45;
-    }
-
-    .two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .signature-preview {
-        margin-top: 12px;
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        background: #fafbfc;
-        padding: 13px;
-    }
-
-    .signature-preview-label {
+    .download-button {
+        padding: 8px;
         font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #9299a2;
-        margin-bottom: 9px;
-        font-weight: 750;
     }
 
-    .signature-mini {
-        font-size: 11px;
-        line-height: 1.55;
-        color: #20252b;
+    .movie-name {
+        font-size: 14px;
     }
 
-    .signature-mini .name {
-        font-weight: 700;
+    .main-title {
+        font-size: 22px;
+        line-height: 30px;
     }
 
-    .signature-mini .role {
-        color: #6d7580;
-    }
-
-    .signature-mini img {
-        display: block;
-        width: 70px;
-        max-width: 70px;
-        height: auto;
-        margin: 8px 0;
-    }
-
-    .signature-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-top: 10px;
-    }
-
-    /* =========================================================
-       PREVIEW HEADER
-    ========================================================= */
-
-    .preview-header {
-        min-height: 67px;
-        padding: 14px 18px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 15px;
-        background: #fff;
-    }
-
-    .preview-header-title {
-        font-size: 12px;
-        font-weight: 750;
-    }
-
-    .preview-header-subtitle {
-        margin-top: 3px;
-        font-size: 10px;
-        color: var(--muted);
-    }
-
-    .preview-actions {
-        display: flex;
-        gap: 7px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
-
-    /* =========================================================
-       EMAIL CANVAS
-    ========================================================= */
-
-    .email-stage {
-        padding: 30px;
-        background: #eef1f4;
-        min-height: 700px;
-    }
-
-    .email-shell {
-        max-width: 760px;
-        margin: 0 auto;
-        background: #ffffff;
-        box-shadow:
-            0 18px 55px rgba(18, 27, 38, .10);
-        border-radius: 2px;
-        overflow: hidden;
-    }
-
-    /*
-       This inner area is what gets copied to email.
-    */
-
-    #emailPreview {
-        background: #ffffff;
-    }
-
-    /* =========================================================
-       TOAST
-    ========================================================= */
-
-    .toast {
-        position: fixed;
-        right: 22px;
-        bottom: 22px;
-        z-index: 100;
-        background: #20252b;
-        color: #fff;
-        border-radius: 8px;
-        padding: 11px 14px;
-        font-size: 11px;
-        font-weight: 650;
-        box-shadow: 0 10px 35px rgba(0,0,0,.18);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(10px);
-        transition: .2s ease;
-    }
-
-    .toast.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .toast.success {
-        background: #147a4b;
-    }
-
-    .toast.error {
-        background: #b42318;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media (max-width: 1050px) {
-
-        .workspace {
-            grid-template-columns: 1fr;
-        }
-
-        .editor {
-            max-width: none;
-        }
-
-    }
-
-    @media (max-width: 680px) {
-
-        .topbar {
-            height: auto;
-            min-height: 64px;
-            padding: 12px 15px;
-            gap: 12px;
-        }
-
-        .top-actions .btn span {
-            display: none;
-        }
-
-        .workspace {
-            padding: 12px;
-        }
-
-        .email-stage {
-            padding: 10px;
-        }
-
-        .two-col {
-            grid-template-columns: 1fr;
-        }
-
-        .preview-header {
-            align-items: flex-start;
-            flex-direction: column;
-        }
-
-        .preview-actions {
-            justify-content: flex-start;
-        }
-
-    }
+}
 
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-    <!-- =====================================================
-         TOP BAR
-    ====================================================== -->
 
-    <header class="topbar">
+    <div class="page-header">
 
-        <div class="brand">
+        <h1>
+            Amagi S&amp;P Report Template Maker
+        </h1>
 
-            <div class="brand-mark">
+        <p>
+            Create a professional report email for any movie, title or project.
+        </p>
 
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                >
-                    <path d="M4 5.5h16v13H4z"/>
-                    <path d="m4 7 8 6 8-6"/>
-                </svg>
-
-            </div>
-
-            <div>
-
-                <div class="brand-title">
-                    Email Template Maker
-                </div>
-
-                <div class="brand-subtitle">
-                    Project file review communication
-                </div>
-
-            </div>
-
-        </div>
+    </div>
 
 
-        <div class="top-actions">
-
-            <button
-                type="button"
-                class="btn"
-                onclick="resetTemplate()"
-            >
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path d="M3 12a9 9 0 1 0 3-6.7"/>
-                    <path d="M3 4v6h6"/>
-                </svg>
-
-                <span>Reset</span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="btn btn-dark"
-                onclick="copyEmail()"
-            >
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <rect x="8" y="8" width="11" height="11" rx="2"/>
-                    <path d="M5 16H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/>
-                </svg>
-
-                <span>Copy Email</span>
-
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- =====================================================
-         WORKSPACE
-    ====================================================== -->
-
-    <main class="workspace">
+    <div class="workspace">
 
 
         <!-- =================================================
-             EDITOR
+             SETTINGS
         ================================================== -->
 
-        <aside class="panel editor">
+        <div class="panel settings-panel">
 
-            <div class="panel-heading">
+            <div class="panel-title">
+                Template Details
+            </div>
 
-                <div>
 
-                    <h1>
-                        Template Details
-                    </h1>
+            <div class="section-title">
+                Report Information
+            </div>
 
-                    <p>
-                        Enter the project information and signature.
-                    </p>
 
-                </div>
+            <div class="form-group">
+
+                <label for="company">
+                    Company / Brand
+                </label>
+
+                <input
+                    type="text"
+                    id="company"
+                    value="AMAGI"
+                >
 
             </div>
 
 
-            <!-- PROJECT -->
-
-            <section class="section">
-
-                <div class="section-title">
-                    Project
-                </div>
-
-
-                <div class="field">
-
-                    <label for="movieTitle">
-                        Movie / Project Name
-                    </label>
-
-                    <input
-                        id="movieTitle"
-                        class="input"
-                        type="text"
-                        value="Conan el Bárbaro"
-                        placeholder="Example: Conan el Bárbaro"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="reportId">
-                        Report ID
-                    </label>
-
-                    <input
-                        id="reportId"
-                        class="input"
-                        type="text"
-                        value="9382098CSP"
-                        placeholder="Example: 9382098CSP"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="projectLink">
-                        Project File — Google Drive Link
-                    </label>
-
-                    <input
-                        id="projectLink"
-                        class="input"
-                        type="url"
-                        value="https://drive.google.com/file/d/1th4ld9Qz_s3G9fdSxtZaoeDWsdA-8_yw/view?usp=sharing"
-                        placeholder="Paste Google Drive sharing link"
-                    >
-
-                    <div class="field-help">
-                        A Google Drive /file/d/.../view link is automatically
-                        converted to a direct download link for the DOWNLOAD button.
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="reviewLink">
-                        Review Report / Review Sheet Link
-                    </label>
-
-                    <input
-                        id="reviewLink"
-                        class="input"
-                        type="url"
-                        placeholder="Paste Google Sheet or review report link"
-                    >
-
-                    <div class="field-help">
-                        This remains an openable REVIEW REPORT link and is not
-                        converted to a download URL.
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ACTION -->
-
-            <section class="section">
-
-                <div class="section-title">
-                    Action Required
-                </div>
-
-
-                <div class="field">
-
-                    <label for="actionText">
-                        Message
-                    </label>
-
-                    <textarea
-                        id="actionText"
-                    >Please review the report and update the review sheet with your comments or required changes.</textarea>
-
-                    <div class="field-help">
-                        This text is editable and will appear in the email.
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- SIGNATURE -->
-
-            <section class="section">
-
-                <div class="section-title">
-                    Signature
-                </div>
-
-
-                <div class="field">
-
-                    <label for="signatureName">
-                        Name
-                    </label>
-
-                    <input
-                        id="signatureName"
-                        class="input"
-                        type="text"
-                        value=""
-                        placeholder="Name"
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="signatureRole">
-                        Role
-                    </label>
-
-                    <input
-                        id="signatureRole"
-                        class="input"
-                        type="text"
-                        value="Consultant, Creative"
-                        placeholder="Consultant, Creative"
-                    >
-
-                </div>
-
-
-                <div class="two-col">
-
-                    <div class="field">
-
-                        <label for="signatureMobile">
-                            Mobile
-                        </label>
-
-                        <input
-                            id="signatureMobile"
-                            class="input"
-                            type="text"
-                            value=""
-                            placeholder="+91 ..."
-                        >
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label for="signatureEmail">
-                            Email
-                        </label>
-
-                        <input
-                            id="signatureEmail"
-                            class="input"
-                            type="email"
-                            value=""
-                            placeholder="name@amagi.com"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="field">
-
-                    <label for="signatureWebsite">
-                        Website
-                    </label>
-
-                    <input
-                        id="signatureWebsite"
-                        class="input"
-                        type="text"
-                        value="www.amagi.com"
-                    >
-
-                </div>
-
-
-                <div class="signature-preview">
-
-                    <div class="signature-preview-label">
-                        Signature Preview
-                    </div>
-
-                    <div id="signatureMini"></div>
-
-                </div>
-
-
-                <div class="signature-actions">
-
-                    <button
-                        type="button"
-                        class="btn"
-                        onclick="downloadSignature()"
-                    >
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="M12 3v12"/>
-                            <path d="m7 10 5 5 5-5"/>
-                            <path d="M5 21h14"/>
-                        </svg>
-
-                        Save Signature
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn"
-                        onclick="importSignature()"
-                    >
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="M12 21V9"/>
-                            <path d="m7 14 5-5 5 5"/>
-                            <path d="M5 3h14"/>
-                        </svg>
-
-                        Load Signature
-
-                    </button>
-
-                </div>
+            <div class="form-group">
+
+                <label for="reportType">
+                    Report Type
+                </label>
 
                 <input
-                    id="signatureFile"
-                    type="file"
-                    accept=".json,application/json"
-                    hidden
-                    onchange="readSignatureFile(event)"
+                    type="text"
+                    id="reportType"
+                    value="S&P Report"
                 >
 
-            </section>
+            </div>
 
 
-            <!-- EMAIL -->
+            <div class="form-group">
 
-            <section class="section">
+                <label for="movie">
+                    Movie / Project Name
+                </label>
 
-                <div class="section-title">
+                <input
+                    type="text"
+                    id="movie"
+                    value="Conan el Bárbaro"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="reportId">
+                    Report ID
+                </label>
+
+                <input
+                    type="text"
+                    id="reportId"
+                    value="9382098CSP"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="driveLink">
+                    Project File / Drive Link
+                </label>
+
+                <input
+                    type="url"
+                    id="driveLink"
+                    placeholder="Paste Drive / Project File link"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="sheetLink">
+                    Review Sheet Link
+                </label>
+
+                <input
+                    type="url"
+                    id="sheetLink"
+                    placeholder="Paste Google Sheet link"
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTION TEXT
+            ================================================== -->
+
+            <div class="section-title">
+                Action Section
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="actionTitle">
+                    Action Heading
+                </label>
+
+                <input
+                    type="text"
+                    id="actionTitle"
+                    value="Action required"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="actionText">
+                    Action Description
+                </label>
+
+                <textarea
+                    id="actionText"
+                >Please review the report and update the review sheet with your comments or required changes.</textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 SIGNATURE
+            ================================================== -->
+
+            <div class="section-title">
+                Signature
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signatureName">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="signatureName"
+                    value="Name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signatureRole">
+                    Designation
+                </label>
+
+                <input
+                    type="text"
+                    id="signatureRole"
+                    value="Consultant, Creative"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signatureMobile">
+                    Mobile
+                </label>
+
+                <input
+                    type="tel"
+                    id="signatureMobile"
+                    placeholder="+91 XXXXX XXXXX"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signatureEmail">
                     Email
-                </div>
+                </label>
+
+                <input
+                    type="email"
+                    id="signatureEmail"
+                    placeholder="name@amagi.com"
+                >
+
+            </div>
 
 
-                <div class="field">
+            <div class="form-group">
 
-                    <label for="emailSubject">
-                        Subject
-                    </label>
+                <label for="signatureWebsite">
+                    Website
+                </label>
 
-                    <input
-                        id="emailSubject"
-                        class="input"
-                        type="text"
-                        value="S&P Report for Conan el Bárbaro — 9382098CSP"
-                    >
+                <input
+                    type="text"
+                    id="signatureWebsite"
+                    value="www.amagi.com"
+                >
 
-                </div>
+            </div>
 
-            </section>
 
-        </aside>
+            <div class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    id="saveSignature"
+                    checked
+                >
+
+                <span>
+                    Save signature details in this browser
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="button gold"
+                onclick="saveSignature()"
+            >
+                SAVE SIGNATURE
+            </button>
+
+
+            <div
+                id="savedMessage"
+                class="saved-message"
+            ></div>
+
+
+            <!-- =================================================
+                 GENERATE
+            ================================================== -->
+
+            <div class="section-title">
+                Generate
+            </div>
+
+
+            <button
+                type="button"
+                class="button"
+                onclick="updatePreview()"
+            >
+                GENERATE EMAIL
+            </button>
+
+
+            <!--
+                THIS is the important new button.
+
+                It copies the rendered email as rich HTML,
+                not the source code.
+
+                You can then paste directly into Gmail,
+                Outlook, Apple Mail, etc.
+            -->
+
+            <button
+                type="button"
+                class="button gold"
+                onclick="copyForEmail()"
+            >
+                COPY FOR EMAIL
+            </button>
+
+
+            <button
+                type="button"
+                class="button secondary"
+                onclick="copyHTMLSource()"
+            >
+                COPY HTML SOURCE
+            </button>
+
+
+            <button
+                type="button"
+                class="button secondary"
+                onclick="downloadHTML()"
+            >
+                DOWNLOAD HTML
+            </button>
+
+
+            <button
+                type="button"
+                class="button secondary"
+                onclick="clearProjectDetails()"
+            >
+                CLEAR PROJECT DETAILS
+            </button>
+
+        </div>
 
 
         <!-- =================================================
              PREVIEW
         ================================================== -->
 
-        <section class="panel preview-panel">
+        <div class="panel preview-panel">
 
-            <div class="preview-header">
+            <div class="preview-label">
+                Email Preview
+            </div>
 
-                <div>
 
-                    <div class="preview-header-title">
-                        Email Preview
+            <div class="preview-wrapper">
+
+
+                <div
+                    class="email-card"
+                    id="emailPreview"
+                >
+
+
+                    <!-- HEADER -->
+
+                    <div class="email-header">
+
+                        <table
+                            class="header-table"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
+                        >
+
+                            <tr>
+
+                                <td>
+
+                                    <div
+                                        class="header-brand"
+                                        id="previewCompany"
+                                    >
+                                        AMAGI
+                                    </div>
+
+                                    <div
+                                        class="header-title"
+                                        id="previewReportType"
+                                    >
+                                        S&amp;P Report
+                                    </div>
+
+                                </td>
+
+
+                                <td
+                                    width="54"
+                                    align="right"
+                                >
+
+                                    <svg
+                                        class="header-icon"
+                                        width="42"
+                                        height="42"
+                                        viewBox="0 0 46 46"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+
+                                        <rect
+                                            width="46"
+                                            height="46"
+                                            rx="10"
+                                            fill="#27344A"
+                                        />
+
+                                        <path
+                                            d="M15 13.5C15 12.67 15.67 12 16.5 12H28L33 17V32.5C33 33.33 32.33 34 31.5 34H16.5C15.67 34 15 33.33 15 32.5V13.5Z"
+                                            stroke="#E5B94D"
+                                            stroke-width="1.8"
+                                            fill="none"
+                                        />
+
+                                        <path
+                                            d="M27.5 12V17.5H33"
+                                            stroke="#E5B94D"
+                                            stroke-width="1.8"
+                                            fill="none"
+                                        />
+
+                                        <path
+                                            d="M19 22H29M19 26H29M19 30H25"
+                                            stroke="#FFFFFF"
+                                            stroke-width="1.6"
+                                            stroke-linecap="round"
+                                        />
+
+                                    </svg>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
                     </div>
 
-                    <div class="preview-header-subtitle">
-                        The preview below is the content that will be copied to your email client.
+
+                    <div class="gold-line"></div>
+
+
+                    <!-- CONTENT -->
+
+                    <div class="email-content">
+
+
+                        <div class="greeting">
+                            Hi Team,
+                        </div>
+
+
+                        <div class="main-title">
+                            Report ready for review
+                        </div>
+
+
+                        <div class="description">
+
+                            Please find the
+
+                            <strong
+                                id="previewReportDescription"
+                            >
+                                S&amp;P Report
+                            </strong>
+
+                            for the title below.
+
+                            Kindly download the project file and review
+                            the details using the review sheet.
+
+                        </div>
+
+
+                        <!-- FILE -->
+
+                        <a
+                            href="#"
+                            id="previewDownloadCard"
+                            class="file-card"
+                            target="_blank"
+                            rel="noopener"
+                        >
+
+                            <table
+                                class="file-table"
+                                cellpadding="0"
+                                cellspacing="0"
+                                border="0"
+                            >
+
+                                <tr>
+
+                                    <td class="file-icon-cell">
+
+                                        <svg
+                                            class="file-icon"
+                                            width="44"
+                                            height="44"
+                                            viewBox="0 0 44 44"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+
+                                            <rect
+                                                width="44"
+                                                height="44"
+                                                rx="9"
+                                                fill="#E9EDF3"
+                                            />
+
+                                            <path
+                                                d="M14 11.5C14 10.67 14.67 10 15.5 10H26L31 15V32.5C31 33.33 30.33 34 29.5 34H15.5C14.67 34 14 33.33 14 32.5V11.5Z"
+                                                stroke="#172033"
+                                                stroke-width="1.6"
+                                                fill="none"
+                                            />
+
+                                            <path
+                                                d="M25.5 10V15.5H31"
+                                                stroke="#172033"
+                                                stroke-width="1.6"
+                                                fill="none"
+                                            />
+
+                                            <path
+                                                d="M18 21H27M18 25H27M18 29H24"
+                                                stroke="#6B7688"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                            />
+
+                                        </svg>
+
+                                    </td>
+
+
+                                    <td class="file-details">
+
+                                        <div class="file-label">
+                                            PROJECT FILE
+                                        </div>
+
+
+                                        <div
+                                            class="movie-name"
+                                            id="previewMovie"
+                                        >
+                                            Conan el Bárbaro
+                                        </div>
+
+
+                                        <div class="report-id">
+
+                                            Report ID
+                                            &nbsp;•&nbsp;
+
+                                            <span id="previewReportId">
+                                                9382098CSP
+                                            </span>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td class="download-cell">
+
+                                        <span class="download-button">
+
+                                            <svg
+                                                class="download-icon"
+                                                width="12"
+                                                height="12"
+                                                viewBox="0 0 16 16"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+
+                                                <path
+                                                    d="M8 2V10"
+                                                    stroke="#E5B94D"
+                                                    stroke-width="1.6"
+                                                    stroke-linecap="round"
+                                                />
+
+                                                <path
+                                                    d="M4.5 7.5L8 11L11.5 7.5"
+                                                    fill="none"
+                                                    stroke="#E5B94D"
+                                                    stroke-width="1.6"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+
+                                                <path
+                                                    d="M3 13H13"
+                                                    stroke="#E5B94D"
+                                                    stroke-width="1.6"
+                                                    stroke-linecap="round"
+                                                />
+
+                                            </svg>
+
+                                            DOWNLOAD
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </a>
+
+
+                        <!-- ACTION -->
+
+                        <div class="action-box">
+
+                            <div
+                                class="action-title"
+                                id="previewActionTitle"
+                            >
+                                Action required
+                            </div>
+
+
+                            <div
+                                class="action-text"
+                                id="previewActionText"
+                            >
+                                Please review the report and update the review sheet with your comments or required changes.
+                            </div>
+
+                        </div>
+
+
+                        <!-- REVIEW -->
+
+                        <a
+                            href="#"
+                            id="previewReviewButton"
+                            class="review-button"
+                            target="_blank"
+                            rel="noopener"
+                        >
+
+                            <svg
+                                class="review-icon"
+                                width="14"
+                                height="14"
+                                viewBox="0 0 16 16"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M2.5 3.5H13.5V12.5H2.5V3.5Z"
+                                    stroke="#E5B94D"
+                                    stroke-width="1.4"
+                                    fill="none"
+                                />
+
+                                <path
+                                    d="M5 6H11M5 8H11M5 10H8.5"
+                                    stroke="#E5B94D"
+                                    stroke-width="1.3"
+                                    stroke-linecap="round"
+                                />
+
+                            </svg>
+
+                            REVIEW REPORT
+
+                        </a>
+
+
+                        <!-- SIGNATURE -->
+
+                        <div class="signature">
+
+                            <div
+                                class="signature-name"
+                                id="previewSignatureName"
+                            >
+                                Name
+                            </div>
+
+
+                            <div
+                                class="signature-role"
+                                id="previewSignatureRole"
+                            >
+                                Consultant, Creative
+                            </div>
+
+
+                            <img
+                                id="previewLogo"
+                                class="signature-logo"
+                                width="82"
+                                alt="Amagi"
+                            >
+
+
+                            <div class="signature-contact">
+
+
+                                <div>
+
+                                    <strong>
+                                        Mobile:
+                                    </strong>
+
+                                    <span id="previewMobile">
+                                        +91 XXXXX XXXXX
+                                    </span>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        Email:
+                                    </strong>
+
+                                    <a
+                                        id="previewEmail"
+                                        href="mailto:"
+                                    >
+                                        email@amagi.com
+                                    </a>
+
+                                </div>
+
+
+                                <div>
+
+                                    <a
+                                        id="previewWebsite"
+                                        class="website"
+                                        href="https://www.amagi.com"
+                                        target="_blank"
+                                    >
+                                        www.amagi.com
+                                    </a>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
                     </div>
 
-                </div>
 
+                    <!-- FOOTER -->
 
-                <div class="preview-actions">
+                    <div class="email-footer">
 
-                    <button
-                        type="button"
-                        class="btn"
-                        onclick="copyEmail()"
-                    >
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                        <table
+                            class="footer-table"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
                         >
-                            <rect x="8" y="8" width="11" height="11" rx="2"/>
-                            <path d="M5 16H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/>
-                        </svg>
 
-                        Copy HTML Email
+                            <tr>
 
-                    </button>
+                                <td class="footer-left">
 
+                                    <span id="previewFooterReport">
+                                        S&amp;P Report
+                                    </span>
 
-                    <button
-                        type="button"
-                        class="btn"
-                        onclick="downloadHTML()"
-                    >
+                                    &nbsp;•&nbsp;
 
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="M12 3v12"/>
-                            <path d="m7 10 5 5 5-5"/>
-                            <path d="M5 21h14"/>
-                        </svg>
+                                    <span id="previewFooterId">
+                                        9382098CSP
+                                    </span>
 
-                        HTML
-
-                    </button>
+                                </td>
 
 
-                    <button
-                        type="button"
-                        class="btn"
-                        onclick="downloadEML()"
-                    >
+                                <td class="footer-right">
+                                    Confidential
+                                </td>
 
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="M4 5h16v14H4z"/>
-                            <path d="m4 7 8 6 8-6"/>
-                        </svg>
+                            </tr>
 
-                        EML
+                        </table>
 
-                    </button>
+                    </div>
+
 
                 </div>
 
             </div>
 
+        </div>
 
-            <div class="email-stage">
-
-                <div class="email-shell">
-
-                    <div id="emailPreview"></div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
 </div>
 
 
-<div
-    id="toast"
-    class="toast"
-></div>
-
-
 <script>
 
-/* ============================================================
+/* =========================================================
    LOGO
-   ============================================================
+========================================================= */
 
-   Primary:
-   Google image URL supplied by user.
-
-   Fallback:
-   Base64 logo supplied by user.
-
-   The image is intentionally small in the email signature.
-============================================================ */
-
-const LOGO_URL =
+const AMAGI_LOGO_URL =
 "https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft#https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png";
 
 
-const LOGO_BASE64 =
-"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs2k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
+const AMAGI_LOGO_BASE64 =
+"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs0k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
 
 
-/* ============================================================
-   DEFAULT VALUES
-============================================================ */
+/* =========================================================
+   SAFE STORAGE
+========================================================= */
 
-const DEFAULTS = {
-
-    movieTitle:
-        "Conan el Bárbaro",
-
-    reportId:
-        "9382098CSP",
-
-    projectLink:
-        "https://drive.google.com/file/d/1th4ld9Qz_s3G9fdSxtZaoeDWsdA-8_yw/view?usp=sharing",
-
-    reviewLink:
-        "",
-
-    actionText:
-        "Please review the report and update the review sheet with your comments or required changes.",
-
-    signatureName:
-        "",
-
-    signatureRole:
-        "Consultant, Creative",
-
-    signatureMobile:
-        "",
-
-    signatureEmail:
-        "",
-
-    signatureWebsite:
-        "www.amagi.com",
-
-    emailSubject:
-        "S&P Report for Conan el Bárbaro — 9382098CSP"
-
-};
+let memorySignature = null;
 
 
-/* ============================================================
-   ELEMENT HELPERS
-============================================================ */
+function getSafeStorage() {
 
-function $(id) {
-    return document.getElementById(id);
+    /*
+       Do not access window.localStorage here.
+
+       The template maker can be opened inside a sandboxed
+       document where even reading window.localStorage throws:
+
+       SecurityError: Failed to read the 'localStorage' property
+       from 'Window' because the document lacks allow-same-origin.
+
+       Returning null keeps the existing signature-saving logic
+       working through memorySignature without triggering that
+       browser error.
+    */
+
+    return null;
 }
 
 
-function value(id) {
-    return $(id).value.trim();
+/* =========================================================
+   VALUE
+========================================================= */
+
+function getValue(
+    id,
+    fallback = ""
+) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return fallback;
+    }
+
+    const value =
+        element.value.trim();
+
+    return value || fallback;
 }
 
 
-function escapeHTML(str) {
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
 
-    return String(str || "")
+function escapeHTML(value) {
+
+    return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
 }
 
 
-/* ============================================================
-   URL SAFETY
-============================================================ */
+/* =========================================================
+   ATTRIBUTE ESCAPE
+========================================================= */
 
-function safeURL(input) {
+function escapeAttribute(value) {
 
-    if (!input) {
-        return "#";
-    }
-
-    let url =
-        String(input).trim();
-
-
-    /*
-       Only allow normal web links.
-    */
-
-    if (
-        url.startsWith("javascript:") ||
-        url.startsWith("data:") ||
-        url.startsWith("vbscript:")
-    ) {
-        return "#";
-    }
-
-
-    /*
-       Add HTTPS if the user entered:
-       drive.google.com/...
-       docs.google.com/...
-       etc.
-    */
-
-    if (
-        !url.startsWith("http://") &&
-        !url.startsWith("https://") &&
-        !url.startsWith("mailto:")
-    ) {
-        url = "https://" + url;
-    }
-
-
-    return url;
-
+    return escapeHTML(value);
 }
 
 
-/* ============================================================
-   GOOGLE DRIVE PROJECT DOWNLOAD CONVERTER
-============================================================ */
+/* =========================================================
+   URL
+========================================================= */
 
-function getProjectDownloadURL(input) {
+function safeURL(value) {
 
-    if (!input) {
+    if (!value) {
         return "#";
     }
 
-    let original =
-        String(input).trim();
+    if (
+        value.startsWith("https://") ||
+        value.startsWith("http://") ||
+        value.startsWith("mailto:")
+    ) {
+        return value;
+    }
 
+    return "https://" + value;
+}
+
+
+/* =========================================================
+   GOOGLE DRIVE PROJECT DOWNLOAD LINK
+========================================================= */
+
+function getProjectDownloadLink(value) {
+
+    if (!value) {
+        return "#";
+    }
+
+    const original =
+        String(value).trim();
 
     /*
-       Format:
+       Standard Google Drive sharing URL:
 
-       drive.google.com/file/d/FILE_ID/view
+       https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+
+       becomes:
+
+       https://drive.google.com/uc?export=download&id=FILE_ID
     */
 
-    let match =
+    const fileMatch =
         original.match(
             /drive\.google\.com\/file\/d\/([^/?#]+)/i
         );
 
+    if (fileMatch && fileMatch[1]) {
 
-    if (match && match[1]) {
-
-        return (
+        return
             "https://drive.google.com/uc?export=download&id=" +
-            encodeURIComponent(match[1])
-        );
-
+            encodeURIComponent(fileMatch[1]);
     }
 
-
     /*
-       Format:
+       Also support:
 
-       drive.google.com/open?id=FILE_ID
+       https://drive.google.com/open?id=FILE_ID
+       https://drive.google.com/uc?id=FILE_ID
     */
 
     try {
 
-        let parsed =
+        const parsed =
             new URL(
                 original.startsWith("http")
                     ? original
                     : "https://" + original
             );
 
-
         if (
-            parsed.hostname === "drive.google.com" &&
-            parsed.searchParams.get("id")
+            parsed.hostname === "drive.google.com"
         ) {
 
-            return (
-                "https://drive.google.com/uc?export=download&id=" +
-                encodeURIComponent(
-                    parsed.searchParams.get("id")
-                )
-            );
+            const id =
+                parsed.searchParams.get("id");
 
-        }
+            if (id) {
 
-
-        /*
-           Format:
-
-           drive.google.com/uc?id=FILE_ID
-        */
-
-        if (
-            parsed.hostname === "drive.google.com" &&
-            parsed.pathname === "/uc" &&
-            parsed.searchParams.get("id")
-        ) {
-
-            return (
-                "https://drive.google.com/uc?export=download&id=" +
-                encodeURIComponent(
-                    parsed.searchParams.get("id")
-                )
-            );
-
+                return
+                    "https://drive.google.com/uc?export=download&id=" +
+                    encodeURIComponent(id);
+            }
         }
 
     } catch (error) {
-
-        /*
-           If the URL cannot be parsed,
-           return the original URL safely.
-        */
-
+        /* Fall through and preserve the original link. */
     }
 
-
-    /*
-       If it isn't a recognized Google Drive
-       sharing link, leave it alone.
-    */
-
     return safeURL(original);
-
 }
 
 
-/* ============================================================
-   GET CURRENT DATA
-============================================================ */
+/* =========================================================
+   LOAD LOGO
+========================================================= */
 
-function getData() {
+function loadLogo() {
 
-    const title =
-        value("movieTitle") ||
-        "Project";
+    const logo =
+        document.getElementById(
+            "previewLogo"
+        );
+
+    if (!logo) {
+        return;
+    }
+
+    logo.src =
+        AMAGI_LOGO_URL;
+
+    logo.onerror =
+        function() {
+
+            logo.onerror = null;
+
+            logo.src =
+                AMAGI_LOGO_BASE64;
+        };
+}
+
+
+/* =========================================================
+   UPDATE PREVIEW
+========================================================= */
+
+function updatePreview() {
+
+    const company =
+        getValue(
+            "company",
+            "AMAGI"
+        );
+
+    const reportType =
+        getValue(
+            "reportType",
+            "S&P Report"
+        );
+
+    const movie =
+        getValue(
+            "movie",
+            "Movie / Project Name"
+        );
 
     const reportId =
-        value("reportId") ||
-        "";
+        getValue(
+            "reportId",
+            "REPORT-ID"
+        );
 
-    const projectLink =
-        value("projectLink");
+    const driveLink =
+        getValue(
+            "driveLink",
+            "#"
+        );
 
-    const reviewLink =
-        value("reviewLink");
+    const sheetLink =
+        getValue(
+            "sheetLink",
+            "#"
+        );
+
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
 
     const actionText =
-        value("actionText") ||
-        DEFAULTS.actionText;
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
 
-    const signatureName =
-        value("signatureName");
+    const name =
+        getValue(
+            "signatureName",
+            "Name"
+        );
 
-    const signatureRole =
-        value("signatureRole") ||
-        "Consultant, Creative";
+    const role =
+        getValue(
+            "signatureRole",
+            "Consultant, Creative"
+        );
 
-    const signatureMobile =
-        value("signatureMobile");
+    const mobile =
+        getValue(
+            "signatureMobile",
+            "+91 XXXXX XXXXX"
+        );
 
-    const signatureEmail =
-        value("signatureEmail");
+    const email =
+        getValue(
+            "signatureEmail",
+            "email@amagi.com"
+        );
 
-    const signatureWebsite =
-        value("signatureWebsite") ||
-        "www.amagi.com";
-
-    const emailSubject =
-        value("emailSubject") ||
-        `S&P Report for ${title} — ${reportId}`;
+    const website =
+        getValue(
+            "signatureWebsite",
+            "www.amagi.com"
+        );
 
 
-    return {
+    document.getElementById(
+        "previewCompany"
+    ).textContent =
+        company.toUpperCase();
 
-        title,
-        reportId,
 
-        projectLink,
-        projectDownload:
-            getProjectDownloadURL(projectLink),
+    document.getElementById(
+        "previewReportType"
+    ).textContent =
+        reportType;
 
-        reviewLink:
-            safeURL(reviewLink),
 
-        actionText,
+    document.getElementById(
+        "previewReportDescription"
+    ).textContent =
+        reportType;
 
-        signatureName,
-        signatureRole,
-        signatureMobile,
-        signatureEmail,
-        signatureWebsite,
 
-        emailSubject
+    document.getElementById(
+        "previewMovie"
+    ).textContent =
+        movie;
+
+
+    document.getElementById(
+        "previewReportId"
+    ).textContent =
+        reportId;
+
+
+    document.getElementById(
+        "previewDownloadCard"
+    ).href =
+        getProjectDownloadLink(driveLink);
+
+
+    document.getElementById(
+        "previewReviewButton"
+    ).href =
+        safeURL(sheetLink);
+
+
+    document.getElementById(
+        "previewActionTitle"
+    ).textContent =
+        actionTitle;
+
+
+    document.getElementById(
+        "previewActionText"
+    ).textContent =
+        actionText;
+
+
+    document.getElementById(
+        "previewSignatureName"
+    ).textContent =
+        name;
+
+
+    document.getElementById(
+        "previewSignatureRole"
+    ).textContent =
+        role;
+
+
+    document.getElementById(
+        "previewMobile"
+    ).textContent =
+        mobile;
+
+
+    const emailElement =
+        document.getElementById(
+            "previewEmail"
+        );
+
+    emailElement.textContent =
+        email;
+
+    emailElement.href =
+        "mailto:" + email;
+
+
+    const websiteElement =
+        document.getElementById(
+            "previewWebsite"
+        );
+
+    websiteElement.textContent =
+        website;
+
+    websiteElement.href =
+        safeURL(website);
+
+
+    document.getElementById(
+        "previewFooterReport"
+    ).textContent =
+        reportType;
+
+
+    document.getElementById(
+        "previewFooterId"
+    ).textContent =
+        reportId;
+
+
+    loadLogo();
+}
+
+
+/* =========================================================
+   SAVE SIGNATURE
+========================================================= */
+
+function saveSignature() {
+
+    const signature = {
+
+        name:
+            getValue(
+                "signatureName",
+                "Name"
+            ),
+
+        role:
+            getValue(
+                "signatureRole",
+                "Consultant, Creative"
+            ),
+
+        mobile:
+            getValue(
+                "signatureMobile",
+                ""
+            ),
+
+        email:
+            getValue(
+                "signatureEmail",
+                ""
+            ),
+
+        website:
+            getValue(
+                "signatureWebsite",
+                "www.amagi.com"
+            )
 
     };
 
-}
+
+    memorySignature =
+        signature;
 
 
-/* ============================================================
-   ICONS
-============================================================ */
-
-const ICON_DOWNLOAD = `
-<svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
->
-    <path d="M12 3v12"/>
-    <path d="m7 10 5 5 5-5"/>
-    <path d="M5 21h14"/>
-</svg>
-`;
+    const storage =
+        getSafeStorage();
 
 
-const ICON_EXTERNAL = `
-<svg
-    width="15"
-    height="15"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
->
-    <path d="M14 4h6v6"/>
-    <path d="M10 14 20 4"/>
-    <path d="M20 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5"/>
-</svg>
-`;
+    if (storage) {
 
+        try {
 
-/* ============================================================
-   SIGNATURE HTML
-============================================================ */
+            storage.setItem(
+                "amagiEmailSignature",
+                JSON.stringify(signature)
+            );
 
-function getSignatureHTML(data) {
+            showMessage(
+                "Signature saved successfully."
+            );
 
-    const name =
-        escapeHTML(data.signatureName);
+            return;
 
-    const role =
-        escapeHTML(data.signatureRole);
-
-    const mobile =
-        escapeHTML(data.signatureMobile);
-
-    const email =
-        escapeHTML(data.signatureEmail);
-
-    const website =
-        escapeHTML(data.signatureWebsite);
-
-
-    let mobileHTML = "";
-
-    if (mobile) {
-
-        mobileHTML = `
-            <div style="
-                margin-top:3px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:16px;
-                color:#606873;
-            ">
-                <span style="font-weight:600;color:#424952;">
-                    Mobile:
-                </span>
-                ${mobile}
-            </div>
-        `;
+        } catch (error) {}
 
     }
 
 
-    let emailHTML = "";
-
-    if (email) {
-
-        const mailto =
-            "mailto:" + data.signatureEmail;
-
-        emailHTML = `
-            <div style="
-                margin-top:3px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:16px;
-                color:#606873;
-            ">
-                <span style="font-weight:600;color:#424952;">
-                    Email:
-                </span>
-                <a
-                    href="${escapeHTML(mailto)}"
-                    style="
-                        color:#606873;
-                        text-decoration:none;
-                    "
-                >
-                    ${email}
-                </a>
-            </div>
-        `;
-
-    }
-
-
-    return `
-
-        <table
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-                border-collapse:collapse;
-                margin-top:27px;
-            "
-        >
-
-            <tr>
-
-                <td
-                    style="
-                        vertical-align:top;
-                        padding:0;
-                    "
-                >
-
-                    <div style="
-                        font-family:Arial,Helvetica,sans-serif;
-                        font-size:12px;
-                        line-height:17px;
-                        color:#1f252b;
-                        font-weight:700;
-                    ">
-                        ${name || "&nbsp;"}
-                    </div>
-
-
-                    <div style="
-                        font-family:Arial,Helvetica,sans-serif;
-                        font-size:11px;
-                        line-height:16px;
-                        color:#707883;
-                    ">
-                        ${role}
-                    </div>
-
-
-                    <!--
-                        SMALL AMAGI LOGO
-
-                        Primary remote image is used first.
-                        The base64 image is included as fallback
-                        using the onerror attribute.
-
-                        Width intentionally kept small so the logo
-                        is approximately text-sized.
-                    -->
-
-                    <img
-                        src="${LOGO_URL}"
-                        onerror="this.onerror=null;this.src='${LOGO_BASE64}'"
-                        width="58"
-                        alt="Amagi"
-                        style="
-                            display:block;
-                            width:58px;
-                            max-width:58px;
-                            height:auto;
-                            border:0;
-                            margin:7px 0 6px 0;
-                        "
-                    >
-
-
-                    ${mobileHTML}
-
-                    ${emailHTML}
-
-
-                    <div style="
-                        margin-top:3px;
-                        font-family:Arial,Helvetica,sans-serif;
-                        font-size:11px;
-                        line-height:16px;
-                    ">
-
-                        <a
-                            href="https://www.amagi.com"
-                            style="
-                                color:#606873;
-                                text-decoration:none;
-                            "
-                        >
-                            ${website}
-                        </a>
-
-                    </div>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-    `;
-
+    showMessage(
+        "Signature saved for this session."
+    );
 }
 
 
-/* ============================================================
-   EMAIL HTML
-============================================================ */
+/* =========================================================
+   LOAD SIGNATURE
+========================================================= */
+
+function loadSavedSignature() {
+
+    let signature =
+        null;
+
+
+    const storage =
+        getSafeStorage();
+
+
+    if (storage) {
+
+        try {
+
+            const saved =
+                storage.getItem(
+                    "amagiEmailSignature"
+                );
+
+            if (saved) {
+
+                signature =
+                    JSON.parse(saved);
+
+            }
+
+        } catch (error) {
+
+            signature =
+                null;
+        }
+    }
+
+
+    if (
+        !signature &&
+        memorySignature
+    ) {
+
+        signature =
+            memorySignature;
+    }
+
+
+    if (!signature) {
+        return;
+    }
+
+
+    if (
+        signature.name !== undefined
+    ) {
+
+        document.getElementById(
+            "signatureName"
+        ).value =
+            signature.name;
+    }
+
+
+    if (
+        signature.role !== undefined
+    ) {
+
+        document.getElementById(
+            "signatureRole"
+        ).value =
+            signature.role;
+    }
+
+
+    if (
+        signature.mobile !== undefined
+    ) {
+
+        document.getElementById(
+            "signatureMobile"
+        ).value =
+            signature.mobile;
+    }
+
+
+    if (
+        signature.email !== undefined
+    ) {
+
+        document.getElementById(
+            "signatureEmail"
+        ).value =
+            signature.email;
+    }
+
+
+    if (
+        signature.website !== undefined
+    ) {
+
+        document.getElementById(
+            "signatureWebsite"
+        ).value =
+            signature.website;
+    }
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(message) {
+
+    const element =
+        document.getElementById(
+            "savedMessage"
+        );
+
+    if (!element) {
+        return;
+    }
+
+    element.textContent =
+        message;
+
+    element.style.display =
+        "block";
+
+
+    window.setTimeout(
+        function() {
+
+            element.style.display =
+                "none";
+
+        },
+        3000
+    );
+}
+
+
+/* =========================================================
+   BUILD EMAIL HTML
+========================================================= */
 
 function getEmailHTML() {
 
-    const data =
-        getData();
+    const company =
+        getValue(
+            "company",
+            "AMAGI"
+        );
 
+    const reportType =
+        getValue(
+            "reportType",
+            "S&P Report"
+        );
 
-    const title =
-        escapeHTML(data.title);
+    const movie =
+        getValue(
+            "movie",
+            "Movie / Project Name"
+        );
 
     const reportId =
-        escapeHTML(data.reportId);
+        getValue(
+            "reportId",
+            "REPORT-ID"
+        );
+
+    const driveLink =
+        getValue(
+            "driveLink",
+            "#"
+        );
+
+    const sheetLink =
+        getValue(
+            "sheetLink",
+            "#"
+        );
+
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
 
     const actionText =
-        escapeHTML(data.actionText)
-        .replace(/\n/g, "<br>");
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
 
+    const name =
+        getValue(
+            "signatureName",
+            "Name"
+        );
 
-    const projectURL =
-        escapeHTML(
-            data.projectDownload
+    const role =
+        getValue(
+            "signatureRole",
+            "Consultant, Creative"
+        );
+
+    const mobile =
+        getValue(
+            "signatureMobile",
+            "+91 XXXXX XXXXX"
+        );
+
+    const email =
+        getValue(
+            "signatureEmail",
+            "email@amagi.com"
+        );
+
+    const website =
+        getValue(
+            "signatureWebsite",
+            "www.amagi.com"
         );
 
 
-    const reviewURL =
-        escapeHTML(
-            data.reviewLink
-        );
+    const finalDriveLink =
+        getProjectDownloadLink(driveLink);
+
+    const finalSheetLink =
+        safeURL(sheetLink);
+
+    const finalWebsite =
+        safeURL(website);
 
 
-    const reviewButton =
-        data.reviewLink &&
-        data.reviewLink !== "#"
-
-        ?
-
-        `
-        <a
-            href="${reviewURL}"
-            target="_blank"
-            style="
-                display:inline-block;
-                text-decoration:none;
-                color:#ffffff;
-                background:#20252b;
-                border:1px solid #20252b;
-                border-radius:6px;
-                padding:9px 14px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:14px;
-                font-weight:700;
-                letter-spacing:.2px;
-            "
-        >
-
-            ${ICON_EXTERNAL}
-
-            <span style="
-                vertical-align:middle;
-                margin-left:4px;
-            ">
-                REVIEW REPORT
-            </span>
-
-        </a>
-        `
-
-        :
-
-        `
-        <span
-            style="
-                display:inline-block;
-                color:#9299a2;
-                background:#f1f3f5;
-                border:1px solid #e0e4e8;
-                border-radius:6px;
-                padding:9px 14px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:14px;
-                font-weight:700;
-            "
-        >
-            REVIEW REPORT
-        </span>
-        `;
-
-
-    const projectButton =
-        data.projectDownload &&
-        data.projectDownload !== "#"
-
-        ?
-
-        `
-        <a
-            href="${projectURL}"
-            target="_blank"
-            download
-            style="
-                display:inline-block;
-                text-decoration:none;
-                color:#ffffff;
-                background:#20252b;
-                border:1px solid #20252b;
-                border-radius:6px;
-                padding:9px 14px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:14px;
-                font-weight:700;
-                letter-spacing:.2px;
-            "
-        >
-
-            ${ICON_DOWNLOAD}
-
-            <span style="
-                vertical-align:middle;
-                margin-left:4px;
-            ">
-                DOWNLOAD
-            </span>
-
-        </a>
-        `
-
-        :
-
-        `
-        <span
-            style="
-                display:inline-block;
-                color:#9299a2;
-                background:#f1f3f5;
-                border:1px solid #e0e4e8;
-                border-radius:6px;
-                padding:9px 14px;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size:11px;
-                line-height:14px;
-                font-weight:700;
-            "
-        >
-            DOWNLOAD
-        </span>
-        `;
-
-
-    return `
-
-<!DOCTYPE html>
-
-<html>
+    return `<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -1770,427 +2231,154 @@ function getEmailHTML() {
 
 <meta
     name="viewport"
-    content="width=device-width,initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-    ${title}
-</title>
+<title>${escapeHTML(reportType)}</title>
 
 </head>
 
 
 <body
-    style="
-        margin:0;
-        padding:0;
-        background:#ffffff;
-    "
+style="
+margin:0;
+padding:0;
+background:#eef1f5;
+font-family:Arial,Helvetica,sans-serif;
+color:#172033;
+"
 >
 
+
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        border-collapse:collapse;
-        background:#ffffff;
-    "
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+width:100%;
+background:#eef1f5;
+padding:45px 15px;
+"
 >
 
 <tr>
 
-<td
-    align="center"
-    style="
-        padding:0;
-    "
->
+<td align="center">
+
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        max-width:760px;
-        border-collapse:collapse;
-        background:#ffffff;
-    "
+width="660"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+width:100%;
+max-width:660px;
+background:#ffffff;
+border-radius:14px;
+overflow:hidden;
+"
 >
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
+
+<!-- HEADER -->
 
 <tr>
 
 <td
-    style="
-        padding:27px 32px 22px 32px;
-        border-bottom:1px solid #e8ebee;
-    "
+style="
+background:#172033;
+padding:30px 38px;
+"
 >
+
 
 <table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        border-collapse:collapse;
-    "
->
-
-<tr>
-
-<td
-    style="
-        vertical-align:middle;
-    "
->
-
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:10px;
-    line-height:14px;
-    color:#8b939d;
-    font-weight:700;
-    letter-spacing:1.6px;
-">
-    S&amp;P REPORT
-</div>
-
-<div style="
-    margin-top:4px;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:18px;
-    line-height:24px;
-    color:#20252b;
-    font-weight:700;
-">
-    ${title}
-</div>
-
-</td>
-
-
-<td
-    align="right"
-    style="
-        vertical-align:middle;
-    "
->
-
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:9px;
-    line-height:13px;
-    color:#9299a2;
-    font-weight:700;
-    letter-spacing:1.2px;
-">
-    PROJECT FILE
-</div>
-
-</td>
-
-</tr>
-
-</table>
-
-</td>
-
-</tr>
-
-
-<!-- =====================================================
-     BODY
-====================================================== -->
-
-<tr>
-
-<td
-    style="
-        padding:30px 32px 12px 32px;
-    "
->
-
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:14px;
-    line-height:21px;
-    color:#252b31;
-">
-    Hi Team,
-</div>
-
-
-<div style="
-    margin-top:18px;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:13px;
-    line-height:21px;
-    color:#4f5862;
-">
-    Please find the project file below for your review.
-</div>
-
-
-<!-- =====================================================
-     PROJECT FILE CARD
-====================================================== -->
-
-<table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        border-collapse:collapse;
-        margin-top:23px;
-        border:1px solid #e1e5e9;
-        border-radius:8px;
-    "
->
-
-<tr>
-
-<td
-    style="
-        padding:18px;
-    "
->
-
-<table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        border-collapse:collapse;
-    "
->
-
-<tr>
-
-<td
-    style="
-        vertical-align:middle;
-        width:45px;
-    "
->
-
-<div style="
-    width:34px;
-    height:34px;
-    line-height:34px;
-    text-align:center;
-    border-radius:7px;
-    background:#f0f2f4;
-    color:#343b43;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:15px;
-    font-weight:700;
-">
-    PF
-</div>
-
-</td>
-
-
-<td
-    style="
-        vertical-align:middle;
-        padding-left:10px;
-    "
->
-
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:10px;
-    line-height:14px;
-    color:#9299a2;
-    font-weight:700;
-    letter-spacing:1.5px;
-">
-    PROJECT FILE
-</div>
-
-
-<div style="
-    margin-top:4px;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:14px;
-    line-height:19px;
-    color:#20252b;
-    font-weight:700;
-">
-    ${title}
-</div>
-
-
-<div style="
-    margin-top:3px;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:10px;
-    line-height:15px;
-    color:#858e98;
-">
-    Report ID&nbsp;&nbsp;•&nbsp;&nbsp;${reportId}
-</div>
-
-</td>
-
-
-<td
-    align="right"
-    style="
-        vertical-align:middle;
-        padding-left:14px;
-    "
->
-
-${projectButton}
-
-</td>
-
-</tr>
-
-</table>
-
-</td>
-
-</tr>
-
-</table>
-
-
-<!-- =====================================================
-     ACTION REQUIRED
-====================================================== -->
-
-<table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        width:100%;
-        border-collapse:collapse;
-        margin-top:27px;
-    "
->
-
-<tr>
-
-<td
-    style="
-        border-left:3px solid #20252b;
-        padding:2px 0 2px 14px;
-    "
->
-
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:10px;
-    line-height:14px;
-    color:#777f89;
-    font-weight:800;
-    letter-spacing:1.3px;
-">
-    ACTION REQUIRED
-</div>
-
-
-<div style="
-    margin-top:6px;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:12px;
-    line-height:19px;
-    color:#454d56;
-">
-    ${actionText}
-</div>
-
-</td>
-
-</tr>
-
-</table>
-
-
-<!-- =====================================================
-     REVIEW BUTTON
-====================================================== -->
-
-<table
-    width="100%"
-    cellpadding="0"
-    cellspacing="0"
-    border="0"
-    style="
-        border-collapse:collapse;
-        margin-top:25px;
-    "
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
 >
 
 <tr>
 
 <td>
 
-${reviewButton}
-
-</td>
-
-</tr>
-
-</table>
-
-
-<!-- =====================================================
-     SIGNATURE
-====================================================== -->
-
-${getSignatureHTML(data)}
-
-</td>
-
-</tr>
-
-
-<!-- =====================================================
-     FOOTER
-====================================================== -->
-
-<tr>
-
-<td
-    style="
-        padding:20px 32px 25px 32px;
-        border-top:1px solid #edf0f2;
-    "
+<div
+style="
+color:#aab4c5;
+font-size:11px;
+line-height:16px;
+letter-spacing:2px;
+text-transform:uppercase;
+"
 >
+${escapeHTML(company)}
+</div>
 
-<div style="
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:9px;
-    line-height:14px;
-    color:#a0a7af;
-">
-    This email contains project review information intended for the
-    recipient.
+
+<div
+style="
+margin-top:4px;
+color:#ffffff;
+font-size:24px;
+line-height:32px;
+font-weight:700;
+"
+>
+${escapeHTML(reportType)}
 </div>
 
 </td>
 
-</tr>
 
-</table>
+<td
+width="54"
+align="right"
+>
+
+
+<svg
+width="42"
+height="42"
+viewBox="0 0 46 46"
+xmlns="http://www.w3.org/2000/svg"
+>
+
+<rect
+width="46"
+height="46"
+rx="10"
+fill="#27344A"
+/>
+
+
+<path
+d="M15 13.5C15 12.67 15.67 12 16.5 12H28L33 17V32.5C33 33.33 32.33 34 31.5 34H16.5C15.67 34 15 33.33 15 32.5V13.5Z"
+stroke="#E5B94D"
+stroke-width="1.8"
+fill="none"
+/>
+
+
+<path
+d="M27.5 12V17.5H33"
+stroke="#E5B94D"
+stroke-width="1.8"
+fill="none"
+/>
+
+
+<path
+d="M19 22H29M19 26H29M19 30H25"
+stroke="#FFFFFF"
+stroke-width="1.6"
+stroke-linecap="round"
+/>
+
+</svg>
+
 
 </td>
 
@@ -2198,182 +2386,777 @@ ${getSignatureHTML(data)}
 
 </table>
 
+
+</td>
+
+</tr>
+
+
+<!-- GOLD -->
+
+<tr>
+
+<td
+style="
+height:4px;
+background:#e5b94d;
+font-size:0;
+line-height:0;
+"
+>
+&nbsp;
+</td>
+
+</tr>
+
+
+<!-- CONTENT -->
+
+<tr>
+
+<td
+style="
+padding:40px 42px;
+"
+>
+
+
+<div
+style="
+margin-bottom:9px;
+color:#697588;
+font-size:14px;
+line-height:21px;
+"
+>
+Hi Team,
+</div>
+
+
+<div
+style="
+margin-bottom:13px;
+color:#172033;
+font-size:26px;
+line-height:34px;
+font-weight:700;
+"
+>
+Report ready for review
+</div>
+
+
+<div
+style="
+margin-bottom:30px;
+color:#697588;
+font-size:14px;
+line-height:23px;
+"
+>
+
+Please find the
+
+<strong style="color:#263247;">
+${escapeHTML(reportType)}
+</strong>
+
+for the title below.
+
+Kindly download the project file and review the details using the review sheet.
+
+</div>
+
+
+<!-- DOWNLOAD CARD -->
+
+<a
+href="${escapeAttribute(finalDriveLink)}"
+target="_blank"
+rel="noopener"
+style="
+display:block;
+padding:22px;
+border:1px solid #e3e7ed;
+border-radius:12px;
+background:#f8f9fb;
+color:inherit;
+text-decoration:none;
+"
+>
+
+
+<table
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+>
+
+<tr>
+
+
+<td
+width="54"
+valign="middle"
+>
+
+
+<svg
+width="44"
+height="44"
+viewBox="0 0 44 44"
+xmlns="http://www.w3.org/2000/svg"
+>
+
+<rect
+width="44"
+height="44"
+rx="9"
+fill="#E9EDF3"
+/>
+
+
+<path
+d="M14 11.5C14 10.67 14.67 10 15.5 10H26L31 15V32.5C31 33.33 30.33 34 29.5 34H15.5C14.67 34 14 33.33 14 32.5V11.5Z"
+stroke="#172033"
+stroke-width="1.6"
+fill="none"
+/>
+
+
+<path
+d="M25.5 10V15.5H31"
+stroke="#172033"
+stroke-width="1.6"
+fill="none"
+/>
+
+
+<path
+d="M18 21H27M18 25H27M18 29H24"
+stroke="#6B7688"
+stroke-width="1.5"
+stroke-linecap="round"
+/>
+
+</svg>
+
+
+</td>
+
+
+<td valign="middle">
+
+
+<div
+style="
+color:#929baa;
+font-size:10px;
+line-height:15px;
+font-weight:700;
+letter-spacing:1.5px;
+"
+>
+PROJECT FILE
+</div>
+
+
+<div
+style="
+margin-top:3px;
+color:#172033;
+font-size:17px;
+line-height:24px;
+font-weight:700;
+"
+>
+${escapeHTML(movie)}
+</div>
+
+
+<div
+style="
+margin-top:3px;
+color:#788396;
+font-size:12px;
+line-height:18px;
+"
+>
+Report ID &nbsp;•&nbsp;
+${escapeHTML(reportId)}
+</div>
+
+
+</td>
+
+
+<td
+width="125"
+align="right"
+valign="middle"
+>
+
+
+<span
+style="
+display:inline-block;
+padding:10px 13px;
+border-radius:6px;
+background:#172033;
+color:#ffffff;
+font-size:10px;
+line-height:14px;
+font-weight:700;
+white-space:nowrap;
+"
+>
+
+
+<svg
+width="12"
+height="12"
+viewBox="0 0 16 16"
+xmlns="http://www.w3.org/2000/svg"
+style="
+vertical-align:-2px;
+margin-right:4px;
+"
+>
+
+<path
+d="M8 2V10"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
+/>
+
+
+<path
+d="M4.5 7.5L8 11L11.5 7.5"
+fill="none"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+
+
+<path
+d="M3 13H13"
+stroke="#E5B94D"
+stroke-width="1.6"
+stroke-linecap="round"
+/>
+
+</svg>
+
+
+DOWNLOAD
+
+
+</span>
+
+
+</td>
+
+
+</tr>
+
+</table>
+
+
+</a>
+
+
+<!-- ACTION -->
+
+<table
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+margin-top:28px;
+"
+>
+
+<tr>
+
+
+<td
+width="4"
+style="
+background:#e5b94d;
+border-radius:4px;
+"
+>
+&nbsp;
+</td>
+
+
+<td
+style="
+padding-left:17px;
+"
+>
+
+
+<div
+style="
+color:#172033;
+font-size:13px;
+line-height:20px;
+font-weight:700;
+"
+>
+${escapeHTML(actionTitle)}
+</div>
+
+
+<div
+style="
+margin-top:3px;
+color:#697588;
+font-size:13px;
+line-height:20px;
+"
+>
+${escapeHTML(actionText)}
+</div>
+
+
+</td>
+
+</tr>
+
+</table>
+
+
+<!-- REVIEW BUTTON -->
+
+<table
+cellpadding="0"
+cellspacing="0"
+border="0"
+style="
+margin-top:25px;
+"
+>
+
+<tr>
+
+<td
+style="
+background:#172033;
+border-radius:7px;
+"
+>
+
+
+<a
+href="${escapeAttribute(finalSheetLink)}"
+target="_blank"
+rel="noopener"
+style="
+display:inline-block;
+padding:13px 21px;
+color:#ffffff;
+font-size:13px;
+line-height:18px;
+font-weight:700;
+text-decoration:none;
+"
+>
+
+
+<svg
+width="14"
+height="14"
+viewBox="0 0 16 16"
+xmlns="http://www.w3.org/2000/svg"
+style="
+vertical-align:-2px;
+margin-right:6px;
+"
+>
+
+<path
+d="M2.5 3.5H13.5V12.5H2.5V3.5Z"
+stroke="#E5B94D"
+stroke-width="1.4"
+fill="none"
+/>
+
+
+<path
+d="M5 6H11M5 8H11M5 10H8.5"
+stroke="#E5B94D"
+stroke-width="1.3"
+stroke-linecap="round"
+/>
+
+</svg>
+
+
+REVIEW REPORT
+
+
+</a>
+
+
+</td>
+
+</tr>
+
+</table>
+
+
+<!-- SIGNATURE -->
+
+<div
+style="
+margin-top:32px;
+padding-top:25px;
+border-top:1px solid #edf0f3;
+"
+>
+
+
+<div
+style="
+margin-bottom:2px;
+color:#172033;
+font-size:14px;
+line-height:20px;
+font-weight:700;
+"
+>
+${escapeHTML(name)}
+</div>
+
+
+<div
+style="
+margin-bottom:8px;
+color:#536074;
+font-size:13px;
+line-height:20px;
+"
+>
+${escapeHTML(role)}
+</div>
+
+
+<!--
+    SMALL LOGO
+-->
+
+<img
+src="${AMAGI_LOGO_URL}"
+alt="Amagi"
+width="82"
+style="
+display:block;
+width:82px;
+max-width:82px;
+height:auto;
+margin-bottom:10px;
+border:0;
+outline:none;
+text-decoration:none;
+"
+>
+
+
+<div
+style="
+color:#536074;
+font-size:12px;
+line-height:20px;
+"
+>
+
+
+<div>
+
+<strong style="color:#172033;">
+Mobile:
+</strong>
+
+${escapeHTML(mobile)}
+
+</div>
+
+
+<div>
+
+<strong style="color:#172033;">
+Email:
+</strong>
+
+
+<a
+href="mailto:${escapeAttribute(email)}"
+style="
+color:#536074;
+text-decoration:none;
+"
+>
+${escapeHTML(email)}
+</a>
+
+
+</div>
+
+
+<div>
+
+<a
+href="${escapeAttribute(finalWebsite)}"
+target="_blank"
+style="
+color:#1747c7;
+text-decoration:none;
+"
+>
+${escapeHTML(website)}
+</a>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</td>
+
+</tr>
+
+
+<!-- FOOTER -->
+
+<tr>
+
+<td
+style="
+padding:19px 42px;
+border-top:1px solid #e8ebef;
+background:#f8f9fb;
+"
+>
+
+
+<table
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+>
+
+<tr>
+
+
+<td
+style="
+color:#929baa;
+font-size:10px;
+line-height:16px;
+"
+>
+
+${escapeHTML(reportType)}
+
+&nbsp;•&nbsp;
+
+${escapeHTML(reportId)}
+
+</td>
+
+
+<td
+align="right"
+style="
+color:#929baa;
+font-size:10px;
+line-height:16px;
+"
+>
+
+Confidential
+
+</td>
+
+
+</tr>
+
+</table>
+
+
+</td>
+
+</tr>
+
+
+</table>
+
+
+</td>
+
+</tr>
+
+</table>
+
+
 </body>
 
-</html>
-
-    `;
+</html>`;
 
 }
 
 
-/* ============================================================
-   PREVIEW RENDER
-============================================================ */
+/* =========================================================
+   PLAIN TEXT VERSION
+========================================================= */
 
-function renderPreview() {
+function getPlainText() {
 
-    const html =
-        getEmailHTML();
+    const reportType =
+        getValue(
+            "reportType",
+            "S&P Report"
+        );
 
-    $("emailPreview").innerHTML =
-        html;
+    const movie =
+        getValue(
+            "movie",
+            "Movie / Project Name"
+        );
 
-    renderSignatureMini();
+    const reportId =
+        getValue(
+            "reportId",
+            "REPORT-ID"
+        );
 
+    const driveLink =
+        getValue(
+            "driveLink",
+            ""
+        );
+
+    const sheetLink =
+        getValue(
+            "sheetLink",
+            ""
+        );
+
+    const actionTitle =
+        getValue(
+            "actionTitle",
+            "Action required"
+        );
+
+    const actionText =
+        getValue(
+            "actionText",
+            "Please review the report and update the review sheet with your comments or required changes."
+        );
+
+    const name =
+        getValue(
+            "signatureName",
+            "Name"
+        );
+
+    const role =
+        getValue(
+            "signatureRole",
+            "Consultant, Creative"
+        );
+
+    const mobile =
+        getValue(
+            "signatureMobile",
+            ""
+        );
+
+    const email =
+        getValue(
+            "signatureEmail",
+            ""
+        );
+
+    const website =
+        getValue(
+            "signatureWebsite",
+            "www.amagi.com"
+        );
+
+
+    return `Hi Team,
+
+Report ready for review
+
+Please find the ${reportType} for the title below.
+
+${movie}
+Report ID • ${reportId}
+
+DOWNLOAD:
+${driveLink}
+
+${actionTitle}
+${actionText}
+
+REVIEW REPORT:
+${sheetLink}
+
+${name}
+${role}
+Mobile: ${mobile}
+Email: ${email}
+${website}`;
 }
 
 
-/* ============================================================
-   SIGNATURE MINI PREVIEW
-============================================================ */
+/* =========================================================
+   COPY FOR EMAIL
+========================================================= */
 
-function renderSignatureMini() {
+/*
+    This is different from "Copy HTML Source".
 
-    const data =
-        getData();
+    We copy:
 
+        text/html  -> formatted email
+        text/plain -> fallback text
 
-    $("signatureMini").innerHTML = `
+    Therefore when you paste into Gmail/Outlook,
+    the browser gives the mail application the
+    rendered HTML rather than the source code.
+*/
 
-        <div class="signature-mini">
+async function copyForEmail() {
 
-            <div class="name">
-                ${escapeHTML(data.signatureName) || "Name"}
-            </div>
+    updatePreview();
 
-            <div class="role">
-                ${escapeHTML(data.signatureRole)}
-            </div>
-
-            <img
-                src="${LOGO_URL}"
-                onerror="this.onerror=null;this.src='${LOGO_BASE64}'"
-                alt="Amagi"
-            >
-
-            ${
-                data.signatureMobile
-                ?
-                `<div>
-                    <b>Mobile:</b>
-                    ${escapeHTML(data.signatureMobile)}
-                </div>`
-                :
-                ""
-            }
-
-            ${
-                data.signatureEmail
-                ?
-                `<div>
-                    <b>Email:</b>
-                    ${escapeHTML(data.signatureEmail)}
-                </div>`
-                :
-                ""
-            }
-
-            <div>
-                ${escapeHTML(data.signatureWebsite)}
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ============================================================
-   LIVE UPDATE
-============================================================ */
-
-const inputIDs = [
-
-    "movieTitle",
-    "reportId",
-    "projectLink",
-    "reviewLink",
-    "actionText",
-    "signatureName",
-    "signatureRole",
-    "signatureMobile",
-    "signatureEmail",
-    "signatureWebsite",
-    "emailSubject"
-
-];
-
-
-inputIDs.forEach(function(id) {
-
-    $(id).addEventListener(
-        "input",
-        renderPreview
-    );
-
-});
-
-
-/* ============================================================
-   RESET
-============================================================ */
-
-function resetTemplate() {
-
-    Object.keys(DEFAULTS)
-        .forEach(function(key) {
-
-            if ($(key)) {
-
-                $(key).value =
-                    DEFAULTS[key];
-
-            }
-
-        });
-
-
-    renderPreview();
-
-    showToast(
-        "Template reset",
-        "success"
-    );
-
-}
-
-
-/* ============================================================
-   COPY EMAIL
-============================================================
-
-   IMPORTANT:
-
-   Clipboard API is attempted first.
-
-   It copies both:
-
-   1. text/html
-   2. text/plain
-
-   This allows Gmail / Outlook / other clients to paste
-   formatted content.
-
-   A fallback is included for browsers where clipboard
-   permissions are restricted.
-============================================================ */
-
-async function copyEmail() {
 
     const html =
         getEmailHTML();
 
 
-    const plain =
+    const text =
         getPlainText();
 
+
+    /*
+       Best method:
+       ClipboardItem with text/html.
+    */
 
     try {
 
@@ -2396,7 +3179,7 @@ async function copyEmail() {
 
                     "text/plain":
                         new Blob(
-                            [plain],
+                            [text],
                             {
                                 type:
                                     "text/plain"
@@ -2406,15 +3189,15 @@ async function copyEmail() {
                 });
 
 
-            await navigator.clipboard.write([
-                item
-            ]);
-
-
-            showToast(
-                "Formatted email copied. Paste it directly into Gmail or Outlook.",
-                "success"
+            await navigator.clipboard.write(
+                [item]
             );
+
+
+            showMessage(
+                "Email copied. Open your mail and paste."
+            );
+
 
             return;
 
@@ -2425,98 +3208,182 @@ async function copyEmail() {
         /*
            Continue to fallback.
         */
-
     }
 
 
-    copyUsingFallback(html);
+    /*
+       Fallback for browsers where ClipboardItem
+       is unavailable.
+    */
+
+    try {
+
+        const wrapper =
+            document.createElement(
+                "div"
+            );
+
+
+        wrapper.innerHTML =
+            html;
+
+
+        wrapper.style.position =
+            "fixed";
+
+        wrapper.style.left =
+            "-999999px";
+
+        wrapper.style.top =
+            "0";
+
+        wrapper.style.width =
+            "660px";
+
+
+        document.body.appendChild(
+            wrapper
+        );
+
+
+        const range =
+            document.createRange();
+
+
+        range.selectNodeContents(
+            wrapper
+        );
+
+
+        const selection =
+            window.getSelection();
+
+
+        selection.removeAllRanges();
+
+
+        selection.addRange(
+            range
+        );
+
+
+        const copied =
+            document.execCommand(
+                "copy"
+            );
+
+
+        selection.removeAllRanges();
+
+
+        document.body.removeChild(
+            wrapper
+        );
+
+
+        if (copied) {
+
+            showMessage(
+                "Email copied. Open your mail and paste."
+            );
+
+            return;
+        }
+
+    } catch (error) {}
+
+
+    /*
+       Final fallback:
+       copy HTML source.
+    */
+
+    await copyHTMLSource();
 
 }
 
 
-/* ============================================================
-   COPY FALLBACK
-============================================================ */
+/* =========================================================
+   COPY HTML SOURCE
+========================================================= */
 
-function copyUsingFallback(html) {
+async function copyHTMLSource() {
 
-    const holder =
-        document.createElement("div");
-
-
-    holder.contentEditable =
-        "true";
-
-    holder.style.position =
-        "fixed";
-
-    holder.style.left =
-        "-999999px";
-
-    holder.style.top =
-        "0";
-
-    holder.style.opacity =
-        "0";
-
-    holder.innerHTML =
-        html;
-
-
-    document.body.appendChild(holder);
-
-
-    const range =
-        document.createRange();
-
-
-    range.selectNodeContents(holder);
-
-
-    const selection =
-        window.getSelection();
-
-
-    selection.removeAllRanges();
-
-    selection.addRange(range);
-
-
-    let successful =
-        false;
+    const html =
+        getEmailHTML();
 
 
     try {
 
-        successful =
-            document.execCommand("copy");
+        if (
+            navigator.clipboard &&
+            navigator.clipboard.writeText
+        ) {
+
+            await navigator.clipboard.writeText(
+                html
+            );
+
+
+            showMessage(
+                "HTML source copied."
+            );
+
+
+            return;
+
+        }
+
+    } catch (error) {}
+
+
+    try {
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value =
+            html;
+
+
+        textarea.style.position =
+            "fixed";
+
+        textarea.style.left =
+            "-9999px";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.focus();
+
+        textarea.select();
+
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        document.body.removeChild(
+            textarea
+        );
+
+
+        showMessage(
+            "HTML source copied."
+        );
 
     } catch (error) {
 
-        successful =
-            false;
-
-    }
-
-
-    selection.removeAllRanges();
-
-
-    document.body.removeChild(holder);
-
-
-    if (successful) {
-
-        showToast(
-            "Formatted email copied. Paste directly into your email client.",
-            "success"
-        );
-
-    } else {
-
-        showToast(
-            "Copy was blocked by the browser. Use the HTML button instead.",
-            "error"
+        showMessage(
+            "Copy failed. Please use Download HTML."
         );
 
     }
@@ -2524,93 +3391,46 @@ function copyUsingFallback(html) {
 }
 
 
-/* ============================================================
-   PLAIN TEXT VERSION
-============================================================ */
-
-function getPlainText() {
-
-    const data =
-        getData();
-
-
-    const projectURL =
-        data.projectDownload !== "#"
-            ? data.projectDownload
-            : "";
-
-
-    const reviewURL =
-        data.reviewLink !== "#"
-            ? data.reviewLink
-            : "";
-
-
-    return [
-
-        "Hi Team,",
-
-        "",
-
-        `Please find the project file below for your review.`,
-
-        "",
-
-        "PROJECT FILE",
-
-        data.title,
-
-        `Report ID • ${data.reportId}`,
-
-        "",
-
-        "DOWNLOAD PROJECT FILE:",
-
-        projectURL,
-
-        "",
-
-        "ACTION REQUIRED",
-
-        data.actionText,
-
-        "",
-
-        "REVIEW REPORT:",
-
-        reviewURL,
-
-        "",
-
-        data.signatureName,
-
-        data.signatureRole,
-
-        data.signatureMobile
-            ? `Mobile: ${data.signatureMobile}`
-            : "",
-
-        data.signatureEmail
-            ? `Email: ${data.signatureEmail}`
-            : "",
-
-        data.signatureWebsite
-
-    ]
-    .filter(Boolean)
-    .join("\n");
-
-}
-
-
-/* ============================================================
+/* =========================================================
    DOWNLOAD HTML
-============================================================ */
+========================================================= */
 
 function downloadHTML() {
 
     const html =
         getEmailHTML();
+
+
+    const movie =
+        getValue(
+            "movie",
+            "Movie"
+        );
+
+
+    let filename =
+        movie
+            .replace(
+                /[^a-z0-9]/gi,
+                "_"
+            )
+            .replace(
+                /_+/g,
+                "_"
+            )
+            .replace(
+                /^_+|_+$/g,
+                ""
+            );
+
+
+    if (!filename) {
+        filename = "Movie";
+    }
+
+
+    filename +=
+        "_S&P_Report_Email.html";
 
 
     const blob =
@@ -2623,443 +3443,150 @@ function downloadHTML() {
         );
 
 
-    downloadBlob(
-        blob,
-        makeFilename() + ".html"
-    );
-
-
-    showToast(
-        "HTML email downloaded",
-        "success"
-    );
-
-}
-
-
-/* ============================================================
-   DOWNLOAD EML
-============================================================ */
-
-function downloadEML() {
-
-    const data =
-        getData();
-
-
-    const html =
-        getEmailHTML();
-
-
-    const plain =
-        getPlainText();
-
-
-    const subject =
-        data.emailSubject;
-
-
-    const eml = [
-
-        "MIME-Version: 1.0",
-
-        "Content-Type: multipart/alternative; boundary=\"EMAIL_BOUNDARY\"",
-
-        `Subject: ${subject}`,
-
-        "",
-
-        "--EMAIL_BOUNDARY",
-
-        "Content-Type: text/plain; charset=\"UTF-8\"",
-
-        "Content-Transfer-Encoding: 8bit",
-
-        "",
-
-        plain,
-
-        "",
-
-        "--EMAIL_BOUNDARY",
-
-        "Content-Type: text/html; charset=\"UTF-8\"",
-
-        "Content-Transfer-Encoding: 8bit",
-
-        "",
-
-        html,
-
-        "",
-
-        "--EMAIL_BOUNDARY--"
-
-    ].join("\r\n");
-
-
-    const blob =
-        new Blob(
-            [eml],
-            {
-                type:
-                    "message/rfc822"
-            }
+    const url =
+        URL.createObjectURL(
+            blob
         );
 
 
-    downloadBlob(
-        blob,
-        makeFilename() + ".eml"
-    );
+    const link =
+        document.createElement(
+            "a"
+        );
 
 
-    showToast(
-        "EML email downloaded",
-        "success"
-    );
-
-}
-
-
-/* ============================================================
-   DOWNLOAD HELPER
-============================================================ */
-
-function downloadBlob(blob, filename) {
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const anchor =
-        document.createElement("a");
-
-
-    anchor.href =
+    link.href =
         url;
 
-    anchor.download =
+
+    link.download =
         filename;
 
 
     document.body.appendChild(
-        anchor
+        link
     );
 
 
-    anchor.click();
+    link.click();
 
 
-    anchor.remove();
+    document.body.removeChild(
+        link
+    );
 
 
     setTimeout(
         function() {
 
-            URL.revokeObjectURL(url);
+            URL.revokeObjectURL(
+                url
+            );
 
         },
         1000
     );
 
+
+    showMessage(
+        "Email HTML downloaded."
+    );
 }
 
 
-/* ============================================================
-   FILENAME
-============================================================ */
+/* =========================================================
+   CLEAR PROJECT
+========================================================= */
 
-function makeFilename() {
+function clearProjectDetails() {
 
-    const data =
-        getData();
-
-
-    let name =
-        data.title ||
-        "project";
-
-
-    name =
-        name
-            .replace(
-                /[<>:"/\\|?*\x00-\x1F]/g,
-                ""
-            )
-            .replace(
-                /\s+/g,
-                "_"
-            )
-            .substring(
-                0,
-                80
-            );
-
-
-    if (data.reportId) {
-
-        name +=
-            "_" +
-            data.reportId
-                .replace(
-                    /[^a-zA-Z0-9_-]/g,
-                    ""
-                );
-
-    }
-
-
-    return name;
-
-}
-
-
-/* ============================================================
-   SAVE SIGNATURE
-============================================================
-
-   No localStorage is used.
-
-   This avoids:
-
-   "SecurityError:
-    Failed to read the 'localStorage' property from 'Window':
-    The document is sandboxed and lacks the 'allow-same-origin' flag."
-
-   Instead the signature is saved as a small JSON file.
-============================================================ */
-
-function downloadSignature() {
-
-    const signature = {
-
-        name:
-            value("signatureName"),
-
-        role:
-            value("signatureRole"),
-
-        mobile:
-            value("signatureMobile"),
-
-        email:
-            value("signatureEmail"),
-
-        website:
-            value("signatureWebsite")
-
-    };
-
-
-    const json =
-        JSON.stringify(
-            signature,
-            null,
-            4
+    const confirmed =
+        window.confirm(
+            "Clear the movie, report ID and project links?"
         );
 
 
-    const blob =
-        new Blob(
-            [json],
-            {
-                type:
-                    "application/json;charset=utf-8"
-            }
-        );
-
-
-    downloadBlob(
-        blob,
-        "amagi-signature.json"
-    );
-
-
-    showToast(
-        "Signature saved",
-        "success"
-    );
-
-}
-
-
-/* ============================================================
-   LOAD SIGNATURE
-============================================================ */
-
-function importSignature() {
-
-    $("signatureFile").click();
-
-}
-
-
-function readSignatureFile(event) {
-
-    const file =
-        event.target.files[0];
-
-
-    if (!file) {
+    if (!confirmed) {
         return;
     }
 
 
-    const reader =
-        new FileReader();
+    document.getElementById(
+        "movie"
+    ).value = "";
 
 
-    reader.onload =
-        function() {
-
-            try {
-
-                const data =
-                    JSON.parse(
-                        reader.result
-                    );
+    document.getElementById(
+        "reportId"
+    ).value = "";
 
 
-                if (
-                    typeof data !== "object" ||
-                    data === null
-                ) {
-
-                    throw new Error(
-                        "Invalid signature file"
-                    );
-
-                }
+    document.getElementById(
+        "driveLink"
+    ).value = "";
 
 
-                $("signatureName").value =
-                    data.name || "";
-
-                $("signatureRole").value =
-                    data.role ||
-                    "Consultant, Creative";
-
-                $("signatureMobile").value =
-                    data.mobile || "";
-
-                $("signatureEmail").value =
-                    data.email || "";
-
-                $("signatureWebsite").value =
-                    data.website ||
-                    "www.amagi.com";
+    document.getElementById(
+        "sheetLink"
+    ).value = "";
 
 
-                renderPreview();
-
-
-                showToast(
-                    "Signature loaded",
-                    "success"
-                );
-
-            } catch (error) {
-
-                showToast(
-                    "Invalid signature file",
-                    "error"
-                );
-
-            }
-
-
-            event.target.value =
-                "";
-
-        };
-
-
-    reader.readAsText(file);
-
+    updatePreview();
 }
 
 
-/* ============================================================
-   TOAST
-============================================================ */
+/* =========================================================
+   LIVE PREVIEW
+========================================================= */
 
-let toastTimer;
+[
+    "company",
+    "reportType",
+    "movie",
+    "reportId",
+    "driveLink",
+    "sheetLink",
+    "actionTitle",
+    "actionText",
+    "signatureName",
+    "signatureRole",
+    "signatureMobile",
+    "signatureEmail",
+    "signatureWebsite"
+].forEach(
+    function(id) {
 
-
-function showToast(message, type) {
-
-    const toast =
-        $("toast");
-
-
-    toast.textContent =
-        message;
-
-
-    toast.className =
-        "toast show " +
-        (
-            type === "error"
-                ? "error"
-                : "success"
-        );
-
-
-    clearTimeout(
-        toastTimer
-    );
+        const element =
+            document.getElementById(id);
 
 
-    toastTimer =
-        setTimeout(
-            function() {
-
-                toast.className =
-                    "toast";
-
-            },
-            3200
-        );
-
-}
-
-
-/* ============================================================
-   KEYBOARD SHORTCUT
-============================================================ */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        /*
-           Ctrl + Shift + C
-           / Cmd + Shift + C
-           = Copy email
-        */
-
-        if (
-            event.shiftKey &&
-            event.key.toLowerCase() === "c" &&
-            (event.ctrlKey || event.metaKey)
-        ) {
-
-            event.preventDefault();
-
-            copyEmail();
-
+        if (!element) {
+            return;
         }
+
+
+        element.addEventListener(
+            "input",
+            updatePreview
+        );
 
     }
 );
 
 
-/* ============================================================
-   INITIAL RENDER
-============================================================ */
+/* =========================================================
+   INIT
+========================================================= */
 
-renderPreview();
+(function initialize() {
+
+    loadSavedSignature();
+
+    loadLogo();
+
+    updatePreview();
+
+})();
 
 </script>
 
