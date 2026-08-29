@@ -12,7 +12,7 @@
 :root {
     --primary: #0f172a;
     --primary-hover: #1e293b;
-    --accent: #D4AF37; /* Gold */
+    --accent: #D4AF37;
     --accent-hover: #b8952b;
     --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     --card-bg: rgba(255, 255, 255, 0.95);
@@ -26,7 +26,6 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; }
 
-/* Layout */
 .app { width: 100%; max-width: 1440px; margin: 0 auto; padding: 40px 30px; }
 .header { text-align: center; margin-bottom: 40px; animation: fadeInDown 0.6s ease-out; }
 .header h1 { margin: 0 0 10px; font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
@@ -43,239 +42,12 @@ html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMa
 }
 
 .preview-panel { position: sticky; top: 30px; padding: 0; background: transparent; box-shadow: none; border: none; }
-.preview-container { background: #fff; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); overflow: hidden; min-height: 800px; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.8); }
+.preview-container { background: #fff; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid rgba(255,255,255,0.8); display: flex; flex-direction: column; }
 .preview-header { background: #f8fafc; padding: 18px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
-.preview-content { padding: 0; background: #eef1f5; flex-grow: 1; display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; }
+.preview-content { background: #eef1f5; width: 100%; height: 850px; }
 
-/* Forms */
-.section-title { 
-    margin: 35px 0 20px; padding-bottom: 12px; border-bottom: 2px solid #f1f5f9; 
-    color: var(--primary); font-size: 13px; font-weight: 800; letter-spacing: 1.5px; 
-    text-transform: uppercase; display: flex; align-items: center; gap: 10px; 
-}
-.section-title svg { width: 18px; height: 18px; color: var(--accent); }
-.section-title:first-child { margin-top: 0; }
-
-.form-group { margin-bottom: 20px; }
-label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-input, textarea, select {
-    width: 100%; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: 10px;
-    background: #f8fafc; color: var(--text-main); font-size: 14px; transition: all 0.2s ease;
-    font-family: inherit;
-}
-textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
-input:focus, textarea:focus, select:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); outline: none; }
-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 16px auto; }
-
-/* Buttons */
-.btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
-.button {
-    width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 13px; font-weight: 700;
-    letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase;
-}
-.button svg { width: 16px; height: 16px; }
-.button:active { transform: scale(0.98); }
-.button.primary { background: var(--primary); color: #fff; }
-.button.primary:hover { background: var(--primary-hover); box-shadow: 0 6px 15px rgba(15,23,42,0.2); }
-.button.gold { background: var(--accent); color: #fff; }
-.button.gold:hover { background: var(--accent-hover); box-shadow: 0 6px 15px rgba(212,175,55,0.3); }
-.button.secondary { background: #e2e8f0; color: var(--text-main); }
-.button.secondary:hover { background: #cbd5e1; }
-.button.danger { background: #fee2e2; color: var(--danger); }
-.button.danger:hover { background: #fecaca; color: var(--danger-hover); }
-
-.sig-row { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 15px; }
-.sig-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-/* Toast Notification */
-#toast {
-    position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
-    background: #10b981; color: white; padding: 14px 30px; border-radius: 50px;
-    font-weight: 600; font-size: 14px; box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-    transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000;
-    display: flex; align-items: center; gap: 10px;
-}
-#toast svg { width: 18px; height: 18px; }
-#toast.show { bottom: 40px; }
-
-/* Animations */
-@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-@media (max-width: 1024px) {
-    .workspace { grid-template-columns: 1fr; }
-    .preview-panel { position: relative; top: 0; }
-}
-</style>
-</head>
-<body>
-
-<div class="app">
-    <div class="header">
-        <h1>S&P Report Creator Pro</h1>
-        <p>Generate beautiful, universally compatible emails instantly.</p>
-    </div>
-
-    <div class="workspace">
-        <!-- SETTINGS PANEL -->
-        <div class="panel settings-panel">
-            
-            <div class="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                Template Layout
-            </div>
-            <div class="form-group">
-                <select id="templateLayout" onchange="updatePreview()">
-                    <option value="1">Template 1: Classic Professional (Blue & Gold)</option>
-                    <option value="2">Template 2: Cinematic Dark (Black & Gold)</option>
-                    <option value="3">Template 3: Modern Minimalist (White & Gray)</option>
-                    <option value="4">Template 4: Vibrant Pill-Based (Blue Theme)</option>
-                    <option value="5">Template 5: Elegant Serif (Corporate Refined)</option>
-                    <option value="6">Template 6: Bold & Playful (High Energy)</option>
-                    <option value="7">Template 7: Split Header (Two-Tone Layout)</option>
-                    <option value="8">Template 8: Tech Neon (Dark Mode & Cyan)</option>
-                    <option value="9">Template 9: Soft Pastel (Gentle & Rounded)</option>
-                    <option value="10">Template 10: Executive Brief (Strict Tabular)</option>
-                </select>
-            </div>
-
-            <div class="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                Project Information
-            </div>
-            <div class="sig-row-half">
-                <div class="form-group">
-                    <label>Company / Brand</label>
-                    <input type="text" id="company" value="LIONSGATE">
-                </div>
-                <div class="form-group">
-                    <label>Report Type</label>
-                    <input type="text" id="reportType" value="S&P Report">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Project Full Title & ID (e.g. Movie - ID)</label>
-                <input type="text" id="projectFull" value="Conan el bárbaro - 9382098CSP">
-            </div>
-            <div class="form-group">
-                <label>Project File / Google Drive Link</label>
-                <input type="url" id="driveLink" placeholder="Paste Drive link (auto-converts)">
-            </div>
-            <div class="form-group">
-                <label>Review Sheet Link</label>
-                <input type="url" id="sheetLink" placeholder="Paste Google Sheet link">
-            </div>
-
-            <div class="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                Action Required
-            </div>
-            <div class="form-group">
-                <label>Action Heading</label>
-                <input type="text" id="actionTitle" value="Actions">
-            </div>
-            <div class="form-group">
-                <label>Action Description</label>
-                <textarea id="actionText">Kindly review the report and update the review sheet with your comments.</textarea>
-            </div>
-
-            <div class="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                Signature Details
-            </div>
-            <div class="form-group">
-                <label>Load Saved Signature</label>
-                <select id="savedSignaturesDropdown" onchange="loadSelectedSignature()">
-                    <option value="">-- Select or Create New --</option>
-                </select>
-            </div>
-            <div class="sig-row-half">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" id="signatureName" value="John Doe">
-                </div>
-                <div class="form-group">
-                    <label>Designation</label>
-                    <input type="text" id="signatureRole" value="Creative Consultant">
-                </div>
-            </div>
-            <div class="sig-row-half">
-                <div class="form-group">
-                    <label>Mobile</label>
-                    <input type="tel" id="signatureMobile" placeholder="+1 555-0100">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="signatureEmail" placeholder="name@company.com">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Website</label>
-                <input type="text" id="signatureWebsite" value="www.lionsgate.com">
-            </div>
-
-            <div class="sig-row" style="margin-top: 20px; align-items: end;">
-                <div class="form-group" style="margin:0;">
-                    <label>Save Profile As</label>
-                    <input type="text" id="sigProfileName" placeholder="e.g. Main Profile">
-                </div>
-                <button type="button" class="button primary" onclick="saveSignature()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5Ah, I apologize for that! In my previous response, the code actually got cut off right in the middle of an SVG icon, which broke the UI. 
-
-I have fixed the broken code completely. I have also re-introduced **mail-supported emojis/symbols** (using safe Unicode HTML entities like `&#128193;` 📁, `&#9998;` ✎, `&#11015;` ⬇️, etc.) directly into the generated email templates so they look catchy and render safely in Gmail, Outlook, and Apple Mail without breaking.
-
-Here is the fully fixed, unbroken code. Save this as your `.html` file:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S&P Report Creator Pro</title>
-
-<style>
-/* =========================================================
-   APP UI STYLES (Premium SaaS Design)
-========================================================= */
-:root {
-    --primary: #0f172a;
-    --primary-hover: #1e293b;
-    --accent: #D4AF37; /* Gold */
-    --accent-hover: #b8952b;
-    --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --danger: #ef4444;
-    --danger-hover: #dc2626;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --border-color: #cbd5e1;
-}
-
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; }
-
-.app { width: 100%; max-width: 1440px; margin: 0 auto; padding: 40px 30px; }
-.header { text-align: center; margin-bottom: 40px; animation: fadeInDown 0.6s ease-out; }
-.header h1 { margin: 0 0 10px; font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-.header p { margin: 0; font-size: 16px; color: var(--text-muted); }
-
-.workspace { display: grid; grid-template-columns: 460px minmax(0, 1fr); gap: 30px; align-items: start; }
-
-/* Panels */
-.panel {
-    background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 20px;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-    padding: 35px; border: 1px solid rgba(255,255,255,0.6);
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.preview-panel { position: sticky; top: 30px; padding: 0; background: transparent; box-shadow: none; border: none; }
-.preview-container { background: #fff; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); overflow: hidden; min-height: 800px; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.8); }
-.preview-header { background: #f8fafc; padding: 18px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
-.preview-content { padding: 0; background: #eef1f5; flex-grow: 1; display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; }
+/* Iframe Reset */
+iframe#emailPreviewFrame { width: 100%; height: 100%; border: none; display: block; background: transparent; }
 
 /* Forms */
 .section-title { 
@@ -301,9 +73,9 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 /* Buttons */
 .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
 .button {
-    width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 12px; font-weight: 700;
+    width: 100%; padding: 14px 20px; border: none; border-radius: 10px; font-size: 13px; font-weight: 700;
     letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase;
 }
 .button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .button:active { transform: scale(0.98); }
@@ -336,6 +108,11 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 @media (max-width: 1024px) {
     .workspace { grid-template-columns: 1fr; }
     .preview-panel { position: relative; top: 0; }
+    .preview-content { height: 600px; }
+}
+@media (max-width: 600px) {
+    .app { padding: 20px 15px; }
+    .sig-row, .sig-row-half, .btn-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -442,7 +219,7 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
             </div>
             <div class="form-group">
                 <label>Website</label>
-                <input type="text" id="signatureWebsite" value="[www.lionsgate.com](https://www.lionsgate.com)">
+                <input type="text" id="signatureWebsite" value="www.lionsgate.com">
             </div>
 
             <div class="sig-row" style="margin-top: 20px; align-items: end;">
@@ -482,15 +259,15 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
             </div>
         </div>
 
-        <!-- PREVIEW PANEL -->
+        <!-- PREVIEW PANEL (Using IFRAME to prevent HTML structural bleed/duplicates) -->
         <div class="preview-panel">
             <div class="preview-container">
                 <div class="preview-header">
                     <span>Live HTML Preview</span>
-                    <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px; color:#475569;">Includes Mail-Safe Symbols</span>
+                    <span style="font-size: 11px; font-weight: normal; background: #e2e8f0; padding: 4px 10px; border-radius: 20px; color:#475569;">Perfectly Isolated & Responsive</span>
                 </div>
                 <div class="preview-content" id="previewWrapperBg">
-                    <div id="emailPreviewContainer" style="width: 100%;"></div>
+                    <iframe id="emailPreviewFrame" title="Email Preview"></iframe>
                 </div>
             </div>
         </div>
@@ -506,7 +283,8 @@ select { cursor: pointer; appearance: none; background-image: url("data:image/sv
 /* =========================================================
    CORE LOGIC & UTILITIES
 ========================================================= */
-const AMAGI_LOGO_URL = "[https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft#https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png](https://ci3.googleusercontent.com/meips/ADKq_Na2RJ-7Y9PdN7oUaa7Cl_FDHZiNrjThXeZFeYSwDPEMwOO4vgEMRCCQEk5mR5dSFuiMwp0baY4ZBYn7pUZ37zT7iYOn1NZhckQTtdbR76PNvDEHXJLMvc6rbbOsvMDMEk0lw33pZJm56N-8-PPTIrn3c5XCrMDy77H9XRFLsMt3sZNivza8ix5KF6qMemQ8PxcSPZXn2nR7ZREkOjGo=s0-d-e1-ft#https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69003522040/logo/LkC0KD0QCT1-BmqFLXvbNAKC7_SoZZQazw.png)";
+// Embedded Base64 Image ensures it NEVER breaks or expires.
+const AMAGI_LOGO_BASE64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAyCAMAAACnF/O6AAAAA3NCSVQICAjb4U/gAAAAOVBMVEVHcEwZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMEZJMFXOO4vAAAAEnRSTlMA9OvgjB8TB7ZlOtUrxqF4TpbIpmFsAAADTUlEQVRYhe1Y2XbcIAw1+77Y//+xBcRme+y4SZO258x9iUdI4iJAElmWN954441/HYIzxjh8iiYrH3lAzGr8ZFxsBZiIeUAM4zbAE8Ryhg3SEEzcGoX2UnqdZFGmD6upywPBFnOV1IjxcfbB4+pIksrAREg2tK9A06xOHNVCZWcsCbUzxoTzIijZKpCX+Q9NDsqHw3WAKLFE17VYN44SNWNDsza2dVm+2W7Ym/xHJanKH/IYBiu3IzqFARQUHr9cnUfMwjofDEVz8npJgbmT7isKG0LzLwknQqHtCKCgyWngkoLw1dK4HvUdBTLJN2ScGf4WjbuOaWQKhbauPNCtLyiIWEwR1VxwG/CRAkmHjOtGR0YuGMTepTBwkDvFhOBRThRoNbbJq17RPYViiFU7XHhPAUXYLFi6YyP6KN0aoC/r2eS+U2BlG4xuBwbdUdBldNySsKfQlIsYVaLcVZu1LNX2U2UaBTXRzxzWOwpFZMYdAzedQuNW1tuu2+2+JBh5s9fSCatfxhIotvKBR+fhL4HYW2QSVYpDGloFMcIz1sbc0Lwh24geCCgjwow0qeUdgLWwgTBQhPnLz6awr7iT5DwUwlg88U0EMKMPbHokAqBXeIwnD24CyIr5wF3c5CKzS78NzeiGklcKOfUYDFTjP1G1EUpi2CBHKVF8p16QW2prVnFGpe6GEYeQGm7F5rur7NjkhVocK/QwFmalWTQYbOFCA+KEAcWim+KlO1RnjNONe0ZvOHFGodMcpyzlStTCWBgdfNhahj70YuKyUkzw0R04vdUwq9JGNjenEuFJrX5HfruO4Xzh3LYwrLuWOpaZy/8HrdNb3g8JjCok6tSa0kfJ3Wj+9uRNEOI4rrvnf8kMKiR+/owtw7iihriLCPvUZogjGmyxlM+dzZyqCFXr1fy4lKH7RNyoP3vl2bpei0uwiNsnFecZG1QtYSLPf1WlG/UmXFKBqCWWtfNfF5Es5e9vdPkJ4LfPe6EDQ172Tk/dianJ8D7GJPWnDazPkN9J2AVs0k3jFFt74/Xp2Ab0Trv1Nf3jLGaPB+CPb4kkHqY6M/DL1/IeHw2bP+BbDxUt2QjB8bfAdszjb5zU3jz16GHcr/I/7CFrzxxhv/KX4B+nxszvduqvIAAAAASUVORK5CYII=";
 
 let signatures = {};
 
@@ -520,7 +298,7 @@ function getProjectDownloadLink(url) {
     const original = String(url).trim();
     const fileMatch = original.match(/\/file\/d\/([a-zA-Z0-9_-]+)/i);
     if (fileMatch && fileMatch[1]) {
-        return "[https://drive.google.com/uc?export=download&id=](https://drive.google.com/uc?export=download&id=)" + encodeURIComponent(fileMatch[1]);
+        return "https://drive.google.com/uc?export=download&id=" + encodeURIComponent(fileMatch[1]);
     }
     return safeURL(original);
 }
@@ -551,7 +329,7 @@ function initSignatures() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            const saved = storage.getItem("spTemplateSignaturesV4");
+            const saved = storage.getItem("spTemplateSignaturesV5");
             if (saved) signatures = JSON.parse(saved);
         } catch (e) {}
     }
@@ -596,7 +374,7 @@ function saveSignature() {
     const storage = getSafeStorage();
     if (storage) {
         try {
-            storage.setItem("spTemplateSignaturesV4", JSON.stringify(signatures));
+            storage.setItem("spTemplateSignaturesV5", JSON.stringify(signatures));
             showToast(`Signature "${profileName}" saved!`);
             populateSignatureDropdown();
             document.getElementById("savedSignaturesDropdown").value = profileName;
@@ -631,7 +409,7 @@ function clearAllData() {
 }
 
 /* =========================================================
-   HTML EMAIL GENERATOR (10 LAYOUTS WITH SAFE EMOJIS)
+   HTML EMAIL GENERATOR (RESPONSIVE TABLES & SAFE EMOJIS)
 ========================================================= */
 function getEmailHTML() {
     const layoutType = document.getElementById("templateLayout").value;
@@ -649,20 +427,20 @@ function getEmailHTML() {
         role: escapeHTML(getValue("signatureRole", "Role")),
         mobile: escapeHTML(getValue("signatureMobile", "")),
         email: escapeHTML(getValue("signatureEmail", "")),
-        websiteLabel: escapeHTML(getValue("signatureWebsite", "[www.website.com](https://www.website.com)")),
-        websiteUrl: escapeHTML(safeURL(getValue("signatureWebsite", "[www.website.com](https://www.website.com)")))
+        websiteLabel: escapeHTML(getValue("signatureWebsite", "www.website.com")),
+        websiteUrl: escapeHTML(safeURL(getValue("signatureWebsite", "www.website.com")))
     };
     
     const parsed = parseProjectInput(getValue("projectFull", "Project Name"));
     data.movie = escapeHTML(parsed.title);
     data.reportId = escapeHTML(parsed.id);
 
-    // Signature Builder
+    // Signature Builder - Uses Base64 Logo and HTML entity emojis
     const getSig = (tc, mc, lc, topBorder = true) => `
         <div style="margin-top:35px; padding-top:25px; ${topBorder ? `border-top:1px solid ${mc}40;` : ''}">
             <div style="margin-bottom:2px; color:${tc}; font-size:15px; line-height:22px; font-weight:700;">${data.name}</div>
             <div style="margin-bottom:12px; color:${mc}; font-size:13px; line-height:20px;">${data.role}</div>
-            <img src="${AMAGI_LOGO_URL}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; background:transparent;">
+            <img src="${AMAGI_LOGO_BASE64}" alt="Logo" width="85" style="display:block; width:85px; max-width:85px; height:auto; margin-bottom:12px; border:none; outline:none; background:transparent;">
             <div style="color:${mc}; font-size:12px; line-height:20px;">
                 ${data.mobile ? `<div><strong style="color:${tc};">&#128241;</strong> ${data.mobile}</div>` : ''}
                 ${data.email ? `<div><strong style="color:${tc};">&#9993;</strong> <a href="mailto:${data.email}" style="color:${lc}; text-decoration:none;">${data.email}</a></div>` : ''}
@@ -674,11 +452,12 @@ function getEmailHTML() {
     let html = '';
     let previewBg = '';
 
+    // NOTE: Inner tables use width="100%" and style="max-width: 660px;" for bulletproof email responsiveness!
     switch(layoutType) {
         case "1": // Classic Professional
             previewBg = "#eef1f5";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#eef1f5; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; margin:0 auto;">
             <tr><td style="background:#172033; padding:35px 40px;">
                 <div style="color:#94a3b8; font-size:11px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
                 <div style="margin-top:6px; color:#ffffff; font-size:24px; font-weight:bold;">${data.fullText}<br><span style="color:#D4AF37;">${data.reportType}</span></div>
@@ -690,13 +469,13 @@ function getEmailHTML() {
                 
                 <a href="${data.driveLink}" target="_blank" style="display:block; padding:20px; border:1px solid #cbd5e1; border-radius:8px; background:#f8fafc; text-decoration:none;">
                     <table width="100%"><tr>
-                        <td width="50"><div style="font-size:28px; color:#172033;">&#128193;</div></td>
-                        <td>
+                        <td width="50" style="vertical-align: middle;"><div style="font-size:28px; color:#172033;">&#128193;</div></td>
+                        <td style="vertical-align: middle;">
                             <div style="color:#64748b; font-size:11px; font-weight:bold; text-transform:uppercase;">Project File</div>
                             <div style="color:#0f172a; font-size:18px; font-weight:bold;">${data.movie}</div>
                             ${data.reportId ? `<div style="color:#64748b; font-size:12px;">ID: ${data.reportId}</div>` : ''}
                         </td>
-                        <td width="120" align="right"><span style="background:#172033; color:#fff; padding:10px 14px; border-radius:6px; font-size:11px; font-weight:bold;">&#11015; DOWNLOAD</span></td>
+                        <td width="110" align="right" style="vertical-align: middle;"><span style="background:#172033; color:#fff; padding:10px 14px; border-radius:6px; font-size:11px; font-weight:bold;">&#11015; DOWNLOAD</span></td>
                     </tr></table>
                 </a>
 
@@ -713,22 +492,21 @@ function getEmailHTML() {
         case "2": // Cinematic Dark
             previewBg = "#0f172a";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#1e293b; border:1px solid #334155;">
-            <tr><td align="center" style="padding:40px 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#1e293b; border:1px solid #334155; margin:0 auto;">
+            <tr><td align="center" style="padding:40px 30px 20px;">
                 <div style="color:#D4AF37; font-size:14px; letter-spacing:4px; text-transform:uppercase; font-weight:bold;">${data.company}</div>
                 <div style="height:1px; background:#334155; width:40px; margin:20px auto;"></div>
                 <div style="color:#ffffff; font-size:28px; font-weight:bold; text-align:center;">&#127916; ${data.movie}</div>
                 <div style="color:#94a3b8; font-size:16px; margin-top:8px; text-align:center;">${data.reportType} &bull; ${data.reportId}</div>
             </td></tr>
-            <tr><td style="padding:20px 50px 50px;">
+            <tr><td style="padding:20px 40px 50px;">
                 <div style="background:#0f172a; padding:25px; border-left:3px solid #D4AF37; margin-bottom:30px;">
                     <div style="color:#ffffff; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
                     <div style="color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
                 </div>
                 <table width="100%"><tr>
-                    <td width="48%" align="center" style="background:#D4AF37;"><a href="${data.driveLink}" style="display:block; padding:16px; color:#000; font-size:13px; font-weight:bold; text-decoration:none;">&#128194; GET PROJECT</a></td>
-                    <td width="4%"></td>
-                    <td width="48%" align="center" style="border:1px solid #D4AF37;"><a href="${data.sheetLink}" style="display:block; padding:16px; color:#D4AF37; font-size:13px; font-weight:bold; text-decoration:none;">&#128221; REVIEW SHEET</a></td>
+                    <td align="center" style="background:#D4AF37; display: inline-block; width: 48%; margin-bottom: 10px;"><a href="${data.driveLink}" style="display:block; padding:14px 10px; color:#000; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128194; GET PROJECT</a></td>
+                    <td align="center" style="border:1px solid #D4AF37; display: inline-block; width: 48%; float: right;"><a href="${data.sheetLink}" style="display:block; padding:14px 10px; color:#D4AF37; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap;">&#128221; REVIEW SHEET</a></td>
                 </tr></table>
                 ${getSig('#ffffff', '#94a3b8', '#D4AF37')}
             </td></tr></table></td></tr></table>`;
@@ -737,17 +515,17 @@ function getEmailHTML() {
         case "3": // Minimalist
             previewBg = "#f8fafc";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc; padding:40px 15px; font-family:Helvetica, Arial, sans-serif;"><tr><td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border:1px solid #e2e8f0;">
-            <tr><td align="center" style="padding:50px 40px 30px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:1px solid #e2e8f0; margin:0 auto;">
+            <tr><td align="center" style="padding:50px 30px 30px;">
                 <div style="color:#0f172a; font-size:24px; letter-spacing:1px; text-transform:uppercase;">&#128196; ${data.reportType}</div>
                 <div style="color:#64748b; font-size:14px; margin-top:10px;">${data.fullText}</div>
             </td></tr>
-            <tr><td style="padding:0 40px;"><div style="height:1px; background:#f1f5f9; width:100%;"></div></td></tr>
-            <tr><td align="center" style="padding:40px;">
+            <tr><td style="padding:0 30px;"><div style="height:1px; background:#f1f5f9; width:100%;"></div></td></tr>
+            <tr><td align="center" style="padding:40px 30px;">
                 <div style="color:#334155; font-size:16px; line-height:26px; max-width:450px;">${data.actionText}</div>
                 <div style="margin:35px 0;">
-                    <a href="${data.driveLink}" style="display:inline-block; margin-bottom:15px; width:220px; padding:15px 0; background:#0f172a; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&darr; DOWNLOAD FILE</a><br>
-                    <a href="${data.sheetLink}" style="display:inline-block; width:220px; padding:15px 0; border:1px solid #0f172a; color:#0f172a; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&#10003; REVIEW SHEET</a>
+                    <a href="${data.driveLink}" style="display:block; margin:0 auto 15px; max-width:220px; padding:15px 0; background:#0f172a; color:#fff; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&darr; DOWNLOAD FILE</a>
+                    <a href="${data.sheetLink}" style="display:block; margin:0 auto; max-width:220px; padding:15px 0; border:1px solid #0f172a; color:#0f172a; text-decoration:none; font-size:12px; font-weight:bold; letter-spacing:2px;">&#10003; REVIEW SHEET</a>
                 </div>
                 <div style="text-align:left;">${getSig('#0f172a', '#64748b', '#0f172a', false)}</div>
             </td></tr></table></td></tr></table>`;
@@ -756,18 +534,18 @@ function getEmailHTML() {
         case "4": // Vibrant Pill
             previewBg = "#f0f9ff";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f9ff; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:24px; box-shadow:0 10px 25px rgba(3,105,161,0.1);">
-            <tr><td style="background:#0284c7; padding:40px; border-radius:24px 24px 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-radius:24px; box-shadow:0 10px 25px rgba(3,105,161,0.1); margin:0 auto;">
+            <tr><td style="background:#0284c7; padding:40px 30px; border-radius:24px 24px 0 0;">
                 <table width="100%"><tr>
                     <td>
                         <div style="color:#bae6fd; font-size:12px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">${data.company}</div>
                         <div style="color:#ffffff; font-size:26px; font-weight:bold; margin-top:5px;">Report Action Required</div>
                     </td>
-                    <td align="right"><span style="background:#0369a1; padding:10px 15px; border-radius:20px; color:#fff; font-size:12px;">&#9200; PENDING</span></td>
+                    <td align="right" style="vertical-align: top;"><span style="background:#0369a1; padding:8px 12px; border-radius:20px; color:#fff; font-size:11px; white-space:nowrap;">&#9200; PENDING</span></td>
                 </tr></table>
             </td></tr>
-            <tr><td style="padding:40px;">
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:25px; margin-bottom:30px;">
+            <tr><td style="padding:40px 30px;">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:30px;">
                     <div style="color:#64748b; font-size:12px; text-transform:uppercase; font-weight:bold;">Project Details</div>
                     <div style="color:#0f172a; font-size:20px; font-weight:bold; margin:8px 0 4px;">${data.movie}</div>
                     <div style="color:#475569; font-size:14px;">Type: ${data.reportType} | ID: ${data.reportId}</div>
@@ -775,9 +553,8 @@ function getEmailHTML() {
                 <div style="color:#0f172a; font-size:16px; font-weight:bold; margin-bottom:8px;">${data.actionTitle}</div>
                 <div style="color:#475569; font-size:15px; line-height:24px; margin-bottom:30px;">${data.actionText}</div>
                 <table width="100%"><tr>
-                    <td width="48%"><a href="${data.driveLink}" style="display:block; text-align:center; padding:16px; background:#f1f5f9; color:#0f172a; font-size:14px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128229; GET FILE</a></td>
-                    <td width="4%"></td>
-                    <td width="48%"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:16px; background:#0284c7; color:#ffffff; font-size:14px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128203; OPEN SHEET</a></td>
+                    <td align="center" style="display:inline-block; width: 48%; margin-bottom:10px;"><a href="${data.driveLink}" style="display:block; text-align:center; padding:14px 10px; background:#f1f5f9; color:#0f172a; font-size:13px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128229; GET FILE</a></td>
+                    <td align="center" style="display:inline-block; width: 48%; float:right;"><a href="${data.sheetLink}" style="display:block; text-align:center; padding:14px 10px; background:#0284c7; color:#ffffff; font-size:13px; font-weight:bold; text-decoration:none; border-radius:50px;">&#128203; OPEN SHEET</a></td>
                 </tr></table>
                 ${getSig('#0f172a', '#64748b', '#0284c7')}
             </td></tr></table></td></tr></table>`;
@@ -786,8 +563,8 @@ function getEmailHTML() {
         case "5": // Corporate Emerald
             previewBg = "#f0fdf4";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f0fdf4; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#ffffff; border-top:6px solid #059669; border-bottom:1px solid #e2e8f0; border-left:1px solid #e2e8f0; border-right:1px solid #e2e8f0;">
-            <tr><td style="padding:40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#ffffff; border-top:6px solid #059669; border-bottom:1px solid #e2e8f0; border-left:1px solid #e2e8f0; border-right:1px solid #e2e8f0; margin:0 auto;">
+            <tr><td style="padding:40px 30px;">
                 <table width="100%"><tr>
                     <td><div style="color:#059669; font-size:16px; font-weight:bold;">${data.company}</div></td>
                     <td align="right"><div style="color:#64748b; font-size:12px;">${data.reportId}</div></td>
@@ -798,11 +575,10 @@ function getEmailHTML() {
                     <div style="color:#065f46; font-size:15px; font-weight:bold; margin-bottom:5px;">${data.actionTitle}</div>
                     <div style="color:#047857; font-size:14px;">${data.actionText}</div>
                 </div>
-                <table style="margin-top:25px;"><tr>
-                    <td><a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; background:#059669; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#128190; Download</a></td>
-                    <td width="15"></td>
-                    <td><a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; border:1px solid #059669; color:#059669; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#9989; Review Sheet</a></td>
-                </tr></table>
+                <div style="margin-top:25px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:#059669; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#128190; Download</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; margin-left:5px; border:1px solid #059669; color:#059669; text-decoration:none; font-size:13px; font-weight:bold; border-radius:4px;">&#9989; Review Sheet</a>
+                </div>
                 ${getSig('#0f172a', '#475569', '#059669')}
             </td></tr></table></td></tr></table>`;
             break;
@@ -810,8 +586,8 @@ function getEmailHTML() {
         case "6": // Studio Slate
             previewBg = "#1e293b";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#1e293b; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#0f172a; border-left:4px solid #dc2626;">
-            <tr><td style="padding:40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#0f172a; border-left:4px solid #dc2626; margin:0 auto;">
+            <tr><td style="padding:40px 30px;">
                 <div style="color:#dc2626; font-size:12px; letter-spacing:2px; text-transform:uppercase;">${data.company}</div>
                 <div style="color:#ffffff; font-size:32px; text-transform:uppercase; margin-top:10px; font-weight:bold;">&#128253; ${data.movie}</div>
                 <div style="color:#94a3b8; font-size:14px; text-transform:uppercase;">${data.reportType} // ${data.reportId}</div>
@@ -819,8 +595,8 @@ function getEmailHTML() {
                 <div style="margin-top:30px; color:#ffffff; font-size:18px; text-transform:uppercase; font-weight:bold;">${data.actionTitle}</div>
                 <div style="margin-top:10px; color:#cbd5e1; font-size:14px; line-height:22px;">${data.actionText}</div>
                 <div style="margin-top:30px;">
-                    <a href="${data.driveLink}" style="display:inline-block; margin-right:15px; padding:12px 24px; background:#dc2626; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#11015; Get Assets</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 24px; background:#334155; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#9998; Open Sheet</a>
+                    <a href="${data.driveLink}" style="display:inline-block; margin-right:10px; margin-bottom:10px; padding:12px 20px; background:#dc2626; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#11015; Get Assets</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; margin-bottom:10px; padding:12px 20px; background:#334155; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; text-transform:uppercase;">&#9998; Open Sheet</a>
                 </div>
                 <div>${getSig('#ffffff', '#94a3b8', '#dc2626')}</div>
             </td></tr></table></td></tr></table>`;
@@ -829,26 +605,26 @@ function getEmailHTML() {
         case "7": // Elegant Luxury
             previewBg = "#faf9f6";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#faf9f6; padding:40px 15px; font-family:Georgia, serif;"><tr><td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border:1px solid #e5e5e5; padding:50px;">
-            <tr><td align="center">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:1px solid #e5e5e5; margin:0 auto;">
+            <tr><td align="center" style="padding:50px 30px;">
                 <div style="color:#666666; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-family:Arial, sans-serif;">${data.company}</div>
                 <div style="color:#111111; font-size:28px; margin-top:20px; font-style:italic;">&#10023; ${data.movie}</div>
                 <div style="color:#888888; font-size:14px; margin-top:10px;">${data.reportType}</div>
-                <div style="margin:30px 0; border-top:1px solid #eeeeee; width:50px;"></div>
+                <div style="margin:30px auto; border-top:1px solid #eeeeee; width:50px;"></div>
                 <div style="color:#444444; font-size:15px; line-height:26px; text-align:center;">${data.actionText}</div>
-                <table style="margin-top:35px;"><tr>
-                    <td style="padding:0 10px;"><a href="${data.driveLink}" style="color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111;">&darr; Download</a></td>
-                    <td style="color:#ccc;">|</td>
-                    <td style="padding:0 10px;"><a href="${data.sheetLink}" style="color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111;">&#9998; Review</a></td>
-                </tr></table>
-                <div style="font-family:Arial, sans-serif; text-align:left;">${getSig('#111111', '#888888', '#111111')}</div>
+                <div style="margin-top:35px;">
+                    <a href="${data.driveLink}" style="display:inline-block; color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111; margin:0 10px 10px;">&darr; Download</a>
+                    <span style="color:#ccc; display:inline-block; margin:0 5px 10px;">|</span>
+                    <a href="${data.sheetLink}" style="display:inline-block; color:#111111; font-size:12px; font-family:Arial, sans-serif; text-transform:uppercase; letter-spacing:1px; text-decoration:none; border-bottom:1px solid #111; margin:0 10px 10px;">&#9998; Review</a>
+                </div>
+                <div style="font-family:Arial, sans-serif; text-align:left; width: 100%; box-sizing: border-box;">${getSig('#111111', '#888888', '#111111')}</div>
             </td></tr></table></td></tr></table>`;
             break;
 
         case "8": // Brutalist High Contrast
             previewBg = "#ffffff";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff; padding:40px 15px; font-family:Courier New, monospace;"><tr><td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border:4px solid #000000; box-shadow:8px 8px 0px #000000;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border:4px solid #000000; box-shadow:6px 6px 0px #000000; margin:0 auto;">
             <tr><td style="border-bottom:4px solid #000000; padding:20px; background:#f0f0f0;">
                 <div style="color:#000; font-size:18px; font-weight:bold; text-transform:uppercase;">[ ${data.company} ]</div>
             </td></tr>
@@ -860,8 +636,8 @@ function getEmailHTML() {
                     <div style="color:#000; font-size:14px; margin-top:10px;">> ${data.actionText}</div>
                 </div>
                 <div style="margin-top:30px;">
-                    <a href="${data.driveLink}" style="display:inline-block; padding:10px 20px; background:#000; color:#fff; text-decoration:none; font-weight:bold; border:2px solid #000;">[&#8595;] DOWNLOAD</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; padding:10px 20px; background:#fff; color:#000; text-decoration:none; font-weight:bold; border:2px solid #000; margin-left:10px;">[&#10003;] REVIEW</a>
+                    <a href="${data.driveLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:#000; color:#fff; text-decoration:none; font-weight:bold; border:2px solid #000;">[&#8595;] DOWNLOAD</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:10px 15px; margin-bottom:10px; background:#fff; color:#000; text-decoration:none; font-weight:bold; border:2px solid #000;">[&#10003;] REVIEW</a>
                 </div>
                 <div style="font-family:Arial, sans-serif;">${getSig('#000000', '#555555', '#000000')}</div>
             </td></tr></table></td></tr></table>`;
@@ -870,19 +646,18 @@ function getEmailHTML() {
         case "9": // Tech Neon
             previewBg = "#0a0f1c";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0f1c; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="660" cellpadding="0" cellspacing="0" style="background:#111827; border:1px solid #1f2937; border-top:2px solid #00f0ff;">
-            <tr><td style="padding:40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:660px; background:#111827; border:1px solid #1f2937; border-top:2px solid #00f0ff; margin:0 auto;">
+            <tr><td style="padding:40px 30px;">
                 <div style="color:#00f0ff; font-size:12px; letter-spacing:2px; text-transform:uppercase;">SYSTEM // ${data.company}</div>
                 <div style="color:#ffffff; font-size:28px; font-weight:bold; margin-top:10px;">&#128187; ${data.movie}</div>
                 <div style="color:#6b7280; font-size:14px; margin-top:5px;">[ ${data.reportType} - ${data.reportId} ]</div>
                 <div style="margin-top:30px; background:#0a0f1c; border-left:2px solid #00f0ff; padding:20px;">
                     <div style="color:#e5e7eb; font-size:14px; line-height:22px;">> ${data.actionText}</div>
                 </div>
-                <table style="margin-top:30px;"><tr>
-                    <td><a href="${data.driveLink}" style="display:inline-block; padding:12px 24px; background:transparent; border:1px solid #00f0ff; color:#00f0ff; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">&#11015; ACCESS DATA</a></td>
-                    <td width="15"></td>
-                    <td><a href="${data.sheetLink}" style="display:inline-block; padding:12px 24px; background:#00f0ff; color:#0a0f1c; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">&#9881; EXECUTE REVIEW</a></td>
-                </tr></table>
+                <div style="margin-top:30px;">
+                    <a href="${data.driveLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:transparent; border:1px solid #00f0ff; color:#00f0ff; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">&#11015; ACCESS DATA</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; padding:12px 20px; margin-bottom:10px; background:#00f0ff; color:#0a0f1c; text-decoration:none; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; margin-left:5px;">&#9881; EXECUTE REVIEW</a>
+                </div>
                 ${getSig('#ffffff', '#6b7280', '#00f0ff')}
             </td></tr></table></td></tr></table>`;
             break;
@@ -890,17 +665,17 @@ function getEmailHTML() {
         case "10": // Soft Pastel
             previewBg = "#fdf4ff";
             html = `<table width="100%" cellpadding="0" cellspacing="0" style="background:#fdf4ff; padding:40px 15px; font-family:Arial, sans-serif;"><tr><td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:30px; box-shadow:0 10px 30px rgba(216,180,226,0.2);">
-            <tr><td align="center" style="padding:40px 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border-radius:30px; box-shadow:0 10px 30px rgba(216,180,226,0.2); margin:0 auto;">
+            <tr><td align="center" style="padding:40px 30px 20px;">
                 <div style="background:#fae8ff; color:#a21caf; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:bold; display:inline-block;">${data.company}</div>
                 <div style="color:#4a044e; font-size:26px; font-weight:bold; margin-top:20px;">&#10024; ${data.movie}</div>
                 <div style="color:#c026d3; font-size:14px; margin-top:5px;">${data.reportType}</div>
             </td></tr>
             <tr><td style="padding:10px 40px 40px; text-align:center;">
-                <div style="color:#701a75; font-size:15px; line-height:24px; background:#fdf4ff; padding:20px; border-radius:15px;">${data.actionText}</div>
+                <div style="color:#701a75; font-size:15px; line-height:24px; background:#fdf4ff; padding:20px; border-radius:15px; text-align:left;">${data.actionText}</div>
                 <div style="margin-top:25px;">
-                    <a href="${data.driveLink}" style="display:inline-block; margin:5px; padding:14px 28px; background:#d946ef; color:#fff; text-decoration:none; font-size:14px; font-weight:bold; border-radius:30px;">&#128140; Download File</a>
-                    <a href="${data.sheetLink}" style="display:inline-block; margin:5px; padding:14px 28px; background:#fdf4ff; border:1px solid #d946ef; color:#d946ef; text-decoration:none; font-size:14px; font-weight:bold; border-radius:30px;">&#9998; Open Sheet</a>
+                    <a href="${data.driveLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#d946ef; color:#fff; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#128140; Download File</a>
+                    <a href="${data.sheetLink}" style="display:inline-block; margin:5px; padding:14px 24px; background:#fdf4ff; border:1px solid #d946ef; color:#d946ef; text-decoration:none; font-size:13px; font-weight:bold; border-radius:30px;">&#9998; Open Sheet</a>
                 </div>
                 <div style="text-align:left;">${getSig('#4a044e', '#86198f', '#d946ef')}</div>
             </td></tr></table></td></tr></table>`;
@@ -915,8 +690,14 @@ function getPlainText() {
     return `Hi Team,\n\nReport ready for review\n\nPlease find the ${getValue("projectFull")} ${getValue("reportType")} for the title below.\n\nDOWNLOAD:\n${getValue("driveLink")}\n\n${getValue("actionTitle")}\n${getValue("actionText")}\n\nREVIEW REPORT:\n${getValue("sheetLink")}`;
 }
 
+// Write strictly to IFRAME to prevent CSS/HTML duplication and structural bleed
 function updatePreview() {
-    document.getElementById("emailPreviewContainer").innerHTML = getEmailHTML();
+    const html = getEmailHTML();
+    const iframe = document.getElementById("emailPreviewFrame");
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(html);
+    doc.close();
 }
 
 async function copyForEmail() {
